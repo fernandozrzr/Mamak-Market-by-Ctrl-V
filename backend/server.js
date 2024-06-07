@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 
 const app = express();
+const feedRoutes = require('./routes/feed');
+
 
 // Middleware
 app.use((req, res, next) => {
@@ -9,9 +11,10 @@ app.use((req, res, next) => {
     next();
 })
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-})
+// Routes
+app.use('/feed', feedRoutes);
+
+// listen to request
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
 })
