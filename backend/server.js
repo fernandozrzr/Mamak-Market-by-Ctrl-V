@@ -12,7 +12,7 @@ app.use((req, res, next) => {
 })
 
 // Routes
-app.use('/feed', feedRoutes);
+app.use('/api/feed', feedRoutes);
 
 // listen to request
 app.listen(process.env.PORT, () => {
