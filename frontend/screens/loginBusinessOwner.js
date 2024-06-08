@@ -123,7 +123,7 @@ export default function LoginBusinessOwner({ navigation }) {
                     />
                 </View>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('SellerFeed')} // Add the screen name for the home screen
+                    onPress={() => navigation.navigate('SellerScreens')}
                     style={{
                         height: 44,
                         alignItems: "center",

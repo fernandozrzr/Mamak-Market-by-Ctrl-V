@@ -2,7 +2,6 @@ import React from "react";
 import { SafeAreaView, View, ScrollView, Text, Image, TouchableOpacity, TextInput, Pressable } from "react-native";
 import { StyleSheet } from "react-native";
 import { useState } from "react";
-import UserFeed from "../screens2/UserFeed";
 
 export default function LoginUser({ navigation }) {
 
@@ -134,7 +133,7 @@ export default function LoginUser({ navigation }) {
                     />
                 </View>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('UserFeed')}
+                    onPress={() => navigation.navigate('UserScreens')}
 
                     style={{
                         alignItems: "center",
