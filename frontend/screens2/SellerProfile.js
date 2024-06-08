@@ -430,6 +430,7 @@ export default function SellerProfile({ navigation }) {
                 </View>
                 )}
                 {/* Big box below */}
+				{selectedTab === "sales" && (
                 <View 
                     style={{
                         flexDirection: 'row',
@@ -451,6 +452,7 @@ export default function SellerProfile({ navigation }) {
                     <Text>{selectedYear ? `Content for ${selectedYear}` : "Please select a year"}</Text>
                 </View>
 				</View>
+				)}
 			</ScrollView>
 		</SafeAreaView>
 	);
