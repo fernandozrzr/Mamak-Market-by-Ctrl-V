@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, View, ScrollView, Text, Image, TouchableOpacity, TextInput, Pressable } from "react-native";
+import { SafeAreaView, View, ScrollView, Text, Image, TouchableOpacity, TextInput, Pressable, Button } from "react-native";
 import { StyleSheet } from "react-native";
 import { useState } from "react";
 
@@ -41,10 +41,20 @@ export default function LoginUser({ navigation }) {
                 </View>
                 <Text
                     style={{
+                        color: "#EA1B1B",
+                        fontSize: 64,
+                        fontWeight: "bold",
+                        marginTop: -20,
+                        textAlign: 'center',
+                    }}>
+                    {"妈妈店"}
+                </Text>
+                <Text
+                    style={{
                         color: "#6155AA",
                         fontSize: 36,
                         marginBottom: 32,
-                        marginLeft: 75,
+                        textAlign: 'center',
                     }}>
                     {"Mamak Market"}
                 </Text>
@@ -56,13 +66,22 @@ export default function LoginUser({ navigation }) {
                         marginBottom: 5,
                         marginHorizontal: 88,
                     }}>
-                    <Text
-                        style={{
-                            color: "#FF0000",
-                            fontSize: 20,
-                        }}>
-                        {"User"}
-                    </Text>
+                    <TouchableOpacity style={{
+                        backgroundColor: '#DEC7B2',
+                        alignItems: 'center',
+                        padding: 10,
+                        justifyContent: 'center',
+                        marginVertical: 10,
+                    }} >
+                        <Text style={{ color: 'red', fontSize: 20 }}>User</Text>
+                        <View
+                            style={{
+                                width: 80,
+                                height: 1,
+                                backgroundColor: "#FF0000",
+                            }}>
+                        </View>
+                    </TouchableOpacity>
                     {/* <Text 
                         style = {{
                             color: "#000000",
@@ -70,32 +89,22 @@ export default function LoginUser({ navigation }) {
                         }}>
                         {"Seller"}
                     </Text> */}
-                    <TouchableOpacity onPress={() => navigation.navigate('loginBusinessOwner')}>
+                    <TouchableOpacity style={{
+                        backgroundColor: '#DEC7B2',
+                        alignItems: 'center',
+                        adding: 10,
+                        justifyContent: 'center',
+                        marginVertical: 10,
+                    }} onPress={() => navigation.navigate('loginBusinessOwner')}>
                         <Text style={{ color: '#000000', fontSize: 20 }}>Seller</Text>
+                        <View
+                            style={{
+                                width: 80,
+                                height: 1,
+                                backgroundColor: "#000000",
+                            }}>
+                        </View>
                     </TouchableOpacity>
-                </View>
-                <View
-                    style={{
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        marginBottom: 19,
-                        marginHorizontal: 34,
-                    }}>
-                    <View
-                        style={{
-                            width: 159,
-                            height: 1,
-                            backgroundColor: "#FF0000",
-                        }}>
-                    </View>
-                    <View
-                        style={{
-                            width: 159,
-                            height: 1,
-                            backgroundColor: "#000000",
-                        }}>
-                    </View>
                 </View>
                 <View
                     style={{
