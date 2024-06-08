@@ -122,7 +122,7 @@ export default function LoginBusinessOwner({ navigation }) {
                         onChangeText={(text) => onChangePassword(text)}
                     />
                 </View>
-                <View
+                <TouchableOpacity
                     style={{
                         height: 44,
                         alignItems: "center",
@@ -140,16 +140,16 @@ export default function LoginBusinessOwner({ navigation }) {
                         }}>
                         {"Login"}
                     </Text>
-                </View>
-                <Text
+                </TouchableOpacity>
+                <TouchableOpacity
                     style={{
                         color: "#4112FF",
                         fontSize: 15,
                         marginBottom: 12,
                         marginLeft: 141,
                     }}>
-                    {"Forgotten Password?"}
-                </Text>
+                    <Text>Forgotten Password?</Text>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('signupBusinessOwner')}>
                     <Text style={{ color: '#4112FF', fontSize: 15, marginLeft: 176 }}>Sign Up</Text>
                 </TouchableOpacity>

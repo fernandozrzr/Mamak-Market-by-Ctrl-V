@@ -140,7 +140,7 @@ export default function SignUpBusinessOwner({ navigation }) {
                         onChangeText={(text) => onChangeUEN(text)}
                     />
                 </View>
-                <View
+                <TouchableOpacity
                     style={{
                         alignItems: "center",
                         backgroundColor: "#4112FF",
@@ -155,7 +155,7 @@ export default function SignUpBusinessOwner({ navigation }) {
                         }}>
                         {"Register"}
                     </Text>
-                </View>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('loginBusinessOwner')}>
                     <Text style={{ color: '#4112FF', fontSize: 15, marginLeft: 162, marginTop: 20 }}>Back to Login</Text>
                 </TouchableOpacity>

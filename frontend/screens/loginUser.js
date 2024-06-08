@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, View, ScrollView, Text, Image, TouchableOpacity, TextInput } from "react-native";
+import { SafeAreaView, View, ScrollView, Text, Image, TouchableOpacity, TextInput, Pressable } from "react-native";
 import { StyleSheet } from "react-native";
 import { useState } from "react";
 
@@ -132,7 +132,7 @@ export default function LoginUser({ navigation }) {
                         onChangeText={(text) => onChangePassword(text)}
                     />
                 </View>
-                <View
+                <TouchableOpacity
                     style={{
                         alignItems: "center",
                         backgroundColor: "#4112FF",
@@ -148,16 +148,16 @@ export default function LoginUser({ navigation }) {
                         }}>
                         {"Login"}
                     </Text>
-                </View>
-                <Text
+                </TouchableOpacity>
+                <TouchableOpacity
                     style={{
                         color: "#4112FF",
                         fontSize: 15,
                         marginBottom: 12,
                         marginLeft: 141,
                     }}>
-                    {"Forgotten Password?"}
-                </Text>
+                    <Text>Forgotten Password?</Text>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('signupUser')}>
                     <Text style={{ color: '#4112FF', fontSize: 15, marginLeft: 176 }}>Sign Up</Text>
                 </TouchableOpacity>

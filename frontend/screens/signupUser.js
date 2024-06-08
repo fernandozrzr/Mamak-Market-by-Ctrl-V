@@ -119,7 +119,7 @@ export default function SignUpUser({ navigation }) {
                         onChangeText={(text) => onChangePassword(text)}
                     />
                 </View>
-                <View
+                <TouchableOpacity
                     style={{
                         alignItems: "center",
                         backgroundColor: "#4112FF",
@@ -134,7 +134,7 @@ export default function SignUpUser({ navigation }) {
                         }}>
                         {"Register"}
                     </Text>
-                </View>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('loginUser')}>
                     <Text style={{ color: '#4112FF', fontSize: 15, marginLeft: 158, marginTop: 20 }}>Back to Login</Text>
                 </TouchableOpacity>
