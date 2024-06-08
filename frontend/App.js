@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsSplashVisible(false);
-    }, 1000); // 3000 milliseconds = 3 seconds
+    }, 1000); // 1 sec
 
     return () => clearTimeout(timer); // Cleanup the timer on component unmount
   }, []);

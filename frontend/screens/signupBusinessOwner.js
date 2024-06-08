@@ -1,6 +1,11 @@
 import React from "react";
-import { SafeAreaView, View, ScrollView, Text, Image, ImageBackground, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, ScrollView, Text, Image, ImageBackground, TouchableOpacity, TextInput } from "react-native";
+import { useState } from "react";
 export default function SignUpBusinessOwner({ navigation }) {
+    const [username, onChangeUsername] = useState("");
+    const [password, onChangePassword] = useState("");
+    const [UEN, onChangeUEN] = useState("");
+
     return (
         <SafeAreaView
             style={{
@@ -94,14 +99,11 @@ export default function SignUpBusinessOwner({ navigation }) {
                         marginBottom: 9,
                         marginHorizontal: 17,
                     }}>
-                    <Text
-                        style={{
-                            color: "#9D9D9D",
-                            fontSize: 18,
-                            marginTop: -4,
-                        }}>
-                        {"Username"}
-                    </Text>
+                    <TextInput
+                        placeholder="Username"
+                        value={username}
+                        onChangeText={(text) => onChangeUsername(text)}
+                    />
                 </View>
 
                 <View
@@ -114,15 +116,12 @@ export default function SignUpBusinessOwner({ navigation }) {
                         marginBottom: 9,
                         marginHorizontal: 17,
                     }}>
-                    <Text
-                        style={{
-                            color: "#9D9D9D",
-                            fontSize: 18,
-                            marginLeft: -2.5,
-                            marginTop: -4,
-                        }}>
-                        {"Password"}
-                    </Text>
+                    <TextInput
+                        placeholder="Password"
+                        value={password}
+                        secureTextEntry={true}
+                        onChangeText={(text) => onChangePassword(text)}
+                    />
                 </View>
                 <View
                     style={{
@@ -134,14 +133,12 @@ export default function SignUpBusinessOwner({ navigation }) {
                         marginBottom: 9,
                         marginHorizontal: 17,
                     }}>
-                    <Text
-                        style={{
-                            color: "#9D9D9D",
-                            fontSize: 18,
-                            marginTop: -3,
-                        }}>
-                        {"UEN"}
-                    </Text>
+                    <TextInput
+                        placeholder="UEN"
+                        value={UEN}
+
+                        onChangeText={(text) => onChangeUEN(text)}
+                    />
                 </View>
                 <View
                     style={{
@@ -160,7 +157,7 @@ export default function SignUpBusinessOwner({ navigation }) {
                     </Text>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('loginBusinessOwner')}>
-                    <Text style={{ color: '#4112FF', fontSize: 12, marginLeft: 162, marginTop: 20 }}>Back to Login</Text>
+                    <Text style={{ color: '#4112FF', fontSize: 15, marginLeft: 162, marginTop: 20 }}>Back to Login</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>

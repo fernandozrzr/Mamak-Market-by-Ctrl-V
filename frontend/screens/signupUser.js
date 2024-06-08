@@ -1,6 +1,9 @@
 import React from "react";
-import { SafeAreaView, View, ScrollView, Text, Image, ImageBackground, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, ScrollView, Text, Image, ImageBackground, TouchableOpacity, TextInput } from "react-native";
+import { useState } from "react";
 export default function SignUpUser({ navigation }) {
+    const [username, onChangeUsername] = useState("");
+    const [password, onChangePassword] = useState("");
     return (
         <SafeAreaView
             style={{
@@ -94,14 +97,11 @@ export default function SignUpUser({ navigation }) {
                         marginBottom: 13,
                         marginHorizontal: 18,
                     }}>
-                    <Text
-                        style={{
-                            color: "#9D9D9D",
-                            fontSize: 18,
-                            marginTop: -5,
-                        }}>
-                        {"Username"}
-                    </Text>
+                    <TextInput
+                        placeholder="Username"
+                        value={username}
+                        onChangeText={(text) => onChangeUsername(text)}
+                    />
                 </View>
                 <View
                     style={{
@@ -112,14 +112,12 @@ export default function SignUpUser({ navigation }) {
                         marginBottom: 20,
                         marginHorizontal: 18,
                     }}>
-                    <Text
-                        style={{
-                            color: "#9D9D9D",
-                            fontSize: 18,
-                            marginLeft: -2.5,
-                        }}>
-                        {"Password"}
-                    </Text>
+                    <TextInput
+                        placeholder="Password"
+                        value={password}
+                        secureTextEntry={true}
+                        onChangeText={(text) => onChangePassword(text)}
+                    />
                 </View>
                 <View
                     style={{
@@ -138,7 +136,7 @@ export default function SignUpUser({ navigation }) {
                     </Text>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('loginUser')}>
-                    <Text style={{ color: '#4112FF', fontSize: 12, marginLeft: 158, marginTop: 20 }}>Back to Login</Text>
+                    <Text style={{ color: '#4112FF', fontSize: 15, marginLeft: 158, marginTop: 20 }}>Back to Login</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
