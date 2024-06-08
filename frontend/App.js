@@ -29,13 +29,13 @@ function UserScreens() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === 'Feed') {
+          if (route.name === 'Marketplace') {
             iconName = "home"
-          } else if (route.name === 'Listing') {
-            iconName = "shoppingcart"
+          } else if (route.name === 'Feed') {
+            iconName = "database"
           }
           else {
-            iconName = "profile"
+            iconName = "user"
           }
 
           // You can return any component that you like here!
@@ -46,29 +46,32 @@ function UserScreens() {
 
       })}
     >
+      <Tab.Screen name="Marketplace" options={{
+        tabBarStyle: {
+          paddingBottom: 8,
+          paddingTop: 8,
+          height: 60,
+
+        },
+        headerShown: false,
+      }} component={UserListing} />
       <Tab.Screen name="Feed" options={{
         tabBarStyle: {
           paddingBottom: 8,
           paddingTop: 8,
           height: 60,
 
-        }
+        },
+        headerShown: false,
       }} component={UserFeed} />
-      <Tab.Screen name="Listing" options={{
+      <Tab.Screen name="You" options={{
         tabBarStyle: {
           paddingBottom: 8,
           paddingTop: 8,
           height: 60,
 
-        }
-      }} component={UserListing} />
-      <Tab.Screen name="Profile" options={{
-        tabBarStyle: {
-          paddingBottom: 8,
-          paddingTop: 8,
-          height: 60,
-
-        }
+        },
+        headerShown: false,
       }} component={UserProfile} />
     </Tab.Navigator>
   );
@@ -81,13 +84,13 @@ function SellerScreens() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === 'Feed') {
-            iconName = "home"
-          } else if (route.name === 'Listing') {
+          if (route.name === 'Marketplace') {
             iconName = "shoppingcart"
+          } else if (route.name === 'Feed') {
+            iconName = "database"
           }
           else {
-            iconName = "profile"
+            iconName = "user"
           }
 
           // You can return any component that you like here!
@@ -98,29 +101,32 @@ function SellerScreens() {
 
       })}
     >
+      <Tab.Screen name="Marketplace" options={{
+        tabBarStyle: {
+          paddingBottom: 8,
+          paddingTop: 8,
+          height: 60,
+
+        },
+        headerShown: false,
+      }} component={SellerListing} />
       <Tab.Screen name="Feed" options={{
         tabBarStyle: {
           paddingBottom: 8,
           paddingTop: 8,
           height: 60,
 
-        }
+        },
+        headerShown: false,
       }} component={SellerFeed} />
-      <Tab.Screen name="Listing" options={{
+      <Tab.Screen name="You" options={{
         tabBarStyle: {
           paddingBottom: 8,
           paddingTop: 8,
           height: 60,
 
-        }
-      }} component={SellerListing} />
-      <Tab.Screen name="Profile" options={{
-        tabBarStyle: {
-          paddingBottom: 8,
-          paddingTop: 8,
-          height: 60,
-
-        }
+        },
+        headerShown: false,
       }} component={SellerProfile} />
     </Tab.Navigator>
   );
