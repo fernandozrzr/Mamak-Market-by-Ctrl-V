@@ -1,6 +1,7 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 
-import splashscreen from './screens/splashscreen';
+import SplashScreen from './screens/splashscreen';
 import loginBusinessOwner from './screens/loginBusinessOwner';
 import loginUser from './screens/loginUser';
 import signupUser from './screens/signupUser';
@@ -15,8 +16,21 @@ const Stack = createStackNavigator();
 
 
 function App() {
+  const [isSplashVisible, setIsSplashVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsSplashVisible(false);
+    }, 1000); // 3000 milliseconds = 3 seconds
+
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+  }, []);
+
+  if (isSplashVisible) {
+    return <SplashScreen />;
+  }
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}} >
+    <Stack.Navigator screenOptions={{ headerShown: false }} >
       <Stack.Screen name="loginUser" component={loginUser} />
       <Stack.Screen name="loginBusinessOwner" component={loginBusinessOwner} />
       <Stack.Screen name="signupBusinessOwner" component={signupBusinessOwner} />
@@ -29,9 +43,9 @@ function App() {
 export default () => {
   return (
     <NavigationContainer>
-     
-        <App />
-      
+
+      <App />
+
     </NavigationContainer>
   )
 }

@@ -1,21 +1,21 @@
 import React from "react";
 import { SafeAreaView, View, ScrollView, Text, Image, ImageBackground, TouchableOpacity } from "react-native";
 export default function LoginBusinessOwner({ navigation }) {
-	return (
-		<SafeAreaView 
-            style = {{
+    return (
+        <SafeAreaView
+            style={{
                 flex: 1,
                 backgroundColor: "#FFFFFF",
             }}>
-            <ScrollView  
-                style = {{
+            <ScrollView
+                style={{
                     flex: 1,
                     backgroundColor: "#DEC7B2",
                     paddingTop: 162,
                     paddingBottom: 183,
                 }}>
-                <View 
-                    style = {{
+                <View
+                    style={{
                         height: 156,
                         // borderColor: "#5E27FD",
                         // borderWidth: 1,
@@ -24,8 +24,8 @@ export default function LoginBusinessOwner({ navigation }) {
                         justifyContent: 'center', // Align image and text in the center vertically
                         alignItems: 'center', // Align image and text in the center horizontally
                     }}>
-                    <Image 
-                        source={require('C:/Users/ewanh/java2/Mamak-Market-by-Ctrl-V/frontend/assets/AppIcon.jpg')}
+                    <Image
+                        source={require('../assets/AppIcon.jpg')}
                         style={{
                             width: 100, // Adjust width as needed
                             height: 100, // Adjust height as needed
@@ -33,8 +33,8 @@ export default function LoginBusinessOwner({ navigation }) {
                         resizeMode="cover" // or any other resize mode you prefer
                     />
                 </View>
-                <Text 
-                    style = {{
+                <Text
+                    style={{
                         color: "#6155AA",
                         fontSize: 36,
                         marginBottom: 32,
@@ -42,8 +42,8 @@ export default function LoginBusinessOwner({ navigation }) {
                     }}>
                     {"Mamak Market"}
                 </Text>
-                <View 
-                    style = {{
+                <View
+                    style={{
                         flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "center",
@@ -51,33 +51,33 @@ export default function LoginBusinessOwner({ navigation }) {
                         marginHorizontal: 88,
                     }}>
                     <TouchableOpacity onPress={() => navigation.navigate('loginUser')}>
-                        <Text style={{ color: '#000000', fontSize: 20}}>User</Text>
+                        <Text style={{ color: '#000000', fontSize: 20 }}>User</Text>
                     </TouchableOpacity>
-                    <Text 
-                        style = {{
+                    <Text
+                        style={{
                             color: "#FF0000",
                             fontSize: 20,
                         }}>
                         {"Seller"}
                     </Text>
                 </View>
-                <View 
-                    style = {{
+                <View
+                    style={{
                         flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "center",
                         marginBottom: 19,
                         marginHorizontal: 34,
                     }}>
-                    <View 
-                        style = {{
+                    <View
+                        style={{
                             width: 159,
                             height: 1,
                             backgroundColor: "#000000",
                         }}>
                     </View>
-                    <View 
-                        style = {{
+                    <View
+                        style={{
                             width: 159,
                             height: 1,
                             backgroundColor: "#FF0000",
@@ -85,7 +85,7 @@ export default function LoginBusinessOwner({ navigation }) {
                     </View>
                 </View>
                 <View
-                    style = {{
+                    style={{
                         height: 44,
                         backgroundColor: "#F5F5F5",
                         borderRadius: 8,
@@ -94,17 +94,17 @@ export default function LoginBusinessOwner({ navigation }) {
                         marginBottom: 9,
                         marginHorizontal: 17,
                     }}>
-                <Text 
-                    style = {{
-                        color: "#9D9D9D",
-                        fontSize: 18,
-                        marginTop: -4,
-                    }}>
-                    {"Username"}
-                </Text>
+                    <Text
+                        style={{
+                            color: "#9D9D9D",
+                            fontSize: 18,
+                            marginTop: -4,
+                        }}>
+                        {"Username"}
+                    </Text>
                 </View>
-                <View 
-                    style = {{
+                <View
+                    style={{
                         height: 44,
                         backgroundColor: "#F5F5F5",
                         borderRadius: 8,
@@ -113,8 +113,8 @@ export default function LoginBusinessOwner({ navigation }) {
                         marginBottom: 22,
                         marginHorizontal: 18,
                     }}>
-                    <Text 
-                        style = {{
+                    <Text
+                        style={{
                             color: "#9D9D9D",
                             fontSize: 18,
                             marginTop: -4,
@@ -123,8 +123,8 @@ export default function LoginBusinessOwner({ navigation }) {
                         {"Password"}
                     </Text>
                 </View>
-                <View 
-                    style = {{
+                <View
+                    style={{
                         height: 44,
                         alignItems: "center",
                         backgroundColor: "#4112FF",
@@ -133,8 +133,8 @@ export default function LoginBusinessOwner({ navigation }) {
                         marginBottom: 26,
                         marginHorizontal: 18,
                     }}>
-                    <Text 
-                        style = {{
+                    <Text
+                        style={{
                             color: "#F5F5F5",
                             fontSize: 19,
                             marginTop: -5,
@@ -142,8 +142,8 @@ export default function LoginBusinessOwner({ navigation }) {
                         {"Login"}
                     </Text>
                 </View>
-                <Text 
-                    style = {{
+                <Text
+                    style={{
                         color: "#4112FF",
                         fontSize: 12,
                         marginBottom: 9,
@@ -152,11 +152,11 @@ export default function LoginBusinessOwner({ navigation }) {
                     {"Forgotten Password?"}
                 </Text>
                 <TouchableOpacity onPress={() => navigation.navigate('signupBusinessOwner')}>
-                    <Text style={{ color: '#4112FF', fontSize: 12, marginLeft:176}}>Sign Up</Text>
+                    <Text style={{ color: '#4112FF', fontSize: 12, marginLeft: 176 }}>Sign Up</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
 
 
-	)
+    )
 }
