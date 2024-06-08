@@ -123,6 +123,7 @@ export default function LoginBusinessOwner({ navigation }) {
                     />
                 </View>
                 <TouchableOpacity
+                    onPress={() => navigation.navigate('SellerFeed')} // Add the screen name for the home screen
                     style={{
                         height: 44,
                         alignItems: "center",
@@ -142,6 +143,7 @@ export default function LoginBusinessOwner({ navigation }) {
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                    onPress={() => navigation.navigate('')} // Add the screen name for the forgotten password screen
                     style={{
                         color: "#4112FF",
                         fontSize: 15,
