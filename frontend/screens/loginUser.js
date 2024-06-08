@@ -33,8 +33,9 @@ export default function LoginUser({ navigation }) {
                     <Image
                         source={require('../assets/AppIcon.jpg')}
                         style={{
-                            width: 100, // Adjust width as needed
-                            height: 100, // Adjust height as needed
+                            width: 150, // Adjust width as needed
+                            height: 150, // Adjust height as needed
+                            marginBottom: 30,
                         }}
                         resizeMode="cover" // or any other resize mode you prefer
                     />
@@ -44,7 +45,7 @@ export default function LoginUser({ navigation }) {
                         color: "#EA1B1B",
                         fontSize: 64,
                         fontWeight: "bold",
-                        marginTop: -20,
+                        marginTop: -40,
                         textAlign: 'center',
                     }}>
                     {"妈妈店"}
@@ -72,6 +73,7 @@ export default function LoginUser({ navigation }) {
                         padding: 10,
                         justifyContent: 'center',
                         marginVertical: 10,
+                        marginTop: -15,
                     }} >
                         <Text style={{ color: 'red', fontSize: 20 }}>User</Text>
                         <View
@@ -95,6 +97,7 @@ export default function LoginUser({ navigation }) {
                         adding: 10,
                         justifyContent: 'center',
                         marginVertical: 10,
+                        marginTop: -15,
                     }} onPress={() => navigation.navigate('loginBusinessOwner')}>
                         <Text style={{ color: '#000000', fontSize: 20 }}>Seller</Text>
                         <View

@@ -32,8 +32,9 @@ export default function LoginBusinessOwner({ navigation }) {
                     <Image
                         source={require('../assets/AppIcon.jpg')}
                         style={{
-                            width: 100, // Adjust width as needed
-                            height: 100, // Adjust height as needed
+                            width: 150, // Adjust width as needed
+                            height: 150, // Adjust height as needed
+                            marginBottom: 30,
                         }}
                         resizeMode="cover" // or any other resize mode you prefer
                     />
@@ -43,7 +44,7 @@ export default function LoginBusinessOwner({ navigation }) {
                         color: "#EA1B1B",
                         fontSize: 64,
                         fontWeight: "bold",
-                        marginTop: -20,
+                        marginTop: -40,
                         textAlign: 'center',
                     }}>
                     {"妈妈店"}
@@ -71,13 +72,14 @@ export default function LoginBusinessOwner({ navigation }) {
                         padding: 10,
                         justifyContent: 'center',
                         marginVertical: 10,
+                        marginTop: -15,
                     }} onPress={() => navigation.navigate('loginUser')}>
                         <Text style={{ color: '#000000', fontSize: 20 }}>User</Text>
                         <View
                             style={{
                                 width: 80,
                                 height: 1,
-                                backgroundColor: "#FF0000",
+                                backgroundColor: "#000000",
                             }}>
                         </View>
                     </TouchableOpacity>
@@ -94,13 +96,14 @@ export default function LoginBusinessOwner({ navigation }) {
                         adding: 10,
                         justifyContent: 'center',
                         marginVertical: 10,
+                        marginTop: -15,
                     }}>
                         <Text style={{ color: 'red', fontSize: 20 }}>Seller</Text>
                         <View
                             style={{
                                 width: 80,
                                 height: 1,
-                                backgroundColor: "#000000",
+                                backgroundColor: "#FF0000",
                             }}>
                         </View>
                     </TouchableOpacity>
