@@ -1,4 +1,4 @@
-const mongoose =  require('mongoose')
+const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
@@ -16,7 +16,7 @@ const listingSchema = new Schema({
         required: true
     },
     expirydate: {                   //Item expiry date
-        type: Date,
+        type: String,
         required: true
     },
     cost: {                         //Item usual cost
@@ -27,6 +27,6 @@ const listingSchema = new Schema({
         type: Number,
         required: true
     }
-}, {timestamps: true})
+}, { timestamps: true })
 
 module.exports = mongoose.model('Listing', listingSchema)
