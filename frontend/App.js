@@ -85,7 +85,7 @@ function SellerScreens() {
           let iconName;
 
           if (route.name === 'Marketplace') {
-            iconName = "shoppingcart"
+            iconName = "home"
           } else if (route.name === 'Feed') {
             iconName = "database"
           }
