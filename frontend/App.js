@@ -11,6 +11,7 @@ import UserListing from './screens2/UserListing';
 import UserProfile from './screens2/UserProfile';
 import SellerFeed from './screens2/SellerFeed';
 import SellerListing from './screens2/SellerListing';
+import AddListing from './screens2/AddListing';
 import SellerProfile from './screens2/SellerProfile';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -109,7 +110,7 @@ function SellerScreens() {
 
         },
         headerShown: false,
-      }} component={SellerListing} />
+      }} component={AddListing} />     
       <Tab.Screen name="Feed" options={{
         tabBarStyle: {
           paddingBottom: 8,
