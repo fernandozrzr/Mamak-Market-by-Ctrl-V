@@ -110,7 +110,7 @@ function SellerScreens() {
 
         },
         headerShown: false,
-      }} component={AddListing} />     
+      }} component={SellerListing} />     
       <Tab.Screen name="Feed" options={{
         tabBarStyle: {
           paddingBottom: 8,
