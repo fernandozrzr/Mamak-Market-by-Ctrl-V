@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity} from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-
-
 export default function AddListing() {
   const {open, setOpen} = useState(false)
 

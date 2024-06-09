@@ -14,6 +14,7 @@ import SellerListing from './screens2/SellerListing';
 import AddListing from './screens2/AddListing';
 import SellerProfile from './screens2/SellerProfile';
 import ShopPage from './screens2/ShopPage';
+import postCreation from './screens2/postCreation';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -158,6 +159,7 @@ function App() {
       <Stack.Screen name="UserScreens" component={UserScreens} />
       <Stack.Screen name="SellerScreens" component={SellerScreens} />
       <Stack.Screen name="ShopPage" component={ShopPage} />
+      <Stack.Screen name="postCreation" component={postCreation}/>
     </Stack.Navigator>
   );
 }
