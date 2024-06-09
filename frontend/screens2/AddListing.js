@@ -1,11 +1,30 @@
 import React, { useState } from "react";
-import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity} from "react-native";
+import { StyleSheet, SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, Platform} from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 
 export default function AddListing() {
-  const {open, setOpen} = useState(false)
+  const [date, setDate] = useState(new Date());
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+  const [text, setText] = useState('Empty');
+  const onChange = (event, selectedDate) => {
+	const currentDate = selectedDate || date;
+	setShow(Platform.OS === 'ios');
+	setDate(currentDate);
+
+	let tempDate = new Date(currentDate);
+	let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+	setText(fDate)
+	console.log(fDate);
+	setShow(false);
+}
+
+  const showMode = (currentMode) => {
+	setShow(true);
+	setMode(currentMode);
+  }
 
   return (
 	<SafeAreaView 
@@ -70,15 +89,15 @@ export default function AddListing() {
         justifyContent: 'space-between',  // Distribute space between items
       }}
     > 
-      <TextInput 
-        placeholder="Today"
-        style={{
+      <Text style={{
           flex: 1,  // Take up as much space as possible
           paddingRight: 10,  // Add some right padding for space between the TextInput and the Image
-        }}
-      />
+        }}>{text} </Text> 
+        
+        
       
-      <TouchableOpacity>
+      
+      <TouchableOpacity onPress={() => showMode('date')}>
         <Image 
           source={require('../assets/Date_range.png')}
           resizeMode="cover"
@@ -88,11 +107,21 @@ export default function AddListing() {
           }} 
         /> 
       </TouchableOpacity>
+	  {show && (<DateTimePicker
+	  	testID = 'dateTimePicker'
+		value = {date}
+		mode = {mode}
+		is24Hour = {true}
+		display='default'
+		onChange={onChange}
+		minimumDate={new Date()}	 
+	  />)}
+	  
     </View>               
       </View>
 
 
-      <Text style={{fontWeight:"bold", marginLeft: 60}}>{"Price"} </Text>
+      <Text style={{fontWeight:"bold", marginLeft: 60}}>{'Price'} </Text>
 
 
       <View 
@@ -235,3 +264,4 @@ export default function AddListing() {
     </SafeAreaView>
   )
 }
+
