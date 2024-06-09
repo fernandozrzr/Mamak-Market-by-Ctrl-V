@@ -1,4 +1,6 @@
 require('dotenv').config();
+
+const cors = require('cors');
 const express = require('express');
 
 const app = express();
@@ -6,7 +8,9 @@ const feedRoutes = require('./routes/feed');
 const listingRoutes = require('./routes/listing');
 const profileRoutes = require('./routes/profile');
 const { default: mongoose } = require('mongoose');
+
 app.use(express.json());
+app.use(cors());
 
 // Middleware
 app.use((req, res, next) => {

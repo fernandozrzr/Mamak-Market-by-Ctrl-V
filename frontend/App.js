@@ -13,7 +13,7 @@ import SellerFeed from './screens2/SellerFeed';
 import SellerListing from './screens2/SellerListing';
 import AddListing from './screens2/AddListing';
 import SellerProfile from './screens2/SellerProfile';
-import StoreFeedPage from './screens2/StoreFeedPage';
+import ShopPage from './screens2/ShopPage';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -111,7 +111,7 @@ function SellerScreens() {
 
         },
         headerShown: false,
-      }} component={SellerListing} />     
+      }} component={AddListing} />
       <Tab.Screen name="Feed" options={{
         tabBarStyle: {
           paddingBottom: 8,
@@ -157,7 +157,7 @@ function App() {
       <Stack.Screen name="signupUser" component={signupUser} />
       <Stack.Screen name="UserScreens" component={UserScreens} />
       <Stack.Screen name="SellerScreens" component={SellerScreens} />
-      <Stack.Screen name="StoreFeedPage" component={StoreFeedPage}/>
+      <Stack.Screen name="ShopPage" component={ShopPage} />
     </Stack.Navigator>
   );
 }

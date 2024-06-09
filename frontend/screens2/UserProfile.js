@@ -1,22 +1,22 @@
 import React from "react";
-import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity} from "react-native";
+import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity } from "react-native";
 
 
 export default function UserpageUser({ navigation }) {
 	return (
-		<SafeAreaView 
+		<SafeAreaView
 			style={{
 				flex: 1,
 				backgroundColor: "#FFFFFF",
 			}}
 		>
-			<View 
+			<View
 				style={{
 					backgroundColor: "#F3F3F3",
 					paddingBottom: 21,
 				}}
 			>
-				<View 
+				<View
 					style={{
 						marginBottom: 5,
 					}}
@@ -29,18 +29,18 @@ export default function UserpageUser({ navigation }) {
 							aspectRatio: 16 / 6,
 						}}
 					/>
-                    <TouchableOpacity onPress={() => navigation.navigate('loginUser')}>
-                        <Image
-                            source={require('../assets/ShopImage/logoutIcon.png')}
-                            style={{
-                                width: 19,
-                                height: 19,
-                                marginTop: 10,
-                                marginLeft: 360
-                            }}
-                            resizeMode="cover"
-                        />
-                    </TouchableOpacity>
+					<TouchableOpacity onPress={() => navigation.navigate('loginUser')}>
+						<Image
+							source={require('../assets/ShopImage/logoutIcon.png')}
+							style={{
+								width: 19,
+								height: 19,
+								marginTop: 10,
+								marginLeft: 360
+							}}
+							resizeMode="cover"
+						/>
+					</TouchableOpacity>
 					<View
 						style={{
 							width: 140,
@@ -60,37 +60,37 @@ export default function UserpageUser({ navigation }) {
 							}}
 						/>
 					</View>
-                    
+
 				</View>
-				<View 
+				<View
 					style={{
 						flexDirection: "row",
 						alignItems: "center",
 						marginBottom: 11,
 						marginHorizontal: 58,
-                        justifyContent: "center"
+						justifyContent: "center"
 					}}
 				>
-					<Text 
+					<Text
 						style={{
 							color: "#000000",
 							fontSize: 23,
-                            textAlign: "center",
-                            marginRight: 5,
+							textAlign: "center",
+							marginRight: 5,
 						}}
 					>
 						{"Liu Ying"}
-                    </Text>
-						<Image
-							source={require('../assets/ShopImage/tickIcon.png')}
-							style={{
-								width: 19,
-								height: 19,
-							}}
-							resizeMode="cover"
-						/>
+					</Text>
+					<Image
+						source={require('../assets/ShopImage/tickIcon.png')}
+						style={{
+							width: 19,
+							height: 19,
+						}}
+						resizeMode="cover"
+					/>
 				</View>
-				<View 
+				<View
 					style={{
 						flexDirection: "row",
 						justifyContent: "center",
@@ -98,7 +98,7 @@ export default function UserpageUser({ navigation }) {
 						marginHorizontal: 20,
 					}}
 				>
-					<View 
+					<View
 						style={{
 							width: 164,
 							flexDirection: "row",
@@ -117,7 +117,7 @@ export default function UserpageUser({ navigation }) {
 							}}
 							resizeMode="cover"
 						/>
-						<Text 
+						<Text
 							style={{
 								color: "#000000",
 								fontSize: 20,
@@ -130,13 +130,13 @@ export default function UserpageUser({ navigation }) {
 					</View>
 				</View>
 			</View>
-			<View 
+			<View
 				style={{
 					backgroundColor: "#F3F3F3",
 					paddingVertical: 3,
 				}}
 			>
-				<View 
+				<View
 					style={{
 						flexDirection: "row",
 						justifyContent: "center",
@@ -145,7 +145,7 @@ export default function UserpageUser({ navigation }) {
 						marginHorizontal: 47,
 					}}
 				>
-					<Text 
+					<Text
 						style={{
 							color: "#FF0000",
 							fontSize: 20,
@@ -154,7 +154,7 @@ export default function UserpageUser({ navigation }) {
 						{"Bookmarks"}
 					</Text>
 				</View>
-				<View 
+				<View
 					style={{
 						flexDirection: "row",
 						justifyContent: "center",
@@ -163,7 +163,7 @@ export default function UserpageUser({ navigation }) {
 						marginHorizontal: 23,
 					}}
 				>
-					<View 
+					<View
 						style={{
 							width: 159,
 							height: 1,
@@ -171,7 +171,7 @@ export default function UserpageUser({ navigation }) {
 						}}
 					/>
 				</View>
-				<View 
+				<View
 					style={{
 						flexDirection: "row",
 						alignItems: "center",
@@ -183,7 +183,7 @@ export default function UserpageUser({ navigation }) {
 						marginHorizontal: 20,
 					}}
 				>
-					<View 
+					<View
 						style={{
 							width: 14,
 							marginRight: 15,
@@ -198,7 +198,7 @@ export default function UserpageUser({ navigation }) {
 							resizeMode="cover"
 						/>
 					</View>
-					<TextInput 
+					<TextInput
 						style={{
 							color: "#727272",
 							fontSize: 15,
@@ -209,21 +209,21 @@ export default function UserpageUser({ navigation }) {
 					/>
 				</View>
 			</View>
-			<ScrollView 
+			<ScrollView
 				style={{
 					flex: 1,
 					backgroundColor: "#F3F3F3",
 					paddingHorizontal: 20,
 				}}
 			>
-				<View 
+				<View
 					style={{
 						flexDirection: 'row',
 						flexWrap: 'wrap',
 						justifyContent: 'space-between',
 					}}
 				>
-					<View 
+					<View
 						style={{
 							width: '48%',
 							backgroundColor: "#D9D9D9",
@@ -242,7 +242,7 @@ export default function UserpageUser({ navigation }) {
 								marginBottom: 10,
 							}}
 						/>
-						<Text 
+						<Text
 							style={{
 								color: "#000000",
 								fontSize: 14,
