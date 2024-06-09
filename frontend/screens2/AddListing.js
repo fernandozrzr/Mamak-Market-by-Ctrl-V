@@ -1,237 +1,259 @@
-import React, { useState } from "react";
+import React from "react";
 import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity} from "react-native";
-import DateTimePicker from '@react-native-community/datetimepicker';
 
 
-
-export default function AddListing() {
-  const {open, setOpen} = useState(false)
-
-  return (
-	<SafeAreaView 
-		style={{
-			flex: 1,
-			backgroundColor: "#F3F3F3",     
-		}}
-	>
-     	<View style={{
-       		marginTop: 30,
-       		marginLeft: 15,
-        	marginRight: 15}} 
-      	>
-        	<Image source={require('../assets/AddImageChecker.png')}
-				resizeMode="cover"
+export default function UserpageUser({ navigation }) {
+	return (
+		<SafeAreaView 
+			style={{
+				flex: 1,
+				backgroundColor: "#FFFFFF",
+			}}
+		>
+			<View 
 				style={{
-              		width : 350,
-					height: 140,
-					aspectRatio: 16 / 6,
-				}} 
-        	/>
-        	<Text
-          		style={{
-					marginTop: -90,
-					marginLeft: 150,
-          		}}
-       		>Add Image</Text>
-      	</View>
-      	<View 
-			style={{          
-				width: '70%',
-              	height: '18%',
-				backgroundColor: "#D9D9D9",
-             	borderRadius: 10,
-				marginBottom: 20,
-				padding: 10,
-              	marginTop: 120,
-				marginLeft: 60,
-			}}
-			>
-          	<TextInput
-            	placeholder="Add description..."
-          	/>
-     	</View>    
-      	<Text style={{fontWeight:"bold", marginLeft: 60}}>{"Expiry Date"} </Text>
-      	<View 
-			style={{       
-				width: '70%',          
-				backgroundColor: "#D9D9D9",
-              	borderRadius: 10,
-				marginBottom: 10,
-				padding: 10,
-              	marginTop: 10,
-				marginLeft: 60,
-			}}
-		>
-         	 <View 
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',  // Ensure items are aligned in the center vertically
-        flexWrap: 'nowrap',    // Ensure items do not wrap
-        justifyContent: 'space-between',  // Distribute space between items
-      }}
-    > 
-      <TextInput 
-        placeholder="Today"
-        style={{
-          flex: 1,  // Take up as much space as possible
-          paddingRight: 10,  // Add some right padding for space between the TextInput and the Image
-        }}
-      />
-      
-      <TouchableOpacity>
-        <Image 
-          source={require('../assets/Date_range.png')}
-          resizeMode="cover"
-          style={{
-            width: 20,
-            height: 20,
-          }} 
-        /> 
-      </TouchableOpacity>
-    </View>               
-      </View>
-
-
-      <Text style={{fontWeight:"bold", marginLeft: 60}}>{"Price"} </Text>
-
-
-      <View 
-			style={{
-             	width: '70%',             
-				backgroundColor: "#D9D9D9",
-              	borderRadius: 10,
-				marginBottom: 20,
-				padding: 10,
-              	marginTop: 10,
-				marginLeft: 60,
-				}}
-		>
-          <TextInput placeholder="$0.00"/>
-      </View>
-
-      <View 
-			style={{
-				flexDirection:"row",
-				flexWrap: 'wrap',
-						
-				}}
-		>
-        	<View 
-				style={{           
-					width: '40%',
-					height: '55%',        
-					backgroundColor: "#FFFFFF",
-            		borderRadius: 10,
-					marginBottom: 20,
-					padding: 10,
-            		marginTop: 10,
-					marginLeft: 60,
+					backgroundColor: "#F3F3F3",
+					paddingBottom: 21,
 				}}
 			>
-          		<Text
-        			 style={{textAlign: 'center', fontWeight: "bold",fontSize: 15}}
-        		>
-					{'Qty: 1'}
-				</Text>
-
-
-        	</View>
-			<TouchableOpacity
-                    
-
-                    style={{
-						width: 40,
-						height: 40,
-                        alignItems: "center",
-                        backgroundColor: "#1fd655",
-                        borderRadius: 8,
-                        paddingVertical: 12,
-                        marginBottom: 26,
-                        marginHorizontal: 18,
-						marginTop: 10
-                    }}>
-                   <Image source={require('../assets/Add_ring.png')} resizeMode="cover"
+				<View 
+					style={{
+						marginBottom: 5,
+					}}
+				>
+					<Image
+						source={require('../assets/ShopImage/LiuYangBackground.jpg')}
+						resizeMode="cover"
 						style={{
-              				width : 20,
-							height: 20,
-							aspectRatio: 5 / 4,
-						}}></Image>
-            </TouchableOpacity>
-			<TouchableOpacity
-                    
-
-                    style={{
-						width: 40,
-						height: 40,
-                        alignItems: "center",
-                        backgroundColor: "#f01e2c",
-                        borderRadius: 8,
-                        paddingVertical: 12,
-                        marginBottom: 26,
-                        marginHorizontal: 18,
-						marginTop: 10,
-						marginLeft:1
-                    }}>
-                   <Image source={require('../assets/Remove.png')} resizeMode="cover"
+							height: 150,
+							aspectRatio: 16 / 6,
+						}}
+					/>
+                    <TouchableOpacity onPress={() => navigation.navigate('loginUser')}>
+                        <Image
+                            source={require('../assets/ShopImage/logoutIcon.png')}
+                            style={{
+                                width: 19,
+                                height: 19,
+                                marginTop: 10,
+                                marginLeft: 360
+                            }}
+                            resizeMode="cover"
+                        />
+                    </TouchableOpacity>
+					<View
 						style={{
-              				width : 20,
-							height: 20,
-							aspectRatio: 5 / 4,
-						}}></Image>
-            </TouchableOpacity>
-	
-
-		</View>
-
-		
-      <TouchableOpacity
-            onPress={() => navigation.navigate('SellerListing')}
-			style={{
-            	alignItems: "center",
-                backgroundColor: "#4112ff",
-                width: '70%', 		
-             	borderRadius: 10,
-				marginBottom: 10,
-				padding: 10,
-              	marginTop: 10,
-				marginLeft: 60,
-        		}}
-		>
-            <Text
-                style={{
-                    color: "#FFFFFF",
-                    fontSize: 20,
-                }}
+							width: 140,
+							height: 140,
+							borderRadius: 140 / 2,
+							marginTop: -110,
+							marginLeft: 125,
+							overflow: 'hidden',
+						}}
+					>
+						<Image
+							source={require('../assets/ShopImage/LiuYangIcon.jpg')}
+							style={{
+								width: '100%',
+								height: '100%',
+								resizeMode: "cover",
+							}}
+						/>
+					</View>
+                    
+				</View>
+				<View 
+					style={{
+						flexDirection: "row",
+						alignItems: "center",
+						marginBottom: 11,
+						marginHorizontal: 58,
+                        justifyContent: "center"
+					}}
+				>
+					<Text 
+						style={{
+							color: "#000000",
+							fontSize: 23,
+                            textAlign: "center",
+                            marginRight: 5,
+						}}
+					>
+						{"Liu Ying"}
+                    </Text>
+						<Image
+							source={require('../assets/ShopImage/tickIcon.png')}
+							style={{
+								width: 19,
+								height: 19,
+							}}
+							resizeMode="cover"
+						/>
+				</View>
+				<View 
+					style={{
+						flexDirection: "row",
+						justifyContent: "center",
+						alignItems: "center",
+						marginHorizontal: 20,
+					}}
+				>
+					<View 
+						style={{
+							width: 164,
+							flexDirection: "row",
+							alignItems: "center",
+							backgroundColor: "#B1D9FF",
+							borderRadius: 15,
+							paddingVertical: 3,
+							paddingHorizontal: 16,
+						}}
+					>
+						<Image
+							source={require('../assets/ShopImage/editIcon.png')}
+							style={{
+								width: 19,
+								height: 19,
+							}}
+							resizeMode="cover"
+						/>
+						<Text 
+							style={{
+								color: "#000000",
+								fontSize: 20,
+								flex: 1,
+								marginLeft: 12,
+							}}
+						>
+							{"Edit profile"}
+						</Text>
+					</View>
+				</View>
+			</View>
+			<View 
+				style={{
+					backgroundColor: "#F3F3F3",
+					paddingVertical: 3,
+				}}
 			>
-                {"Upload"}
-            </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-            onPress={() => navigation.navigate('SellerListing')}
-			style={{
-            	alignItems: "center",
-                backgroundColor: "#f01e2c",
-                width: '70%', 		
-             	borderRadius: 10,
-				marginBottom: 10,
-				padding: 10,
-              	marginTop: 10,
-				marginLeft: 60,
-        		}}
-		>
-            <Text
-                style={{
-                    color: "#FFFFFF",
-                    fontSize: 20,
-                }}
+				<View 
+					style={{
+						flexDirection: "row",
+						justifyContent: "center",
+						alignItems: "center",
+						marginBottom: 5,
+						marginHorizontal: 47,
+					}}
+				>
+					<Text 
+						style={{
+							color: "#FF0000",
+							fontSize: 20,
+						}}
+					>
+						{"Bookmarks"}
+					</Text>
+				</View>
+				<View 
+					style={{
+						flexDirection: "row",
+						justifyContent: "center",
+						alignItems: "center",
+						marginBottom: 10,
+						marginHorizontal: 23,
+					}}
+				>
+					<View 
+						style={{
+							width: 159,
+							height: 1,
+							backgroundColor: "#FF0000",
+						}}
+					/>
+				</View>
+				<View 
+					style={{
+						flexDirection: "row",
+						alignItems: "center",
+						backgroundColor: "#D9D9D9",
+						borderRadius: 8,
+						paddingVertical: 6,
+						paddingHorizontal: 12,
+						marginBottom: 20,
+						marginHorizontal: 20,
+					}}
+				>
+					<View 
+						style={{
+							width: 14,
+							marginRight: 15,
+						}}
+					>
+						<Image
+							source={require('../assets/ShopImage/search-icon.png')}
+							style={{
+								width: 16,
+								height: 16,
+							}}
+							resizeMode="cover"
+						/>
+					</View>
+					<TextInput 
+						style={{
+							color: "#727272",
+							fontSize: 15,
+							flex: 1,
+						}}
+						placeholder="Search your bookmarks..."
+						placeholderTextColor="#727272"
+					/>
+				</View>
+			</View>
+			<ScrollView 
+				style={{
+					flex: 1,
+					backgroundColor: "#F3F3F3",
+					paddingHorizontal: 20,
+				}}
 			>
-                {"Cancel"}
-            </Text>
-        </TouchableOpacity>
-      
-      
-      
-
-    </SafeAreaView>
-  )
-}
+				<View 
+					style={{
+						flexDirection: 'row',
+						flexWrap: 'wrap',
+						justifyContent: 'space-between',
+					}}
+				>
+					<View 
+						style={{
+							width: '48%',
+							backgroundColor: "#D9D9D9",
+							borderRadius: 10,
+							marginBottom: 20,
+							padding: 10,
+						}}
+					>
+						<Image
+							source={require('../assets/ShopImage/apple.jpg')}
+							resizeMode="stretch"
+							style={{
+								width: '100%',
+								height: 140,
+								borderRadius: 10,
+								marginBottom: 10,
+							}}
+						/>
+						<Text 
+							style={{
+								color: "#000000",
+								fontSize: 14,
+								textAlign: 'center',
+							}}
+						>
+							{"Apple (5pcs)"}
+						</Text>
+					</View>
+				</View>
+			</ScrollView>
+		</SafeAreaView>
+	);
+};
