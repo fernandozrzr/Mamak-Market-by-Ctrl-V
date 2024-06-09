@@ -4,7 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function UserListing() {
+export default function Listing() {
 
     const navigation = useNavigation();
 

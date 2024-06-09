@@ -7,10 +7,10 @@ import loginUser from './screens/loginUser';
 import signupUser from './screens/signupUser';
 import signupBusinessOwner from './screens/signupBusinessOwner';
 import UserFeed from './screens2/UserFeed';
-import UserListing from './screens2/UserListing';
+import UserListing from './screens2/Listing';
 import UserProfile from './screens2/UserProfile';
 import SellerFeed from './screens2/SellerFeed';
-import SellerListing from './screens2/SellerListing';
+
 import AddListing from './screens2/AddListing';
 import SellerProfile from './screens2/SellerProfile';
 import ShopPage from './screens2/ShopPage';
@@ -120,7 +120,7 @@ function SellerScreens() {
 
         },
         headerShown: false,
-      }} component={SellerListing} />
+      }} component={MarketStack} />
       <Tab.Screen name="Feed" options={{
         tabBarStyle: {
           paddingBottom: 8,
@@ -168,8 +168,8 @@ function App() {
       <Stack.Screen name="UserScreens" component={UserScreens} />
       <Stack.Screen name="SellerScreens" component={SellerScreens} />
       <Stack.Screen name="ShopPage" component={ShopPage} />
-      <Stack.Screen name="AddListing" component={AddListing}/>
-      <Stack.Screen name="SellerProfile" component={SellerProfile}/>
+      <Stack.Screen name="AddListing" component={AddListing} />
+      <Stack.Screen name="SellerProfile" component={SellerProfile} />
     </Stack.Navigator>
   );
 }
