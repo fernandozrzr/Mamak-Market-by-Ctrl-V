@@ -24,7 +24,15 @@ import { AntDesign } from '@expo/vector-icons';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function UserScreens() {
+function MarketStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="UserListing" options={{ headerShown: false }} component={UserListing} />
+      <Stack.Screen name="ShopPage" options={{ headerShown: false }} component={ShopPage} />
+    </Stack.Navigator>
+  );
+}
+export function UserScreens() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -56,7 +64,7 @@ function UserScreens() {
 
         },
         headerShown: false,
-      }} component={UserListing} />
+      }} component={MarketStack} />
       <Tab.Screen name="Feed" options={{
         tabBarStyle: {
           paddingBottom: 8,
@@ -130,6 +138,7 @@ function SellerScreens() {
         },
         headerShown: false,
       }} component={SellerProfile} />
+
     </Tab.Navigator>
   );
 }
