@@ -110,6 +110,7 @@ export default function SellerProfile({ navigation }) {
 							paddingHorizontal: 16,
 						}}
 					>
+					<TouchableOpacity onPress={() => navigation.navigate('AddListing')}>
 						<Text 
 							style={{
 								color: "#000000",
@@ -118,6 +119,7 @@ export default function SellerProfile({ navigation }) {
 						>
 							{"+  Add listing"}
 						</Text>
+					</TouchableOpacity>
 					</View>
 					<View 
 						style={{

@@ -111,7 +111,7 @@ function SellerScreens() {
 
         },
         headerShown: false,
-      }} component={AddListing} />
+      }} component={SellerListing} />
       <Tab.Screen name="Feed" options={{
         tabBarStyle: {
           paddingBottom: 8,
@@ -158,6 +158,7 @@ function App() {
       <Stack.Screen name="UserScreens" component={UserScreens} />
       <Stack.Screen name="SellerScreens" component={SellerScreens} />
       <Stack.Screen name="ShopPage" component={ShopPage} />
+      <Stack.Screen name="AddListing" component={AddListing}/>
     </Stack.Navigator>
   );
 }
