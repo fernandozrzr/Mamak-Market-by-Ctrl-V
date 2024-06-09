@@ -4,7 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 
-export default function AddListing() {
+export default function AddListing({ navigation }) {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -214,7 +214,7 @@ export default function AddListing() {
 
 		
       <TouchableOpacity
-            onPress={() => navigation.navigate('SellerListing')}
+            onPress={() => navigation.navigate('SellerProfile')}
 			style={{
             	alignItems: "center",
                 backgroundColor: "#4112ff",
@@ -236,7 +236,7 @@ export default function AddListing() {
             </Text>
       </TouchableOpacity>
       <TouchableOpacity
-            onPress={() => navigation.navigate('SellerListing')}
+            onPress={() => navigation.navigate('SellerProfile')}
 			style={{
             	alignItems: "center",
                 backgroundColor: "#f01e2c",

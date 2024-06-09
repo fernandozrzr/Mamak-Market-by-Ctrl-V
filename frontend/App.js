@@ -159,6 +159,7 @@ function App() {
       <Stack.Screen name="SellerScreens" component={SellerScreens} />
       <Stack.Screen name="ShopPage" component={ShopPage} />
       <Stack.Screen name="AddListing" component={AddListing}/>
+      <Stack.Screen name="SellerProfile" component={SellerProfile}/>
     </Stack.Navigator>
   );
 }
