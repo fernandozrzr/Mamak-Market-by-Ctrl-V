@@ -25,7 +25,9 @@ export default function SellerFeed({ navigation }) {
                     paddingVertical: 3,
                     paddingHorizontal: 16,
                     alignSelf: "center"
-                }}>
+                }}
+                onPress={() => navigation.navigate('postCreation')} // replace 'DesiredScreenName' with your target screen name
+                >
                 <Text style={{ color: "#000000", fontSize: 20 }}>
                     {"+  Add Post"}
                 </Text>

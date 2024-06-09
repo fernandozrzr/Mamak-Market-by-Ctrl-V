@@ -14,6 +14,7 @@ import SellerListing from './screens2/SellerListing';
 import AddListing from './screens2/AddListing';
 import SellerProfile from './screens2/SellerProfile';
 import ShopPage from './screens2/ShopPage';
+import postCreation from './screens2/postCreation';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';

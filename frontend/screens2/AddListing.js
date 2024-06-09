@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { StyleSheet, SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, Platform} from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-
-
 export default function AddListing({ navigation }) {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
