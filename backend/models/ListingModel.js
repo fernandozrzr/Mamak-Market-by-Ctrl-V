@@ -26,7 +26,12 @@ const listingSchema = new Schema({
     quantity: {                     //Item quantity
         type: Number,
         required: true
-    }
+    },
+    img: { 
+        type: Buffer,
+        required: true
+     }
+
 }, { timestamps: true })
 
 module.exports = mongoose.model('Listing', listingSchema)
