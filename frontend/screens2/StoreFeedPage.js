@@ -1,19 +1,19 @@
-import React , { useState } from "react";
-import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, ImageBackground} from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 
 export default function StoreFeedPage({ navigation }) {
     return (
-		<SafeAreaView 
-            style = {{
+        <SafeAreaView
+            style={{
                 flex: 1,
                 backgroundColor: "#FFFFFF",
             }}>
-            <View  
-                style = {{
+            <View
+                style={{
                     flex: 1,
                     backgroundColor: "#DEC7B3",
                     paddingTop: 31,
-                    paddingBottom: 71,
+
                 }}>
                 <View
                     style={{
@@ -34,8 +34,8 @@ export default function StoreFeedPage({ navigation }) {
                         }}
                     />
                 </View>
-                <Text 
-                    style = {{
+                <Text
+                    style={{
                         color: "#000000",
                         fontSize: 20,
                         marginBottom: 5,
@@ -44,8 +44,8 @@ export default function StoreFeedPage({ navigation }) {
                     }}>
                     {"Kai Hock Provision"}
                 </Text>
-                <View 
-                    style = {{
+                <View
+                    style={{
                         flexDirection: "row",
                         justifyContent: "center",
                         alignItems: "center",
@@ -59,13 +59,13 @@ export default function StoreFeedPage({ navigation }) {
                         source={require('../assets/FeedPageImage/messageIcon.jpg')}
                         resizeMode="cover"
                         style={{
-                        height: 17,
-                        width: 17,
-                        marginRight: 11,
+                            height: 17,
+                            width: 17,
+                            marginRight: 11,
                         }}
                     />
-                    <Text 
-                        style = {{
+                    <Text
+                        style={{
                             color: "#000000",
                             fontSize: 20,
                             fontWeight: "bold"
@@ -73,17 +73,17 @@ export default function StoreFeedPage({ navigation }) {
                         {"Message"}
                     </Text>
                 </View>
-                <View 
-                    style = {{
+                <View
+                    style={{
                     }}>
-                    <View 
-                        style = {{
+                    <View
+                        style={{
                             backgroundColor: "#F3F3F3",
                             paddingTop: 11,
                             paddingBottom: 5,
                         }}>
-                        <Text 
-                            style = {{
+                        <Text
+                            style={{
                                 color: "#000000",
                                 fontSize: 20,
                                 marginBottom: 6,
@@ -92,25 +92,25 @@ export default function StoreFeedPage({ navigation }) {
                             }}>
                             {"Posts"}
                         </Text>
-                        <View 
-                            style = {{
+                        <View
+                            style={{
                                 height: 2,
                                 backgroundColor: "#000000",
                                 marginBottom: 2,
                                 marginHorizontal: 117,
                             }}>
                         </View>
-                
+
                     </View>
                 </View>
                 <ScrollView style={{ flex: 1 }}>
-                    <View 
-                        style = {{
+                    <View
+                        style={{
                             backgroundColor: "#F3F3F3",
                             paddingVertical: 10,
                         }}>
-                        <View 
-                            style = {{
+                        <View
+                            style={{
                                 flexDirection: "row",
                                 alignItems: "center",
                                 marginBottom: 7,
@@ -133,13 +133,13 @@ export default function StoreFeedPage({ navigation }) {
                                     }}
                                 />
                             </View>
-                            <View 
-                                style = {{
+                            <View
+                                style={{
                                     flex: 1,
                                     marginLeft: 20,
                                 }}>
-                                <Text 
-                                    style = {{
+                                <Text
+                                    style={{
                                         color: "#000000",
                                         fontSize: 16,
                                         marginBottom: 6,
@@ -147,8 +147,8 @@ export default function StoreFeedPage({ navigation }) {
                                     }}>
                                     {"Kai Hock Provision"}
                                 </Text>
-                                <Text 
-                                    style = {{
+                                <Text
+                                    style={{
                                         color: "#000000",
                                         fontSize: 14,
                                         width: 260,
@@ -163,36 +163,36 @@ export default function StoreFeedPage({ navigation }) {
                             style={{
                                 height: 150,
                                 width: 362,
-                                marginLeft : 15,
+                                marginLeft: 15,
                             }}
                         />
-                        <View 
-                            style = {{
+                        <View
+                            style={{
                                 flexDirection: "row",
                                 justifyContent: "space-between",
                                 alignItems: "center",
                                 marginBottom: 6,
                                 marginHorizontal: 15,
                             }}>
-                            <Text 
-                                style = {{
+                            <Text
+                                style={{
                                     color: "#000000",
                                     fontSize: 14,
                                 }}>
                                 {"569 Likes"}
                             </Text>
-                            <Text 
-                                style = {{
+                            <Text
+                                style={{
                                     color: "#000000",
                                     fontSize: 14,
                                 }}>
                                 {"1 hour ago"}
                             </Text>
                         </View>
-                        <View 
-                            style={{ 
-                                flexDirection: 'row', 
-                                alignItems: 'center' 
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                alignItems: 'center'
                             }}>
                             <Image
                                 source={require('../assets/FeedPageImage/likeIcon.jpg')}
@@ -214,13 +214,13 @@ export default function StoreFeedPage({ navigation }) {
                             />
                         </View>
                     </View>
-                    <View 
-                        style = {{
+                    <View
+                        style={{
                             backgroundColor: "#F3F3F3",
                             paddingVertical: 10,
                         }}>
-                        <View 
-                            style = {{
+                        <View
+                            style={{
                                 flexDirection: "row",
                                 alignItems: "center",
                                 marginBottom: 7,
@@ -243,13 +243,13 @@ export default function StoreFeedPage({ navigation }) {
                                     }}
                                 />
                             </View>
-                            <View 
-                                style = {{
+                            <View
+                                style={{
                                     flex: 1,
                                     marginLeft: 20,
                                 }}>
-                                <Text 
-                                    style = {{
+                                <Text
+                                    style={{
                                         color: "#000000",
                                         fontSize: 16,
                                         marginBottom: 6,
@@ -257,8 +257,8 @@ export default function StoreFeedPage({ navigation }) {
                                     }}>
                                     {"Kai Hock Provision"}
                                 </Text>
-                                <Text 
-                                    style = {{
+                                <Text
+                                    style={{
                                         color: "#000000",
                                         fontSize: 14,
                                         width: 260,
@@ -273,36 +273,36 @@ export default function StoreFeedPage({ navigation }) {
                             style={{
                                 height: 150,
                                 width: 362,
-                                marginLeft : 15,
+                                marginLeft: 15,
                             }}
                         />
-                        <View 
-                            style = {{
+                        <View
+                            style={{
                                 flexDirection: "row",
                                 justifyContent: "space-between",
                                 alignItems: "center",
                                 marginBottom: 6,
                                 marginHorizontal: 15,
                             }}>
-                            <Text 
-                                style = {{
+                            <Text
+                                style={{
                                     color: "#000000",
                                     fontSize: 14,
                                 }}>
                                 {"569 Likes"}
                             </Text>
-                            <Text 
-                                style = {{
+                            <Text
+                                style={{
                                     color: "#000000",
                                     fontSize: 14,
                                 }}>
                                 {"1 hour ago"}
                             </Text>
                         </View>
-                        <View 
-                            style={{ 
-                                flexDirection: 'row', 
-                                alignItems: 'center' 
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                alignItems: 'center'
                             }}>
                             <Image
                                 source={require('../assets/FeedPageImage/likeIcon.jpg')}
@@ -324,13 +324,13 @@ export default function StoreFeedPage({ navigation }) {
                             />
                         </View>
                     </View>
-                    <View 
-                        style = {{
+                    <View
+                        style={{
                             backgroundColor: "#F3F3F3",
                             paddingVertical: 10,
                         }}>
-                        <View 
-                            style = {{
+                        <View
+                            style={{
                                 flexDirection: "row",
                                 alignItems: "center",
                                 marginBottom: 7,
@@ -353,13 +353,13 @@ export default function StoreFeedPage({ navigation }) {
                                     }}
                                 />
                             </View>
-                            <View 
-                                style = {{
+                            <View
+                                style={{
                                     flex: 1,
                                     marginLeft: 20,
                                 }}>
-                                <Text 
-                                    style = {{
+                                <Text
+                                    style={{
                                         color: "#000000",
                                         fontSize: 16,
                                         marginBottom: 6,
@@ -367,8 +367,8 @@ export default function StoreFeedPage({ navigation }) {
                                     }}>
                                     {"Kai Hock Provision"}
                                 </Text>
-                                <Text 
-                                    style = {{
+                                <Text
+                                    style={{
                                         color: "#000000",
                                         fontSize: 14,
                                         width: 260,
@@ -383,36 +383,36 @@ export default function StoreFeedPage({ navigation }) {
                             style={{
                                 height: 150,
                                 width: 362,
-                                marginLeft : 15,
+                                marginLeft: 15,
                             }}
                         />
-                        <View 
-                            style = {{
+                        <View
+                            style={{
                                 flexDirection: "row",
                                 justifyContent: "space-between",
                                 alignItems: "center",
                                 marginBottom: 6,
                                 marginHorizontal: 15,
                             }}>
-                            <Text 
-                                style = {{
+                            <Text
+                                style={{
                                     color: "#000000",
                                     fontSize: 14,
                                 }}>
                                 {"569 Likes"}
                             </Text>
-                            <Text 
-                                style = {{
+                            <Text
+                                style={{
                                     color: "#000000",
                                     fontSize: 14,
                                 }}>
                                 {"1 hour ago"}
                             </Text>
                         </View>
-                        <View 
-                            style={{ 
-                                flexDirection: 'row', 
-                                alignItems: 'center' 
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                alignItems: 'center'
                             }}>
                             <Image
                                 source={require('../assets/FeedPageImage/likeIcon.jpg')}
@@ -438,5 +438,5 @@ export default function StoreFeedPage({ navigation }) {
             </View>
         </SafeAreaView>
 
-	)
+    )
 }

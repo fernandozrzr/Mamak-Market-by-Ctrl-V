@@ -16,6 +16,7 @@ import SellerProfile from './screens2/SellerProfile';
 import ShopPage from './screens2/ShopPage';
 import ShopPageItem from './screens2/ShopPageItem';
 import postCreation from './screens2/postCreation';
+import StoreFeedPage from './screens2/StoreFeedPage';
 import ShopPageItemEdit from './screens2/ShopPageItemEdit';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -33,6 +34,14 @@ function UserMarketPlaceStack() {
       <Stack.Screen name="UserListing" options={{ headerShown: false }} component={UserListing} />
       <Stack.Screen name="ShopPage" options={{ headerShown: false }} component={ShopPage} />
       <Stack.Screen name="ShopPageItem" options={{ headerShown: false }} component={ShopPageItem} />
+    </Stack.Navigator>
+  );
+}
+function UserFeedStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="UserFeed" options={{ headerShown: false }} component={UserFeed} />
+      <Stack.Screen name="StoreFeedPage" options={{ headerShown: false }} component={StoreFeedPage} />
     </Stack.Navigator>
   );
 }
@@ -85,7 +94,7 @@ export function UserScreens() {
 
         },
         headerShown: false,
-      }} component={UserFeed} />
+      }} component={UserFeedStack} />
       <Tab.Screen name="You" options={{
         tabBarStyle: {
           paddingBottom: 8,
