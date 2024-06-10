@@ -59,6 +59,7 @@ export default function MarketPage({ navigation }) {
               fontStyle: "bold",
             }}
           >Qiong Provisions </Text>
+          <TouchableOpacity onPress={() => navigation.navigate('ChatScreen', ['s1', 'Qiong Provisions', require('../assets/ShopImage/QiongProvisionIcon.jpg')])}>
           <View
             style={{
               flexDirection: "row",
@@ -84,6 +85,7 @@ export default function MarketPage({ navigation }) {
             <Text style={{ fontSize: 20 }}>Message</Text>
 
           </View>
+          </TouchableOpacity>
         </View>
         <View
           style={{

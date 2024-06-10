@@ -13,15 +13,15 @@ export default function ChatsList( {route, navigation} ) {
             userID: 's1',
             username: 'Qiong Provisions',
             profilePic: require('../assets/ShopImage/QiongProvisionIcon.jpg'),
-            lastSentMsg: chatsData.s1.messages[0].msg,
-            lastSentTimestamp: chatsData.s1.messages[0].timestamp,
+            lastSentMsg: chatsData.s1.messages[chatsData.s1.messages.length -1].msg,
+            lastSentTimestamp: chatsData.s1.messages[chatsData.s1.messages.length -1].timestamp,
         },
         {
             userID: 's2',
             username: 'QiJi Provisions',
             profilePic: require('../assets/ShopImage/QiongProvisionsImage.jpg'),
-            lastSentMsg: chatsData.s2.messages[0].msg,
-            lastSentTimestamp: chatsData.s2.messages[0].timestamp,
+            lastSentMsg: chatsData.s2.messages[chatsData.s2.messages.length -1].msg,
+            lastSentTimestamp: chatsData.s2.messages[chatsData.s2.messages.length -1].timestamp,
         },
     ])
 

@@ -223,7 +223,7 @@ export default function UserpageUser({ navigation }) {
 						justifyContent: 'space-between',
 					}}
 				>
-					<View
+					<TouchableOpacity
 						style={{
 							width: '48%',
 							backgroundColor: "#D9D9D9",
@@ -231,6 +231,7 @@ export default function UserpageUser({ navigation }) {
 							marginBottom: 20,
 							padding: 10,
 						}}
+						onPress={() => navigation.navigate('ShopPageItem')}
 					>
 						<Image
 							source={require('../assets/ShopImage/apple.jpg')}
@@ -251,7 +252,7 @@ export default function UserpageUser({ navigation }) {
 						>
 							{"Apple (5pcs)"}
 						</Text>
-					</View>
+					</TouchableOpacity>
 				</View>
 			</ScrollView>
 		</SafeAreaView>
