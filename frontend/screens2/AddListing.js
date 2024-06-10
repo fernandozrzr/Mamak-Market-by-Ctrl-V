@@ -84,7 +84,7 @@ export default function AddListing({ navigation }) {
               marginTop: -125,
               marginLeft: 125,
               color: 'black',
-              backgroundColor: 'rgba(255, 255, 255, 0.5)',
+              
               padding: 5,
               borderRadius: 5,
             }}>

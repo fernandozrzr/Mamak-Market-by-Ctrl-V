@@ -147,7 +147,7 @@ export default function PostCreation({ navigation }) {
         </View>
 
       <TouchableOpacity
-            onPress={() => navigation.navigate('SellerListing')}
+            onPress={() => navigation.navigate('SellerFeed')}
 			style={{
             	alignItems: "center",
                 backgroundColor: "#4112ff",
@@ -169,7 +169,7 @@ export default function PostCreation({ navigation }) {
             </Text>
       </TouchableOpacity>
       <TouchableOpacity
-            onPress={() => navigation.navigate('SellerListing')}
+            onPress={() => navigation.navigate('SellerFeed')}
 			style={{
             	alignItems: "center",
                 backgroundColor: "#f01e2c",

@@ -58,6 +58,15 @@ function SellerProfileStack() {
     </Stack.Navigator>
   );
 }
+function SellerFeedStack(){
+    return(
+      <Stack.Navigator>
+       <Stack.Screen name="postCreation" options={{ headerShown: false }} component={postCreation}/>
+        <Stack.Screen name="SellerFeed" options={{ headerShown: false }} component={SellerFeed}/>
+      </Stack.Navigator>
+    );
+}
+
 export function UserScreens() {
   return (
     <Tab.Navigator
@@ -154,7 +163,7 @@ function SellerScreens() {
 
         },
         headerShown: false,
-      }} component={SellerFeed} />
+      }} component={SellerFeedStack} />
       <Tab.Screen name="You" options={{
         tabBarStyle: {
           paddingBottom: 8,
@@ -193,7 +202,7 @@ function App() {
       <Stack.Screen name="UserScreens" component={UserScreens} />
       <Stack.Screen name="SellerScreens" component={SellerScreens} />
       <Stack.Screen name="SellerProfile" component={SellerProfile} />
-
+      
       <Stack.Group screenOptions={{ presentation: 'modal', }}>
         <Stack.Screen name="OrdersList" component={OrdersList} />
         <Stack.Screen name="ChatsList" component={ChatsList} />
