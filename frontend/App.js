@@ -19,6 +19,10 @@ import postCreation from './screens2/postCreation';
 import StoreFeedPage from './screens2/StoreFeedPage';
 import ShopPageItemEdit from './screens2/ShopPageItemEdit';
 
+import OrdersList from './screens (modals)/ordersList';
+import ChatsList from './screens (modals)/chatsList';
+import ChatScreen from './screens (modals)/chatScreen';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -189,6 +193,12 @@ function App() {
       <Stack.Screen name="SellerScreens" component={SellerScreens} />
       <Stack.Screen name="AddListing" component={AddListing} />
       <Stack.Screen name="SellerProfile" component={SellerProfile} />
+
+      <Stack.Group screenOptions={{ presentation: 'modal', }}>
+        <Stack.Screen name="OrdersList" component={OrdersList} />
+        <Stack.Screen name="ChatsList" component={ChatsList} />
+        <Stack.Screen name="ChatScreen" component={ChatScreen} />
+      </Stack.Group>
     </Stack.Navigator>
   );
 }

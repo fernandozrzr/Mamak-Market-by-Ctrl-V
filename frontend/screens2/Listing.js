@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
+import OrdersList from '../screens (modals)/ordersList';
+import ChatsList from '../screens (modals)/chatsList';
 
 
 export default function Listing({ navigation }) {
@@ -70,8 +72,8 @@ export default function Listing({ navigation }) {
                     />
                     <AntDesign name="filter" size={24} color="black" />
                 </View>
-                <AntDesign name="shoppingcart" size={24} color="black" style={{ marginRight: 5 }} />
-                <AntDesign name="bells" size={24} color="black" style={{ marginLeft: 10 }} />
+                <AntDesign name="shoppingcart" size={24} color="black" style={{ marginRight: 5 }} onPress={() => {navigation.navigate(OrdersList)}} />
+                <AntDesign name="message1" size={20} color="black" style={{ marginLeft: 10 }} onPress={() => {navigation.navigate(ChatsList)}} />
             </View>
             <View
                 style={{
