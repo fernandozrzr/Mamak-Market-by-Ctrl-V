@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Text, View, SafeAreaView, Image, TextInput, ScrollView } from 'react-native';
+import { Text, View, SafeAreaView, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 
-export default function MarketPage() {
+
+export default function MarketPage({ navigation }) {
   return (
     <SafeAreaView
       style={{
@@ -160,7 +161,7 @@ export default function MarketPage() {
             placeholderTextColor="#727272"
           />
         </View>
-        <View
+        <TouchableOpacity
           style={{
             flexDirection: "row",
             backgroundColor: "#D9D9D9",
@@ -172,6 +173,8 @@ export default function MarketPage() {
             width: "90%",
             justifyContent: 'space-between', // Aligns children to the far ends
           }}
+          onPress={() => navigation.navigate('ShopPageItem')}
+
         >
           <Text
             style={{
@@ -184,7 +187,7 @@ export default function MarketPage() {
             <Text style={{ textDecorationLine: 'line-through', fontSize: 15 }}>$2.00</Text>
             <Text style={{ marginLeft: 5, fontSize: 15, color: 'green' }}>$1.20</Text>
           </View>
-        </View>
+        </TouchableOpacity>
         <View
           style={{
             flexDirection: "row",

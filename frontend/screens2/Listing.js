@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 
 
-export default function Listing() {
 
-    const navigation = useNavigation();
+export default function Listing({ navigation }) {
+
 
 
     return (
@@ -125,7 +124,8 @@ export default function Listing() {
                         justifyContent: 'space-between',
                     }}
                 >
-                    <TouchableOpacity onPress={() => navigation.navigate('ShopPage')}
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('ShopPage')}
                         style={{
                             width: '48%',
                             backgroundColor: "white",

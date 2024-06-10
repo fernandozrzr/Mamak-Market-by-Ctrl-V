@@ -14,7 +14,9 @@ import SellerFeed from './screens2/SellerFeed';
 import AddListing from './screens2/AddListing';
 import SellerProfile from './screens2/SellerProfile';
 import ShopPage from './screens2/ShopPage';
+import ShopPageItem from './screens2/ShopPageItem';
 import postCreation from './screens2/postCreation';
+import ShopPageItemEdit from './screens2/ShopPageItemEdit';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -25,11 +27,20 @@ import { AntDesign } from '@expo/vector-icons';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function MarketStack() {
+function UserMarketPlaceStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="UserListing" options={{ headerShown: false }} component={UserListing} />
       <Stack.Screen name="ShopPage" options={{ headerShown: false }} component={ShopPage} />
+      <Stack.Screen name="ShopPageItem" options={{ headerShown: false }} component={ShopPageItem} />
+    </Stack.Navigator>
+  );
+}
+function SellerProfileStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="SellerProfile" options={{ headerShown: false }} component={SellerProfile} />
+      <Stack.Screen name="ShopPageItemEdit" options={{ headerShown: false }} component={ShopPageItemEdit} />
     </Stack.Navigator>
   );
 }
@@ -65,7 +76,7 @@ export function UserScreens() {
 
         },
         headerShown: false,
-      }} component={MarketStack} />
+      }} component={UserMarketPlaceStack} />
       <Tab.Screen name="Feed" options={{
         tabBarStyle: {
           paddingBottom: 8,
@@ -120,7 +131,7 @@ function SellerScreens() {
 
         },
         headerShown: false,
-      }} component={MarketStack} />
+      }} component={UserMarketPlaceStack} />
       <Tab.Screen name="Feed" options={{
         tabBarStyle: {
           paddingBottom: 8,
@@ -138,7 +149,7 @@ function SellerScreens() {
 
         },
         headerShown: false,
-      }} component={SellerProfile} />
+      }} component={SellerProfileStack} />
 
     </Tab.Navigator>
   );
@@ -167,7 +178,6 @@ function App() {
       <Stack.Screen name="signupUser" component={signupUser} />
       <Stack.Screen name="UserScreens" component={UserScreens} />
       <Stack.Screen name="SellerScreens" component={SellerScreens} />
-      <Stack.Screen name="ShopPage" component={ShopPage} />
       <Stack.Screen name="AddListing" component={AddListing} />
       <Stack.Screen name="SellerProfile" component={SellerProfile} />
     </Stack.Navigator>
