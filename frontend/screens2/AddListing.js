@@ -92,14 +92,30 @@ export default function AddListing({ navigation }) {
             </Text>
           </TouchableOpacity>
         </View>
+        <Text style={{ fontWeight: "bold", marginTop:20, marginLeft: 60 }}>{'Listing Title'} </Text>
+
+      <View style={{
+          width: '70%',
+          backgroundColor: "#D9D9D9",
+          borderRadius: 10,
+          marginBottom: 5,
+          padding: 10,
+          marginTop: 10,
+          marginLeft: 60,
+        }}>
+        <TextInput placeholder="Add Title" />
+      </View>
+
+      <Text style={{ fontWeight: "bold", marginTop:10, marginLeft: 60 }}>{'Description'} </Text>
+
         <View style={{
           width: '70%',
           height: '18%',
           backgroundColor: "#D9D9D9",
           borderRadius: 10,
-          marginBottom: 20,
+          marginBottom: 10,
           padding: 10,
-          marginTop: 40,
+          marginTop: 10,
           marginLeft: 60,
         }}>
           <TextInput placeholder="Add description..." />

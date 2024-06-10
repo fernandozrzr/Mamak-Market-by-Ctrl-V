@@ -61,8 +61,8 @@ function SellerProfileStack() {
 function SellerFeedStack(){
     return(
       <Stack.Navigator>
-       <Stack.Screen name="postCreation" options={{ headerShown: false }} component={postCreation}/>
         <Stack.Screen name="SellerFeed" options={{ headerShown: false }} component={SellerFeed}/>
+        <Stack.Screen name="postCreation" options={{ headerShown: false }} component={postCreation}/>
       </Stack.Navigator>
     );
 }
