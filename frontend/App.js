@@ -54,6 +54,7 @@ function SellerProfileStack() {
     <Stack.Navigator>
       <Stack.Screen name="SellerProfile" options={{ headerShown: false }} component={SellerProfile} />
       <Stack.Screen name="ShopPageItemEdit" options={{ headerShown: false }} component={ShopPageItemEdit} />
+      <Stack.Screen name="AddListing" options={{ headerShown: false }} component={AddListing} />
     </Stack.Navigator>
   );
 }
@@ -191,7 +192,6 @@ function App() {
       <Stack.Screen name="signupUser" component={signupUser} />
       <Stack.Screen name="UserScreens" component={UserScreens} />
       <Stack.Screen name="SellerScreens" component={SellerScreens} />
-      <Stack.Screen name="AddListing" component={AddListing} />
       <Stack.Screen name="SellerProfile" component={SellerProfile} />
 
       <Stack.Group screenOptions={{ presentation: 'modal', }}>
