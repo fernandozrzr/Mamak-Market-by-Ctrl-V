@@ -7,7 +7,7 @@ import loginUser from './screens/loginUser';
 import signupUser from './screens/signupUser';
 import signupBusinessOwner from './screens/signupBusinessOwner';
 import UserFeed from './screens2/UserFeed';
-import UserListing from './screens2/Listing';
+import Listing from './screens2/Listing';
 import UserProfile from './screens2/UserProfile';
 import SellerFeed from './screens2/SellerFeed';
 
@@ -35,7 +35,7 @@ const Tab = createBottomTabNavigator();
 function UserMarketPlaceStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="UserListing" options={{ headerShown: false }} component={UserListing} />
+      <Stack.Screen name="Listing" options={{ headerShown: false }} component={Listing} />
       <Stack.Screen name="ShopPage" options={{ headerShown: false }} component={ShopPage} />
       <Stack.Screen name="ShopPageItem" options={{ headerShown: false }} component={ShopPageItem} />
     </Stack.Navigator>
