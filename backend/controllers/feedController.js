@@ -34,7 +34,7 @@ const getFeedById = async (req, res) => {
 const createFeed = async (req, res) => {
     const { user, title, content } = req.body;
     try {
-        const feed = await Feed.create({ user, title, content });
+        const feed = await Feed.create({ title, content });
         res.status(201).json(feed);
     }
     catch (error) {
@@ -63,9 +63,9 @@ const updateFeed = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ message: 'Feed not found' });
     }
-    const { title, content } = req.body;
+    const { title, content, likes } = req.body;
 
-    const feed = await Feed.findByIdAndUpdate(id, { title, content }, { new: true });
+    const feed = await Feed.findByIdAndUpdate(id, { title, content, likes }, { new: true });
     if (!feed) {
         return res.status(404).json({ message: 'Feed not found' });
     }

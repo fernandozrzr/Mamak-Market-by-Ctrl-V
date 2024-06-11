@@ -28,7 +28,7 @@ const listingSchema = new Schema({
         required: true
     },
     img: { 
-        type: Buffer,
+        type: String,               //File Path to Images
         required: true
      }
 
