@@ -1,10 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity } from "react-native";
+import SellerProfileDetails from "../components/SellerProfileDetails";
+import { useFeedsContext } from "../hooks/useFeedsContext";
 
-export default function SellerProfile({ navigation }) {
+
+export default function SellerProfile({ navigation, route }) {
 	const years = [2024, 2023, 2022, 2021, 2020];
 	const [selectedTab, setSelectedTab] = useState("listings");
 	const [selectedYear, setSelectedYear] = useState(years[0]);
+	
+	const {feeds, dispatch} = useFeedsContext()
+	const user = 'Qiong Provisions';
+
+	useEffect(() => {
+		const fetchMyItems = async () => {
+			try {
+				const response = await fetch(`http://10.51.0.210:4000/api/listing/search?user=${encodeURIComponent(user)}`);
+				const json = await response.json();
+				if (response.ok) {
+					
+					dispatch({type: 'SET_FEEDS', payload: json})
+					console.log(json)
+				}
+
+			} catch (error) {
+				console.error('Error fetching listings:', error);
+			}
+		};
+
+		fetchMyItems();
+	}, []);
+
+
 	return (
 		<SafeAreaView
 			style={{
@@ -269,123 +296,10 @@ export default function SellerProfile({ navigation }) {
 							justifyContent: 'space-between',
 						}}
 					>
-						<TouchableOpacity
-							onPress={() => navigation.navigate('ShopPageItemEdit')}
-							style={{
-								width: '48%',
-								backgroundColor: "#D9D9D9",
-								borderRadius: 10,
-								marginBottom: 20,
-								padding: 10,
-							}}
-						>
-							<Image
-								source={require('../assets/ShopImage/apple.jpg')}
-								resizeMode="stretch"
-								style={{
-									width: '100%',
-									height: 140,
-									borderRadius: 10,
-									marginBottom: 10,
-								}}
-							/>
-							<Text
-								style={{
-									color: "#000000",
-									fontSize: 14,
-									textAlign: 'center',
-								}}
-							>
-								{"Apple (5pcs)"}
-							</Text>
-						</TouchableOpacity>
-						<View
-							style={{
-								width: '48%',
-								backgroundColor: "#D9D9D9",
-								borderRadius: 10,
-								marginBottom: 20,
-								padding: 10,
-							}}
-						>
-							<Image
-								source={require('../assets/ShopImage/assortedbiscuit.jpg')}
-								resizeMode="stretch"
-								style={{
-									width: '100%',
-									height: 140,
-									borderRadius: 10,
-									marginBottom: 10,
-								}}
-							/>
-							<Text
-								style={{
-									color: "#000000",
-									fontSize: 14,
-									textAlign: 'center',
-								}}
-							>
-								{"Assorted Biscuits"}
-							</Text>
-						</View>
-						<View
-							style={{
-								width: '48%',
-								backgroundColor: "#D9D9D9",
-								borderRadius: 10,
-								marginBottom: 20,
-								padding: 10,
-							}}
-						>
-							<Image
-								source={require('../assets/ShopImage/gardeniabread.jpg')}
-								resizeMode="stretch"
-								style={{
-									width: '100%',
-									height: 140,
-									borderRadius: 10,
-									marginBottom: 10,
-								}}
-							/>
-							<Text
-								style={{
-									color: "#000000",
-									fontSize: 14,
-									textAlign: 'center',
-								}}
-							>
-								{"Gardenia Bread"}
-							</Text>
-						</View>
-						<View
-							style={{
-								width: '48%',
-								backgroundColor: "#D9D9D9",
-								borderRadius: 10,
-								marginBottom: 20,
-								padding: 10,
-							}}
-						>
-							<Image
-								source={require('../assets/ShopImage/oranges.jpg')}
-								resizeMode="stretch"
-								style={{
-									width: '100%',
-									height: 140,
-									borderRadius: 10,
-									marginBottom: 10,
-								}}
-							/>
-							<Text
-								style={{
-									color: "#000000",
-									fontSize: 14,
-									textAlign: 'center',
-								}}
-							>
-								{"Oranges"}
-							</Text>
-						</View>
+						{feeds && feeds.map((item) =>
+							< SellerProfileDetails key={item._id} item={item} navigation={navigation} />
+						)}
+
 					</View>
 				)}
 				{selectedTab === "sales" && (

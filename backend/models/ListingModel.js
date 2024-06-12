@@ -26,7 +26,12 @@ const listingSchema = new Schema({
     quantity: {                     //Item quantity
         type: Number,
         required: true
-    }
+    },
+    img: { 
+        type: String,               //File Path to Images
+        required: false
+     }
+
 }, { timestamps: true })
 
 module.exports = mongoose.model('Listing', listingSchema)
