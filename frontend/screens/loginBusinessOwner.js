@@ -1,10 +1,38 @@
 import React from "react";
-import { SafeAreaView, View, ScrollView, Text, Image, ImageBackground, TouchableOpacity, TextInput } from "react-native";
+import { SafeAreaView, View, ScrollView, Text, Image, ImageBackground, TouchableOpacity, TextInput , Alert} from "react-native";
 import { useState } from "react";
+import axios from "axios";
+import config from "../config"; // Import the configuration file
+
 export default function LoginBusinessOwner({ navigation }) {
 
     const [username, onChangeUsername] = useState("");
     const [password, onChangePassword] = useState("");
+    const [usergroup, onChangeUsergroup] = useState("Seller");
+
+    function handleSubmit() {
+        const userData = {
+            username: username,
+            password,
+            usergroup,
+        };
+    
+        axios
+            .post(`${config.API_URL}/profile/login`, userData)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.status === "ok") {
+                    Alert.alert("Login Successful");
+                    // navigation.navigate("Listing");
+                } else {
+                    Alert.alert("Login Failed", res.data.message || "Unexpected error");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Alert.alert("Error", "An unexpected error occurred");
+            });
+    }
 
     return (
         <SafeAreaView
@@ -65,47 +93,52 @@ export default function LoginBusinessOwner({ navigation }) {
                         alignItems: "center",
                         marginBottom: 5,
                         marginHorizontal: 88,
+                        marginTop: -22,
                     }}>
-                    <TouchableOpacity style={{
-                        backgroundColor: '#DEC7B2',
-                        alignItems: 'center',
-                        padding: 10,
-                        justifyContent: 'center',
-                        marginVertical: 10,
-                        marginTop: -15,
-                    }} onPress={() => navigation.navigate('loginUser')}>
+                    <TouchableOpacity 
+                        style={{
+                            backgroundColor: usergroup === 'User',
+                            alignItems: 'center',
+                            padding: 10,
+                            justifyContent: 'center',
+                            marginVertical: 10,
+                        }} 
+                        onPress={() => navigation.navigate('loginUser')}>
                         <Text style={{ color: '#000000', fontSize: 20 }}>User</Text>
-                        <View
-                            style={{
-                                width: 80,
-                                height: 1,
-                                backgroundColor: "#000000",
-                            }}>
-                        </View>
+                        {usergroup === 'User' && (
+                            <View
+                                style={{
+                                    width: 80,
+                                    height: 2,
+                                    backgroundColor: "#000000",
+                                }}>
+                            </View>
+                        )}
                     </TouchableOpacity>
-                    {/* <Text 
-                        style = {{
-                            color: "#000000",
-                            fontSize: 20,
+                    <TouchableOpacity 
+                        style={{
+                            backgroundColor: usergroup === 'Seller',
+                            alignItems: 'center',
+                            padding: 10,
+                            justifyContent: 'center',
+                            marginVertical: 10,
+                        }} 
+                        onPress={() => onChangeUsergroup('Seller')}>
+                        <Text style={{ 
+                            color: usergroup === 'Seller'? 'red' : "#FF0000",
+                            fontSize: 20 
                         }}>
-                        {"Seller"}
-                    </Text> */}
-                    <TouchableOpacity style={{
-                        backgroundColor: '#DEC7B2',
-                        alignItems: 'center',
-                        adding: 10,
-                        justifyContent: 'center',
-                        marginVertical: 10,
-                        marginTop: -15,
-                    }}>
-                        <Text style={{ color: 'red', fontSize: 20 }}>Seller</Text>
-                        <View
-                            style={{
-                                width: 80,
-                                height: 1,
-                                backgroundColor: "#FF0000",
-                            }}>
-                        </View>
+                            Seller
+                        </Text>
+                        {usergroup === 'Seller' && (
+                            <View
+                                style={{
+                                    width: 80,
+                                    height: 1,
+                                    backgroundColor: "#FF0000",
+                                }}>
+                            </View>
+                        )}
                     </TouchableOpacity>
                 </View>
 
@@ -143,7 +176,7 @@ export default function LoginBusinessOwner({ navigation }) {
                     />
                 </View>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('SellerScreens')}
+                    onPress={handleSubmit}
                     style={{
                         height: 44,
                         alignItems: "center",
