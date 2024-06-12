@@ -5,6 +5,7 @@ import { useState } from "react";
 import Animated, { SharedTransition, withSpring } from "react-native-reanimated";
 import axios from "axios";
 import config from "../config"; // Import the configuration file
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginUser({ navigation }) {
 
@@ -55,10 +56,16 @@ export default function LoginUser({ navigation }) {
     
         axios
             .post(`${config.API_URL}/profile/login`, userData)
-            .then(res => {
+            .then(async (res) => {
                 // console.log(res.data);
                 if (res.data.status === "ok") {
                     Alert.alert("Login Successful");
+                    try {
+                        await AsyncStorage.setItem('userName', res.data.name); // Store the name in AsyncStorage
+                    } catch (error) {
+                        console.error('AsyncStorage Error: ', error);
+                    }
+
                     if (usergroup === "Seller") {
                         navigation.navigate("SellerScreens");
                     } else if (usergroup === "User") {
@@ -72,7 +79,7 @@ export default function LoginUser({ navigation }) {
             })
             .catch(error => {
                 // console.error('Error:', error);
-                Alert.alert("Error", "An unexpected error occurred");
+                Alert.alert("Error",error.message);
             });
     }
 

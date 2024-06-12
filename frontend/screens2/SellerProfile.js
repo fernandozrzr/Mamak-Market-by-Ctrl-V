@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity } from "react-native";
 import SellerProfileDetails from "../components/SellerProfileDetails";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFeedsContext } from "../hooks/useFeedsContext";
 import config from "../config"; // Import the configuration file
 
@@ -13,9 +13,22 @@ export default function SellerProfile({ navigation, route }) {
 	const years = [2024, 2023, 2022, 2021, 2020];
 	const [selectedTab, setSelectedTab] = useState("listings");
 	const [selectedYear, setSelectedYear] = useState(years[0]);
-
+	const [user, setUser] = useState("")
 	const { lists, dispatch } = useListsContext()
-	const user = 'Qiong Provisions';
+	
+	useEffect(() => {
+		const fetchUserName = async () => {
+			try {
+				const storedName = await AsyncStorage.getItem('userName');
+				setUser(storedName);
+			} catch (error) {
+				console.error('AsyncStorage Error: ', error);
+			}
+		};
+		fetchUserName();
+	}, []);
+
+
 
 	useEffect(() => {
 		const fetchMyItems = async () => {
@@ -113,7 +126,7 @@ export default function SellerProfile({ navigation, route }) {
 							marginRight: 20,
 						}}
 					>
-						{"Qiong Provisions"}
+						{user}
 					</Text>
 					<Image
 						source={require('../assets/ShopImage/tickIcon.png')}
