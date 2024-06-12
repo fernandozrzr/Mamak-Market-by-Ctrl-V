@@ -231,7 +231,7 @@ export default function UserpageUser({ navigation }) {
 							marginBottom: 20,
 							padding: 10,
 						}}
-						onPress={() => navigation.navigate('ShopPageItem')}
+						onPress={() => navigation.navigate('ShopPageItemTemplate')}
 					>
 						<Image
 							source={require('../assets/ShopImage/apple.jpg')}
