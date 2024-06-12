@@ -21,6 +21,10 @@ const profileSchema = new Schema({
     },
     uen: {                          //Seller UEN (Not required for User)
         type: String
+    },
+    img: {
+        type: String,               //Acc Owner Profile Picture
+        required: false
     }
 }, { timestamps: true });
 

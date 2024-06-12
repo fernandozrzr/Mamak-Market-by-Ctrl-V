@@ -18,7 +18,7 @@ export default function PostCreation({ navigation }) {
     const feed = { description, image: imageUri };
 
     try {
-      const response = await fetch('http://192.168.18.17:4000/api/feed/', { // Make sure this URL is correct
+      const response = await fetch('http://192.168.10.71:4000/api/feed/', { // Make sure this URL is correct
         method: 'POST',
         body: JSON.stringify({
           title: title,

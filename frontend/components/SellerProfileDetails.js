@@ -15,7 +15,7 @@ const SellerProfileDetails = ({ item, navigation }) => {
             }}
         >
             <Image
-                source={require('../assets/ShopImage/apple.jpg')}
+                source={{uri: item.img}}
                 resizeMode="stretch"
                 style={{
                     width: '100%',

@@ -43,9 +43,9 @@ const getListingByName = async (req, res) => {
 
 // Create a new Listing
 const createListing = async (req, res) => {
-    const { user, item, description, expirydate, cost, quantity } = req.body;
+    const { user, item, description, expirydate, cost, quantity, img } = req.body;
     try {
-        const newListing = await ListingModel.create({ user, item, description, expirydate, cost, quantity }); // Renamed variable to newListing
+        const newListing = await ListingModel.create({ user, item, description, expirydate, cost, quantity, img }); // Renamed variable to newListing
         res.status(201).json(newListing);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -72,9 +72,9 @@ const updateListing = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ message: 'Listing not found' });
     }
-    const { item, description, expirydate, cost, quantity } = req.body;
+    const { item, description, expirydate, cost, quantity, img } = req.body;
 
-    const updatedListing = await ListingModel.findByIdAndUpdate(id, { item, description, expirydate, cost, quantity }, { new: true }); // Renamed variable to updatedListing
+    const updatedListing = await ListingModel.findByIdAndUpdate(id, { item, description, expirydate, cost, quantity, img }, { new: true }); // Renamed variable to updatedListing
     if (!updatedListing) {
         return res.status(404).json({ message: 'Listing not found' });
     }

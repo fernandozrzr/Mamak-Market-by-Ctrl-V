@@ -12,7 +12,7 @@ export default function AddListing({ navigation }) {
   const [show, setShow] = useState(false);
   const [text, setText] = useState('Select Date');
   const [count, setCount] = useState(1);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
@@ -33,7 +33,7 @@ export default function AddListing({ navigation }) {
         quality: 1,
       });
       if (!result.canceled) {
-        setImage(result.assets[0].uri);
+        setImage(result.assets[0].uri.toString());
       }
     } catch (error) {
       alert("Error uploading image: " + error.message);
@@ -63,7 +63,7 @@ export default function AddListing({ navigation }) {
 
   const handleUpload = async () => {
     try {
-      const response = await fetch('http://192.168.18.17:4000/api/listing/', {
+      const response = await fetch('http://192.168.10.71:4000/api/listing/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,6 +71,7 @@ export default function AddListing({ navigation }) {
         body: JSON.stringify({
           user: user,
           item: title,
+          img: image,
           description: description,
           expirydate: date,
           cost: parseFloat(price),

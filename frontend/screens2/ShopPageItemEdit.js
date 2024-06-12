@@ -3,7 +3,7 @@ import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacit
 import { FontAwesome } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker'; // Import DateTimePicker\
 import { useListsContext } from "../hooks/useListsContext";
-
+import * as ImagePicker from "expo-image-picker";
 
 const formatDate = (date) => {
     const formattedDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
@@ -21,7 +21,8 @@ export default function ShopPageItem({ navigation, route }) {
     const [dateText, setDateText] = useState(formatDate(expiryDate)); // Initial date text
     const [itemName, setItemName] = useState(item.item);
     const { dispatch } = useListsContext()
-
+    const [image, setImage] = useState(item.img);
+    
     const handleAdd = () => {
         setQty(qty + 1);
     };
@@ -32,10 +33,32 @@ export default function ShopPageItem({ navigation, route }) {
         }
     };
 
+    const changeImage = async () => {
+        try {
+          const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+          if (status !== 'granted') {
+            alert('Sorry, we need camera roll permissions to make this work!');
+            return;
+          }
+          let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 1,
+          });
+          if (!result.canceled) {
+            setImage(result.assets[0].uri.toString());
+          }
+        } catch (error) {
+          alert("Error changing image: " + error.message);
+        }
+      };
+
+
 
     const saveEdit = async () => {
         try {
-            const response = await fetch(`http://192.168.18.17:4000/api/listing/${item._id}`, {
+            const response = await fetch(`http://192.168.10.71:4000/api/listing/${item._id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,6 +69,7 @@ export default function ShopPageItem({ navigation, route }) {
                     expirydate: expiryDate.toISOString(), // Convert to ISO string
                     cost: parseFloat(cost),
                     quantity: qty,
+                    img: image
                 }),
             });
             const json = await response.json();
@@ -55,6 +79,7 @@ export default function ShopPageItem({ navigation, route }) {
                 setDescription('');
                 setCost('');
                 setQty(1);
+                
                 dispatch({ type: 'PATCH_LIST', payload: json })
                 console.log('Item updated successfully');
 
@@ -70,7 +95,7 @@ export default function ShopPageItem({ navigation, route }) {
 
     const deleteItem = async () => {
         try {
-            const response = await fetch(`http://192.168.18.17:4000/api/listing/${item._id}`, {
+            const response = await fetch(`http://192.168.10.71:4000/api/listing/${item._id}`, {
                 method: 'DELETE',
             });
             const json = await response.json();
@@ -105,9 +130,9 @@ export default function ShopPageItem({ navigation, route }) {
             >
                 <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 80 }}>
                     <View style={styles.container}>
-                        <Image source={require('../assets/ShopImage/apple.jpg')} style={styles.image} />
+                        <Image source={{uri:image}} style={styles.image} />
                         <TouchableOpacity style={styles.iconContainer}>
-                            <FontAwesome name="edit" size={24} color="black" />
+                            <FontAwesome onPress={changeImage} name="edit" size={24} color="black" />
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: "row", backgroundColor: "#D9D9D9", borderRadius: 8, paddingVertical: 6, paddingHorizontal: 12, marginHorizontal: 20, marginTop: 10, width: "80%", justifyContent: 'space-between' }}>
@@ -158,7 +183,7 @@ export default function ShopPageItem({ navigation, route }) {
                         <TextInput
                             selectionColor="black"
                             style={{ color: "black", fontSize: 15, fontWeight: "bold" }}
-                            value={cost}
+                            value={cost.toString()}
                             onChangeText={setCost}
                         />
                     </View>

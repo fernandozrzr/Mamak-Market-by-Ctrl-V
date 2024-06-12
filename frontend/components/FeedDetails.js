@@ -42,7 +42,7 @@ const FeedDetails = ({ feed }) => {
     const handleLike = async () => {
         setLikes(likes + 1);
         // Update the likes count locally
-        const response = await fetch('http://10.51.0.210:4000/api/feed/' + feed._id, {
+        const response = await fetch('http://192.168.10.71:4000/api/feed/' + feed._id, {
             method: 'PATCH',       
             body: JSON.stringify({
                 

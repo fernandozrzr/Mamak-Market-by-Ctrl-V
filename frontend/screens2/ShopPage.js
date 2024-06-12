@@ -13,7 +13,7 @@ export default function MarketPage({ navigation, route }) {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(`http://192.168.18.17:4000/api/listing/search?user=${encodeURIComponent(user)}`);
+        const response = await fetch(`http://192.168.10.71:4000/api/listing/search?user=${encodeURIComponent(user)}`);
         const data = await response.json();
         if (response.ok) {
 

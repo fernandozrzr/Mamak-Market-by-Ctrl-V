@@ -9,7 +9,7 @@ export default function ShopPageItem({ navigation, route }) {
 
     const { item } = route.params;
     const [qty, setQty] = useState(1);
-
+    console.log(item.img)
     const handleAdd = () => {
         if (qty < item.quantity) {
             setQty(qty + 1);
@@ -53,8 +53,12 @@ export default function ShopPageItem({ navigation, route }) {
                         marginTop: 100,
                     }}
                 >
-                    <Image source={require('../assets/ShopImage/apple.jpg')} style={{ borderRadius: 10, }} />
-
+                    
+                    <Image
+                    source={{uri:item.img}}
+                    resizeMode="cover"
+                    style={{ height: 150, width: 300, marginLeft: 1, borderRadius:10 }}
+                />
                     <View
                         style={{
                             flexDirection: "row",

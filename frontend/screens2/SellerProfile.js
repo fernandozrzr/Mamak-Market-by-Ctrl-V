@@ -15,7 +15,7 @@ export default function SellerProfile({ navigation, route }) {
 	useEffect(() => {
 		const fetchMyItems = async () => {
 			try {
-				const response = await fetch(`http://192.168.18.17:4000/api/listing/search?user=${encodeURIComponent(user)}`);
+				const response = await fetch(`http://192.168.10.71:4000/api/listing/search?user=${encodeURIComponent(user)}`);
 				const json = await response.json();
 				if (response.ok) {
 
