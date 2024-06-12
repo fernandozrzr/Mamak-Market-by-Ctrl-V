@@ -32,9 +32,9 @@ const getFeedById = async (req, res) => {
 
 // Create a new feed
 const createFeed = async (req, res) => {
-    const { user, title, content } = req.body;
+    const { title, content, img} = req.body;
     try {
-        const feed = await Feed.create({ title, content });
+        const feed = await Feed.create({ img, title, content });
         res.status(201).json(feed);
     }
     catch (error) {

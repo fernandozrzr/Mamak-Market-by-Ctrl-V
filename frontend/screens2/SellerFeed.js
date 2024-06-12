@@ -8,7 +8,7 @@ const SellerFeed = ({navigation}) => {
 
     useEffect(() => {
         const fetchFeeds = async() => {
-            const response = await fetch('http://192.168.10.71:4000/api/feed/')
+            const response = await fetch('http://10.51.0.210:4000/api/feed/')
             const json = await response.json()
 
             if(response.ok){
