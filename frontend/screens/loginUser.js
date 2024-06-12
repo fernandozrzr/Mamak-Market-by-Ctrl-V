@@ -5,6 +5,16 @@ import { useState } from "react";
 
 export default function LoginUser({ navigation }) {
 
+    const customTransition = SharedTransition.custom((values) => {
+        'worklet';
+        return {
+            height: withSpring(values.targetHeight),
+            width: withSpring(values.targetWidth),
+            padding: withSpring('25%'),
+            originX: withSpring(values.targetOriginX),
+            originY: withSpring(values.targetOriginY),
+        };
+    })
     const [username, onChangeUsername] = useState("");
     const [password, onChangePassword] = useState("");
     return (
@@ -67,46 +77,71 @@ export default function LoginUser({ navigation }) {
                         marginBottom: 5,
                         marginHorizontal: 88,
                     }}>
-                    <TouchableOpacity style={{
-                        backgroundColor: '#DEC7B2',
-                        alignItems: 'center',
-                        padding: 10,
-                        justifyContent: 'center',
-                        marginVertical: 10,
-                        marginTop: -15,
-                    }} >
-                        <Text style={{ color: 'red', fontSize: 20 }}>User</Text>
-                        <View
-                            style={{
-                                width: 80,
-                                height: 1,
-                                backgroundColor: "#FF0000",
-                            }}>
-                        </View>
-                    </TouchableOpacity>
-                    {/* <Text 
-                        style = {{
-                            color: "#000000",
-                            fontSize: 20,
+                    <TouchableOpacity 
+                        style={{
+                            backgroundColor: usergroup === 'User',
+                            alignItems: 'center',
+                            padding: 10,
+                            justifyContent: 'center',
+                            marginVertical: 10,
+                        }} 
+                        onPress={() => onChangeUsergroup('User')}>
+                        <Text style={{ 
+                            color: usergroup === 'User'? '#FF0000' : "#000000",
+                            fontSize: 20 
                         }}>
-                        {"Seller"}
-                    </Text> */}
-                    <TouchableOpacity style={{
-                        backgroundColor: '#DEC7B2',
-                        alignItems: 'center',
-                        adding: 10,
-                        justifyContent: 'center',
-                        marginVertical: 10,
-                        marginTop: -15,
-                    }} onPress={() => navigation.navigate('loginBusinessOwner')}>
-                        <Text style={{ color: '#000000', fontSize: 20 }}>Seller</Text>
-                        <View
-                            style={{
-                                width: 80,
-                                height: 1,
-                                backgroundColor: "#000000",
-                            }}>
-                        </View>
+                            User
+                        </Text>
+                        {usergroup === 'User' ? (
+                            <View
+                                style={{
+                                    width: 80,
+                                    height: 1,
+                                    backgroundColor: "#FF0000",
+                                }}>
+                            </View>
+                        ):
+                            <View
+                                style={{
+                                    width: 80,
+                                    height: 1,
+                                    backgroundColor: "#000000",
+                                }}>
+                            </View>
+                        }
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        style={{
+                            backgroundColor: usergroup === 'Seller',
+                            alignItems: 'center',
+                            padding: 10,
+                            justifyContent: 'center',
+                            marginVertical: 10,
+                        }} 
+                        onPress={() => onChangeUsergroup('Seller')}>
+                        <Text style={{ 
+                            color: usergroup === 'Seller' ? '#FF0000' : '#000000', 
+                            fontSize: 20 
+                        }}>
+                            Seller
+                        </Text>
+                        {usergroup === 'Seller' ? (
+                            <View
+                                style={{
+                                    width: 80,
+                                    height: 1,
+                                    backgroundColor: "#FF0000",
+                                }}>
+                            </View>
+                        ):
+                            <View
+                                style={{
+                                    width: 80,
+                                    height: 1,
+                                    backgroundColor: "#000000",
+                                }}>
+                            </View>
+                        }
                     </TouchableOpacity>
                 </View>
                 <View
