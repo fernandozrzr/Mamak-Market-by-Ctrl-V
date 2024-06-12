@@ -418,11 +418,11 @@ export default function SignUpUser({ navigation }) {
     const [passwordVerify, onChangePasswordVerify] = useState(false);
     const [usergroup, onChangeUsergroup] = useState("User"); // Default to "User"
     const [usergroupVerify, onChangeUsergroupVerify] = useState(false);
-    const [uen, onChangeuen] = useState("NIL");
+    const [uen, onChangeUEN] = useState('');
 
     function handleSubmit() {
         // Check if all mandatory fields are filled
-        if (!name || !username || !password || !usergroup || !uen) {
+        if (!name || !username || !password || !usergroup || (usergroup === 'Seller' ? !uen : false)) {
             Alert.alert("Error", "All fields must be filled");
             return;
         }
@@ -441,6 +441,8 @@ export default function SignUpUser({ navigation }) {
             uen,
         };
     
+        console.log('hello');
+
         axios
             .post(`${config.API_URL}/profile/signup`, userData)
             .then(res => {
@@ -482,28 +484,28 @@ export default function SignUpUser({ navigation }) {
                 style={{
                     flex: 1,
                     backgroundColor: "#DEC7B2",
-                    paddingTop: 130,
-                    paddingBottom: 235,
+                    paddingTop: '25%',
                 }}>
                 <View
                     style={{
-                        height: 156,
-                        marginBottom: 20,
-                        marginHorizontal: 117,
+                        // height: 156,
+                        // marginBottom: 20,
+                        // marginHorizontal: 117,
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}>
                     <Image
-                        source={require('../assets/AppIcon.jpg')}
+                        source={require('../assets/AppIcon2.png')}
                         style={{
-                            width: 150,
-                            height: 150,
-                            marginBottom: 30,
+                            flex: 1,
+                            width: 250,
+                            height: 300,
+                            marginBottom: 10,
                         }}
                         resizeMode="cover"
                     />
                 </View>
-                <Text
+                {/* <Text
                     style={{
                         color: "#EA1B1B",
                         fontSize: 64,
@@ -521,7 +523,7 @@ export default function SignUpUser({ navigation }) {
                         textAlign: 'center',
                     }}>
                     {"Mamak Market"}
-                </Text>
+                </Text> */}
                 <View
                     style={{
                         flexDirection: "row",
@@ -541,12 +543,12 @@ export default function SignUpUser({ navigation }) {
                         }} 
                         onPress={() => onChangeUsergroup('User')}>
                         <Text style={{ 
-                            color: usergroup === 'User'? 'red' : "#000000",
+                            color: usergroup === 'User'? '#FF0000' : "#000000",
                             fontSize: 20 
                         }}>
                             User
                         </Text>
-                        {usergroup === 'User' && (
+                        {usergroup === 'User' ? (
                             <View
                                 style={{
                                     width: 80,
@@ -554,7 +556,15 @@ export default function SignUpUser({ navigation }) {
                                     backgroundColor: "#FF0000",
                                 }}>
                             </View>
-                        )}
+                        ):
+                            <View
+                                style={{
+                                    width: 80,
+                                    height: 1,
+                                    backgroundColor: "#000000",
+                                }}>
+                            </View>
+                        }
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style={{
@@ -564,20 +574,31 @@ export default function SignUpUser({ navigation }) {
                             justifyContent: 'center',
                             marginVertical: 10,
                         }} 
-                        onPress={() => navigation.navigate('signupBusinessOwner')}>
-                        <Text style={{ color: '#000000', fontSize: 20 }}>Seller</Text>
-                        {usergroup === 'Seller' && (
+                        onPress={() => onChangeUsergroup('Seller')}>
+                        <Text style={{ 
+                            color: usergroup === 'Seller' ? '#FF0000' : '#000000', 
+                            fontSize: 20 
+                        }}>
+                            Seller
+                        </Text>
+                        {usergroup === 'Seller' ? (
                             <View
                                 style={{
                                     width: 80,
-                                    height: 2,
+                                    height: 1,
+                                    backgroundColor: "#FF0000",
+                                }}>
+                            </View>
+                        ):
+                            <View
+                                style={{
+                                    width: 80,
+                                    height: 1,
                                     backgroundColor: "#000000",
                                 }}>
                             </View>
-                        )}
+                        }
                     </TouchableOpacity>
-
-                    
                 </View>
 
                 <View
@@ -615,11 +636,12 @@ export default function SignUpUser({ navigation }) {
                 </View>
                 <View
                     style={{
+                        height: 44,
                         backgroundColor: "#F5F5F5",
                         borderRadius: 8,
-                        paddingVertical: 10,
-                        paddingHorizontal: 16,
-                        marginBottom: 20,
+                        paddingVertical: 14,
+                        paddingHorizontal: 12,
+                        marginBottom: 13,
                         marginHorizontal: 18,
                     }}>
                     <TextInput
@@ -629,6 +651,27 @@ export default function SignUpUser({ navigation }) {
                         onChangeText={(text) => onChangePassword(text)}
                     />
                 </View>
+                { 
+                    usergroup === 'Seller' && (
+                        <View
+                            style={{
+                                height: 44,
+                                backgroundColor: "#F5F5F5",
+                                borderRadius: 8,
+                                paddingVertical: 14,
+                                paddingHorizontal: 12,
+                                marginBottom: 13,
+                                marginHorizontal: 18,
+                        }}>
+                            <TextInput
+                                placeholder="UEN"
+                                value={uen}
+    
+                                onChangeText={(text) => onChangeUEN(text)}
+                            />
+                        </View>
+                    )
+                }
                 <TouchableOpacity onPress={handleSubmit}
                     style={{
                         alignItems: "center",

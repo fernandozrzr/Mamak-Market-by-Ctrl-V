@@ -185,7 +185,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsSplashVisible(false);
-    }, 200); // 1 sec
+    }, 5000); // 1 sec
 
     return () => clearTimeout(timer); // Cleanup the timer on component unmount
   }, []);

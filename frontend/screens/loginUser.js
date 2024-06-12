@@ -2,6 +2,7 @@ import React from "react";
 import { SafeAreaView, View, ScrollView, Text, Image, TouchableOpacity, TextInput, Pressable, Button, Alert } from "react-native";
 import { StyleSheet } from "react-native";
 import { useState } from "react";
+import Animated, { SharedTransition, withSpring } from "react-native-reanimated";
 import axios from "axios";
 import config from "../config"; // Import the configuration file
 
@@ -10,6 +11,17 @@ export default function LoginUser({ navigation }) {
     const [username, onChangeUsername] = useState("");
     const [password, onChangePassword] = useState("");
     const [usergroup, onChangeUsergroup] = useState("User");
+
+    const customTransition = SharedTransition.custom((values) => {
+        'worklet';
+        return {
+            height: withSpring(values.targetHeight),
+            width: withSpring(values.targetWidth),
+            padding: withSpring('25%'),
+            originX: withSpring(values.targetOriginX),
+            originY: withSpring(values.targetOriginY),
+        };
+    })
 
     function handleSubmit() {
         const userData = {
@@ -43,34 +55,34 @@ export default function LoginUser({ navigation }) {
                 flex: 1,
                 backgroundColor: "#FFFFFF",
             }}>
-            <ScrollView
+            <Animated.ScrollView
                 style={{
                     flex: 1,
                     backgroundColor: "#DEC7B2",
-                    paddingTop: 162,
-                    paddingBottom: 183,
-                }}>
+                    paddingTop: '25%',
+                }}
+                sharedTransitionTag="loginIcon"
+                sharedTransitionStyle={customTransition}>
                 <View
                     style={{
-                        height: 156,
                         // borderColor: "#5E27FD",
                         // borderWidth: 1,
-                        marginBottom: 20,
-                        marginHorizontal: 117,
                         justifyContent: 'center', // Align image and text in the center vertically
                         alignItems: 'center', // Align image and text in the center horizontally
                     }}>
-                    <Image
-                        source={require('../assets/AppIcon.jpg')}
+                    <Animated.Image
+                        source={require('../assets/AppIcon2.png')}
                         style={{
-                            width: 150, // Adjust width as needed
-                            height: 150, // Adjust height as needed
-                            marginBottom: 30,
+                            flex: 1,
+                            width: 250, // Adjust width as needed
+                            height: 300, // Adjust height as needed
+                            marginBottom: 10,
                         }}
                         resizeMode="cover" // or any other resize mode you prefer
+                        sharedTransitionTag="loginIcon"
                     />
                 </View>
-                <Text
+                {/* <Text
                     style={{
                         color: "#EA1B1B",
                         fontSize: 64,
@@ -88,7 +100,7 @@ export default function LoginUser({ navigation }) {
                         textAlign: 'center',
                     }}>
                     {"Mamak Market"}
-                </Text>
+                </Text> */}
                 <View
                     style={{
                         flexDirection: "row",
@@ -108,12 +120,12 @@ export default function LoginUser({ navigation }) {
                         }} 
                         onPress={() => onChangeUsergroup('User')}>
                         <Text style={{ 
-                            color: usergroup === 'User'? 'red' : "#FF0000",
+                            color: usergroup === 'User'? '#FF0000' : "#000000",
                             fontSize: 20 
                         }}>
                             User
                         </Text>
-                        {usergroup === 'User' && (
+                        {usergroup === 'User' ? (
                             <View
                                 style={{
                                     width: 80,
@@ -121,7 +133,15 @@ export default function LoginUser({ navigation }) {
                                     backgroundColor: "#FF0000",
                                 }}>
                             </View>
-                        )}
+                        ):
+                            <View
+                                style={{
+                                    width: 80,
+                                    height: 1,
+                                    backgroundColor: "#000000",
+                                }}>
+                            </View>
+                        }
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style={{
@@ -131,17 +151,30 @@ export default function LoginUser({ navigation }) {
                             justifyContent: 'center',
                             marginVertical: 10,
                         }} 
-                        onPress={() => navigation.navigate('loginBusinessOwner')}>
-                        <Text style={{ color: '#000000', fontSize: 20 }}>Seller</Text>
-                        {usergroup === 'Seller' && (
+                        onPress={() => onChangeUsergroup('Seller')}>
+                        <Text style={{ 
+                            color: usergroup === 'Seller' ? '#FF0000' : '#000000', 
+                            fontSize: 20 
+                        }}>
+                            Seller
+                        </Text>
+                        {usergroup === 'Seller' ? (
                             <View
                                 style={{
                                     width: 80,
-                                    height: 2,
+                                    height: 1,
+                                    backgroundColor: "#FF0000",
+                                }}>
+                            </View>
+                        ):
+                            <View
+                                style={{
+                                    width: 80,
+                                    height: 1,
                                     backgroundColor: "#000000",
                                 }}>
                             </View>
-                        )}
+                        }
                     </TouchableOpacity>
 
                 </View>
@@ -211,7 +244,7 @@ export default function LoginUser({ navigation }) {
                 <TouchableOpacity onPress={() => navigation.navigate('signupUser')}>
                     <Text style={{ color: '#4112FF', fontSize: 15, marginLeft: 176 }}>Sign Up</Text>
                 </TouchableOpacity>
-            </ScrollView>
+            </Animated.ScrollView>
         </SafeAreaView>
 
 
