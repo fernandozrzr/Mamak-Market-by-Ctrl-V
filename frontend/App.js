@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import {FeedsContextProvider} from './context/FeedContext'
+import { FeedsContextProvider } from './context/FeedContext'
 import { ListsContextProvider } from './context/ListContext';
 import SplashScreen from './screens/splashscreen';
 import loginBusinessOwner from './screens/loginBusinessOwner';
@@ -38,21 +38,24 @@ const Tab = createBottomTabNavigator();
 function UserMarketPlaceStack() {
   return (
     <Stack.Navigator>
+
       <Stack.Screen name="Listing" options={{ headerShown: false }} component={Listing} />
       <Stack.Screen name="ShopPage" options={{ headerShown: false }} component={ShopPage} />
       <Stack.Screen name="ShopPageItem" options={{ headerShown: false }} component={ShopPageItem} />
       <Stack.Screen name="ShopPageItemTemplate" options={{ headerShown: false }} component={ShopPageItemTemplate} />
+
     </Stack.Navigator>
   );
 }
 function UserFeedStack() {
   return (
     <Stack.Navigator>
-       <FeedsContextProvider>
+
+
       <Stack.Screen name="UserFeed" options={{ headerShown: false }} component={UserFeed} />
       <Stack.Screen name="StoreFeedPage" options={{ headerShown: false }} component={StoreFeedPage} />
-      </FeedsContextProvider>
-    </Stack.Navigator>
+
+    </Stack.Navigator >
   );
 }
 function SellerProfileStack() {
@@ -61,16 +64,18 @@ function SellerProfileStack() {
       <Stack.Screen name="SellerProfile" options={{ headerShown: false }} component={SellerProfile} />
       <Stack.Screen name="ShopPageItemEdit" options={{ headerShown: false }} component={ShopPageItemEdit} />
       <Stack.Screen name="AddListing" options={{ headerShown: false }} component={AddListing} />
-    </Stack.Navigator>
+    </Stack.Navigator >
   );
 }
 function SellerFeedStack() {
   return (
     <Stack.Navigator>
-      <FeedsContextProvider>
+
+
       <Stack.Screen name="SellerFeed" options={{ headerShown: false }} component={SellerFeed} />
       <Stack.Screen name="postCreation" options={{ headerShown: false }} component={postCreation} />
-      </FeedsContextProvider>
+
+
     </Stack.Navigator>
   );
 }
@@ -225,9 +230,10 @@ export default () => {
   return (
     <NavigationContainer>
       <ListsContextProvider>
-      <FeedsContextProvider>
-      <App />
-      </FeedsContextProvider>
+        <FeedsContextProvider>
+
+          <App />
+        </FeedsContextProvider>
       </ListsContextProvider>
     </NavigationContainer>
   )

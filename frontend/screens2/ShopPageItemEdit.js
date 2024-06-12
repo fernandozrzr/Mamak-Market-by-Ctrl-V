@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, StyleSheet, Platform } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker'; // Import DateTimePicker\
-import { useFeedsContext } from "../hooks/useFeedsContext";
+import { useListsContext } from "../hooks/useListsContext";
 
 
 const formatDate = (date) => {
@@ -11,7 +11,7 @@ const formatDate = (date) => {
 };
 
 export default function ShopPageItem({ navigation, route }) {
-    
+
     const item = route.params.item;
     const [description, setDescription] = useState(item.description);
     const [expiryDate, setExpiryDate] = useState(new Date(item.expirydate)); // Convert to Date object
@@ -20,8 +20,7 @@ export default function ShopPageItem({ navigation, route }) {
     const [showDatePicker, setShowDatePicker] = useState(false); // State for datepicker visibility
     const [dateText, setDateText] = useState(formatDate(expiryDate)); // Initial date text
     const [itemName, setItemName] = useState(item.item);
-    const [refresh, setRefresh] = useState(false); // Add refresh state
-    const {feeds, dispatch} = useFeedsContext()
+    const { dispatch } = useListsContext()
 
     const handleAdd = () => {
         setQty(qty + 1);
@@ -36,7 +35,7 @@ export default function ShopPageItem({ navigation, route }) {
 
     const saveEdit = async () => {
         try {
-            const response = await fetch(`http://10.51.0.210:4000/api/listing/${item._id}`, {
+            const response = await fetch(`http://192.168.18.17:4000/api/listing/${item._id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,7 +55,7 @@ export default function ShopPageItem({ navigation, route }) {
                 setDescription('');
                 setCost('');
                 setQty(1);
-                dispatch({type: 'PATCH_LIST', payload: json})
+                dispatch({ type: 'PATCH_LIST', payload: json })
                 console.log('Item updated successfully');
 
                 navigation.navigate('SellerProfile');
@@ -71,13 +70,14 @@ export default function ShopPageItem({ navigation, route }) {
 
     const deleteItem = async () => {
         try {
-            const response = await fetch(`http://10.51.0.210:4000/api/listing/${item._id}`, {
+            const response = await fetch(`http://192.168.18.17:4000/api/listing/${item._id}`, {
                 method: 'DELETE',
             });
             const json = await response.json();
             if (response.ok) {
+                console.log(json)
                 console.log('Item deleted successfully', json.deletedListing);
-                dispatch({type: 'DELETE_FEED', payload: json.deletedListing})
+                dispatch({ type: 'DELETE_LIST', payload: json.deletedListing })
 
                 navigation.navigate('SellerProfile');
             } else {

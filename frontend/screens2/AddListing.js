@@ -6,7 +6,7 @@ import { useFeedsContext } from "../hooks/useFeedsContext";
 
 
 export default function AddListing({ navigation }) {
-  
+
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -16,7 +16,7 @@ export default function AddListing({ navigation }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const {dispatch} = useFeedsContext();
+  const { dispatch } = useFeedsContext();
 
   const user = 'Qiong Provisions';
   const uploadImage = async () => {
@@ -63,7 +63,7 @@ export default function AddListing({ navigation }) {
 
   const handleUpload = async () => {
     try {
-      const response = await fetch('http://10.51.0.210:4000/api/listing/', {
+      const response = await fetch('http://192.168.18.17:4000/api/listing/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export default function AddListing({ navigation }) {
       const json = await response.json();
       if (response.ok) {
         console.log('Listing uploaded successfully:', json);
-        dispatch({type: 'CREATE_FEED', payload: json});
+        dispatch({ type: 'CREATE_FEED', payload: json });
         navigation.navigate('SellerProfile');
         setTitle('');
         setCount(1);
