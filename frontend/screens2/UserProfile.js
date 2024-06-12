@@ -1,8 +1,23 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function UserpageUser({ navigation }) {
+	const [userName, setUserName] = useState(null);
+	useEffect(() => {
+        const fetchUserName = async () => {
+            try {
+                const storedName = await AsyncStorage.getItem('userName');
+                setUserName(storedName);
+            } catch (error) {
+                console.error('AsyncStorage Error: ', error);
+            }
+        };
+
+        fetchUserName();
+    }, []);
+
 	return (
 		<SafeAreaView
 			style={{
@@ -79,7 +94,7 @@ export default function UserpageUser({ navigation }) {
 							marginRight: 5,
 						}}
 					>
-						{"Liu Ying"}
+						{userName}
 					</Text>
 					<Image
 						source={require('../assets/ShopImage/tickIcon.png')}
