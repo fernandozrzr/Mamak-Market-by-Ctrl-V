@@ -8,9 +8,11 @@ const ListingDetails = ({ listing, navigation }) => {
             style={{
                 width: '48%',
                 backgroundColor: "white",
-                borderRadius: 10,
+                borderRadius: 5,
                 marginBottom: 20,
-                padding: 10,
+                padding: 5,
+                justifyContent: 'center',
+                alignItems: 'center',
             }}
         >
 
@@ -18,19 +20,17 @@ const ListingDetails = ({ listing, navigation }) => {
                 source={require('../assets/ShopImage/QiongProvisionIcon.jpg')}
                 resizeMode='cover'
                 style={{
-                    width: '140',
-                    height: 140,
-                    borderRadius: 10, // Half of the height
-                    marginBottom: 10,
-                    borderWidth: 1,
-                    borderColor: "#000000",
+                    width: 160,
+                    height: 160,
+                    borderRadius: 5, // Half of the height
+                    marginVertical: 10,
                 }}
             />
             <Text
                 style={{
                     color: "#000000",
-                    fontSize: 14,
-                    textAlign: 'center',
+                    fontSize: 15,
+                    fontWeight: 'bold',
                 }}
             >
                 {listing.user}

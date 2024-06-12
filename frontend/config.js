@@ -1,10 +1,6 @@
 // config.js
 const config = {
-<<<<<<< Updated upstream
-    API_URL: 'http://192.168.1.12:4000/api',
-=======
-    API_URL: 'http://192.168.18.17:4000/api',
->>>>>>> Stashed changes
+    API_URL: 'http://192.168.1.155:4000/api',
 };
 
 export default config;

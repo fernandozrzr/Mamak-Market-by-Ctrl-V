@@ -14,6 +14,8 @@ export default function UserpageUser({ navigation }) {
 				style={{
 					backgroundColor: "#F3F3F3",
 					paddingBottom: 21,
+					justifyContent: 'center',
+					alignItems: 'center',
 				}}
 			>
 				<View

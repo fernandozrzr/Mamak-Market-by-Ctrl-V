@@ -30,10 +30,10 @@ export default function ChatsList( {route, navigation} ) {
     // for rendering each chat element
     function renderChat({item}) {
         const userID = item.userID;
-        console.log(userID)
+        // console.log(userID)
         return (
             <TouchableOpacity style={styles.chatItem} onPress={() => {
-                console.log(userID), 
+                // console.log(userID), 
                 navigation.navigate('ChatScreen', [item.userID, item.username, item.profilePic])}}>
 
                 <View style={styles.sellerDeets}>
