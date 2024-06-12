@@ -9,29 +9,17 @@ export default function OrdersList( {navigation} ) {
     const [orders, setOrders] = useState([
         {
             orderID: 1,
-            shop: 'Qiong Tuckshop',
-            item: 'Apples (4pc)',
+            shop: 'Qiong Provisions',
+            item: 'Apples (5pc)',
+            image: require('../assets/ShopImage/apple.jpg'),
             quantity: 1,
             collectionDate: '01/01/2025',
         },
         {
             orderID: 2,
-            shop: 'Hock Provisions',
+            shop: 'QiJi Provisions',
             item: 'Oranges',
-            quantity: 1,
-            collectionDate: '02/01/2025',
-        },
-        {
-            orderID: 2,
-            shop: 'Hock Provisions',
-            item: 'Oranges',
-            quantity: 1,
-            collectionDate: '02/01/2025',
-        },
-        {
-            orderID: 2,
-            shop: 'Hock Provisions',
-            item: 'Oranges',
+            image: require('../assets/ShopImage/oranges.jpg'),
             quantity: 1,
             collectionDate: '02/01/2025',
         },
@@ -51,7 +39,7 @@ export default function OrdersList( {navigation} ) {
 
                 <View style={styles.itemBox}>
                     <TouchableOpacity onPress={() => navigation.navigate()}>
-                        <Image source={require('../assets/ShopImage/apple.jpg')} style={styles.itemPic} />
+                        <Image source={item.image} style={styles.itemPic} />
                     </TouchableOpacity>
                     <View style={styles.itemDetails}>
                         <Text style={styles.itemTitle}> {item.item} </Text>

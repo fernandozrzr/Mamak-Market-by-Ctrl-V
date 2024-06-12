@@ -17,7 +17,7 @@ const ListingDetails = ({ listing, navigation }) => {
         >
 
             <Image
-                source={require('../assets/ShopImage/QiongProvisionIcon.jpg')}
+                source={require('../assets/ShopImage/QiongProvisionsImage.jpg')}
                 resizeMode='cover'
                 style={{
                     width: 160,

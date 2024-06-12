@@ -147,7 +147,7 @@ export default function ShopPageItemTemplate() {
                                 fontSize: 15,
                                 fontWeight: "bold",
                             }}
-                        >$2.00</Text>
+                        >$3.00</Text>
                     </View>
                     <Text
                         style={{

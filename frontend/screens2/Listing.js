@@ -22,8 +22,8 @@ export default function Listing({ navigation }) {
             name: 'Apples',
             shop: 'Qiong Provisions',
             picture: require('../assets/ShopImage/apple.jpg'),
-            originalPrice: '3.20',
-            latestPrice: '2.50',
+            originalPrice: '3.00',
+            latestPrice: '2.30',
         },
         {
             itemID: 's2-i1',
@@ -98,7 +98,7 @@ export default function Listing({ navigation }) {
                 borderRadius: 5,
                 borderBottomLeftRadius: 0,
                 elevation: 1,
-            }} onPress={() => {}}>
+            }} onPress={() => navigation.navigate('ShopPageItemTemplate')}>
 
                 <View style={{
                     padding: 10,

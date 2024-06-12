@@ -102,7 +102,7 @@ export default function MarketPage({ navigation, route }) {
                 width: "40%",
                 justifyContent: "center",
               }}>
-              <AntDesign name="message1" size={24} color="black" />
+              <AntDesign name="message1" size={25} color="black" />
               <View
                 style={{
                   width: 10,
@@ -110,7 +110,7 @@ export default function MarketPage({ navigation, route }) {
               >
 
               </View>
-              <Text style={{ fontSize: 20 }}>Message</Text>
+              <Text style={{ fontSize: 20, paddingRight: 10, }}>Message</Text>
 
             </View>
           </TouchableOpacity>
