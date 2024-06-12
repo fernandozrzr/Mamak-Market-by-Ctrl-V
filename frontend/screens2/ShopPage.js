@@ -3,12 +3,13 @@ import { Text, View, SafeAreaView, Image, TextInput, ScrollView, TouchableOpacit
 import { AntDesign } from '@expo/vector-icons';
 import ShopPageDetails from '../components/ShopPageDetails';
 import { useState, useEffect } from 'react';
+import { useListsContext } from '../hooks/useListsContext';
 
 
 export default function MarketPage({ navigation, route }) {
 
   const { user } = route.params;
-  const [feeds, setFeeds] = useState([])
+  const { lists, dispatch } = useListsContext()
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -16,7 +17,7 @@ export default function MarketPage({ navigation, route }) {
         const data = await response.json();
         if (response.ok) {
 
-          setFeeds(data)
+          dispatch({ type: 'SET_LISTS', payload: data })
         }
       } catch (error) {
         console.error('Error fetching items:', error);
@@ -184,8 +185,8 @@ export default function MarketPage({ navigation, route }) {
             placeholderTextColor="#727272"
           />
         </View>
-        {feeds ? (
-          feeds.map((item) => (
+        {lists ? (
+          lists.map((item) => (
             < ShopPageDetails key={item._id} item={item} navigation={navigation} />
           ))
         ) : (
