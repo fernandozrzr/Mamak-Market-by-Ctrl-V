@@ -10,8 +10,6 @@ export default function LoginUser({ navigation }) {
 
     const [username, onChangeUsername] = useState("");
     const [password, onChangePassword] = useState("");
-<<<<<<< Updated upstream
-=======
     const [usergroup, onChangeUsergroup] = useState("User");
 
     function handleSubmit() {
@@ -38,9 +36,6 @@ export default function LoginUser({ navigation }) {
             });
     }
 
-
-
->>>>>>> Stashed changes
     return (
         <SafeAreaView
             style={{
