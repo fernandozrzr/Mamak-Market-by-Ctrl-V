@@ -16,7 +16,7 @@ export default function AddListing({ navigation }) {
   const [show, setShow] = useState(false);
   const [text, setText] = useState('Select Date');
   const [count, setCount] = useState(1);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
@@ -37,7 +37,7 @@ export default function AddListing({ navigation }) {
         quality: 1,
       });
       if (!result.canceled) {
-        setImage(result.assets[0].uri);
+        setImage(result.assets[0].uri.toString());
       }
     } catch (error) {
       alert("Error uploading image: " + error.message);
@@ -75,6 +75,7 @@ export default function AddListing({ navigation }) {
         body: JSON.stringify({
           user: user,
           item: title,
+          img: image,
           description: description,
           expirydate: date,
           cost: parseFloat(price),

@@ -7,7 +7,7 @@ import { useFeedsContext } from "../hooks/useFeedsContext";
 import config from "../config"; // Import the configuration file
 
 import { useListsContext } from "../hooks/useListsContext";
-
+import * as ImagePicker from "expo-image-picker";
 
 
 const formatDate = (date) => {
@@ -26,8 +26,8 @@ export default function ShopPageItem({ navigation, route }) {
     const [dateText, setDateText] = useState(formatDate(expiryDate)); // Initial date text
     const [itemName, setItemName] = useState(item.item);
     const { dispatch } = useListsContext()
-
-
+    const [image, setImage] = useState(item.img);
+    
     const handleAdd = () => {
         setQty(qty + 1);
     };
@@ -37,6 +37,28 @@ export default function ShopPageItem({ navigation, route }) {
             setQty(qty - 1);
         }
     };
+
+    const changeImage = async () => {
+        try {
+          const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+          if (status !== 'granted') {
+            alert('Sorry, we need camera roll permissions to make this work!');
+            return;
+          }
+          let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 1,
+          });
+          if (!result.canceled) {
+            setImage(result.assets[0].uri.toString());
+          }
+        } catch (error) {
+          alert("Error changing image: " + error.message);
+        }
+      };
+
 
 
     const saveEdit = async () => {
@@ -53,6 +75,7 @@ export default function ShopPageItem({ navigation, route }) {
                     expirydate: expiryDate.toISOString(), // Convert to ISO string
                     cost: parseFloat(cost),
                     quantity: qty,
+                    img: image
                 }),
             });
             const json = await response.json();
@@ -62,6 +85,7 @@ export default function ShopPageItem({ navigation, route }) {
                 setDescription('');
                 setCost('');
                 setQty(1);
+                
                 dispatch({ type: 'PATCH_LIST', payload: json })
                 console.log('Item updated successfully');
 
@@ -113,9 +137,9 @@ export default function ShopPageItem({ navigation, route }) {
             >
                 <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 80 }}>
                     <View style={styles.container}>
-                        <Image source={require('../assets/ShopImage/apple.jpg')} style={styles.image} />
+                        <Image source={{uri:image}} style={styles.image} />
                         <TouchableOpacity style={styles.iconContainer}>
-                            <FontAwesome name="edit" size={24} color="black" />
+                            <FontAwesome onPress={changeImage} name="edit" size={24} color="black" />
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: "row", backgroundColor: "#D9D9D9", borderRadius: 8, paddingVertical: 6, paddingHorizontal: 12, marginHorizontal: 20, marginTop: 10, width: "80%", justifyContent: 'space-between' }}>
@@ -166,7 +190,7 @@ export default function ShopPageItem({ navigation, route }) {
                         <TextInput
                             selectionColor="black"
                             style={{ color: "black", fontSize: 15, fontWeight: "bold" }}
-                            value={cost}
+                            value={cost.toString()}
                             onChangeText={setCost}
                         />
                     </View>
