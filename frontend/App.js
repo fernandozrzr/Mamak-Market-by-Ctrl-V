@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-
+import {FeedsContextProvider} from './context/FeedContext'
 import SplashScreen from './screens/splashscreen';
 import loginBusinessOwner from './screens/loginBusinessOwner';
 import loginUser from './screens/loginUser';
@@ -218,9 +218,9 @@ function App() {
 export default () => {
   return (
     <NavigationContainer>
-
+      <FeedsContextProvider>
       <App />
-
+      </FeedsContextProvider>
     </NavigationContainer>
   )
 }

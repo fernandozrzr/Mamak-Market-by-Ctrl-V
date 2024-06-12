@@ -26,8 +26,8 @@ const ShopPageDetails = ({ item, navigation }) => {
                 }}
             >{item.item}</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Text style={{ textDecorationLine: 'line-through', fontSize: 15 }}>${item.cost.toFixed(2)}</Text>
-                <Text style={{ marginLeft: 5, fontSize: 15, color: 'green' }}>${(item.cost * 0.7).toFixed(2)}</Text>
+                <Text style={{ textDecorationLine: 'line-through', fontSize: 15 }}>${item.cost}</Text>
+                <Text style={{ marginLeft: 5, fontSize: 15, color: 'green' }}>${(item.cost * 0.7)}</Text>
             </View>
         </TouchableOpacity>
     );

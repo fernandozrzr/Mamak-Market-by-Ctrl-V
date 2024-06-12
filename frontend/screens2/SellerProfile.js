@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity } from "react-native";
 import SellerProfileDetails from "../components/SellerProfileDetails";
+import { useFeedsContext } from "../hooks/useFeedsContext";
 
 
 export default function SellerProfile({ navigation, route }) {
 	const years = [2024, 2023, 2022, 2021, 2020];
 	const [selectedTab, setSelectedTab] = useState("listings");
 	const [selectedYear, setSelectedYear] = useState(years[0]);
-	const [items, setItems] = useState([])
-
+	
+	const {feeds, dispatch} = useFeedsContext()
 	const user = 'Qiong Provisions';
 
 	useEffect(() => {
 		const fetchMyItems = async () => {
 			try {
-				const response = await fetch(`http://10.51.0.217:4000/api/listing/search?user=${encodeURIComponent(user)}`);
+				const response = await fetch(`http://10.51.0.210:4000/api/listing/search?user=${encodeURIComponent(user)}`);
 				const json = await response.json();
 				if (response.ok) {
-					setItems(json)
+					
+					dispatch({type: 'SET_FEEDS', payload: json})
 					console.log(json)
 				}
 
@@ -294,7 +296,7 @@ export default function SellerProfile({ navigation, route }) {
 							justifyContent: 'space-between',
 						}}
 					>
-						{items && items.map((item) =>
+						{feeds && feeds.map((item) =>
 							< SellerProfileDetails key={item._id} item={item} navigation={navigation} />
 						)}
 
