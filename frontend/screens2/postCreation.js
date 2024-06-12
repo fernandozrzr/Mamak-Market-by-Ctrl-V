@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { SafeAreaView, View, Image, Text, TextInput, TouchableOpacity, Alert, ScrollView } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import { useFeedsContext } from "../hooks/useFeedsContext";
+import config from "../config"; // Import the configuration file
 
 export default function PostCreation({ navigation }) {
   const [imageUri, setImageUri] = useState('');
@@ -18,7 +19,8 @@ export default function PostCreation({ navigation }) {
     const feed = { description, image: imageUri };
 
     try {
-      const response = await fetch('http://192.168.18.17:4000/api/feed/', { // Make sure this URL is correct
+
+      const response = await fetch(`${config.API_URL}/feed/`, { // Make sure this URL is correct
         method: 'POST',
         body: JSON.stringify({
           title: title,

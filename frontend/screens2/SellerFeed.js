@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 import FeedDetails from '../components/FeedDetails'
 import { useFeedsContext } from "../hooks/useFeedsContext";
+import config from "../config"; // Import the configuration file
 
 const SellerFeed = ({ navigation }) => {
   const { feeds, dispatch } = useFeedsContext()
 
-  useEffect(() => {
-    const fetchFeeds = async () => {
-      const response = await fetch('http://192.168.18.17:4000/api/feed/')
-      const json = await response.json()
+    useEffect(() => {
+        const fetchFeeds = async() => {
+            const response = await fetch(`${config.API_URL}/feed/`)
+            const json = await response.json()
+
 
       if (response.ok) {
         console.log(feeds)

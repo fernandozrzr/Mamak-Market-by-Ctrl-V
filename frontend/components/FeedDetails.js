@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Image, Text, TouchableOpacity } from "react-native";
 import { useFeedsContext } from "../hooks/useFeedsContext";
+import config from "../config"; // Import the configuration file
 
 const FeedDetails = ({ feed }) => {
     const [timeElapsed, setTimeElapsed] = useState("");
@@ -42,7 +43,7 @@ const FeedDetails = ({ feed }) => {
     const handleLike = async () => {
         setLikes(likes + 1);
         // Update the likes count locally
-        const response = await fetch('http://10.51.0.210:4000/api/feed/' + feed._id, {
+        const response = await fetch(`${config.API_URL}/feed/` + feed._id, {
             method: 'PATCH',       
             body: JSON.stringify({
                 

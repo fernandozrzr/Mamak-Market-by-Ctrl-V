@@ -3,7 +3,12 @@ import { Text, View, SafeAreaView, Image, TextInput, ScrollView, TouchableOpacit
 import { AntDesign } from '@expo/vector-icons';
 import ShopPageDetails from '../components/ShopPageDetails';
 import { useState, useEffect } from 'react';
+
+import { useFeedsContext } from "../hooks/useFeedsContext";
+import config from "../config"; // Import the configuration file
+
 import { useListsContext } from '../hooks/useListsContext';
+
 
 
 export default function MarketPage({ navigation, route }) {
@@ -13,7 +18,8 @@ export default function MarketPage({ navigation, route }) {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(`http://192.168.18.17:4000/api/listing/search?user=${encodeURIComponent(user)}`);
+
+        const response = await fetch(`${config.API_URL}/listing/search?user=${encodeURIComponent(user)}`);
         const data = await response.json();
         if (response.ok) {
 

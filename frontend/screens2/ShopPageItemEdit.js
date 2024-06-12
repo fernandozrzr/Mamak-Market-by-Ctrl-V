@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, StyleSheet, Platform } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker'; // Import DateTimePicker\
+
+import { useFeedsContext } from "../hooks/useFeedsContext";
+import config from "../config"; // Import the configuration file
+
 import { useListsContext } from "../hooks/useListsContext";
+
 
 
 const formatDate = (date) => {
@@ -22,6 +27,7 @@ export default function ShopPageItem({ navigation, route }) {
     const [itemName, setItemName] = useState(item.item);
     const { dispatch } = useListsContext()
 
+
     const handleAdd = () => {
         setQty(qty + 1);
     };
@@ -35,7 +41,8 @@ export default function ShopPageItem({ navigation, route }) {
 
     const saveEdit = async () => {
         try {
-            const response = await fetch(`http://192.168.18.17:4000/api/listing/${item._id}`, {
+            const response = await fetch(`${config.API_URL}/listing/${item._id}`, {
+
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +77,8 @@ export default function ShopPageItem({ navigation, route }) {
 
     const deleteItem = async () => {
         try {
-            const response = await fetch(`http://192.168.18.17:4000/api/listing/${item._id}`, {
+            const response = await fetch(`${config.API_URL}/listing/${item._id}`, {
+
                 method: 'DELETE',
             });
             const json = await response.json();

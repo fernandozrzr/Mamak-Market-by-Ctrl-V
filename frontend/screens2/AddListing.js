@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { StyleSheet, SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, Platform } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from "expo-image-picker";
+
+import { useFeedsContext } from "../hooks/useFeedsContext";
+import config from "../config"; // Import the configuration file
 import { useListsContext } from "../hooks/useListsContext";
+
 
 
 export default function AddListing({ navigation }) {
@@ -63,7 +67,7 @@ export default function AddListing({ navigation }) {
 
   const handleUpload = async () => {
     try {
-      const response = await fetch('http://192.168.18.17:4000/api/listing/', {
+      const response = await fetch(`${config.API_URL}/listing/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

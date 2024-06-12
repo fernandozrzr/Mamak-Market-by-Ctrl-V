@@ -23,26 +23,55 @@ export default function LoginUser({ navigation }) {
         };
     })
 
+    // function handleSubmit() {
+    //     const userData = {
+    //         username: username,
+    //         password,
+    //         usergroup,
+    //     };
+    
+    //     axios
+    //         .post(`${config.API_URL}/profile/login`, userData)
+    //         .then(res => {
+    //             console.log(res.data);
+    //             if (res.data.status === "ok") {
+    //                 Alert.alert("Login Successful");
+    //                  navigation.navigate("UserScreens");
+    //             } else {
+    //                 Alert.alert("Login Failed", res.data.message || "Unexpected error");
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error);
+    //             Alert.alert("Error", "An unexpected error occurred");
+    //         });
+    // }
     function handleSubmit() {
         const userData = {
             username: username,
-            password,
-            usergroup,
+            password: password,
+            usergroup: usergroup,
         };
     
         axios
             .post(`${config.API_URL}/profile/login`, userData)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.status === "ok") {
                     Alert.alert("Login Successful");
-                     navigation.navigate("UserScreens");
+                    if (usergroup === "Seller") {
+                        navigation.navigate("SellerScreens");
+                    } else if (usergroup === "User") {
+                        navigation.navigate("UserScreens");
+                    } else {
+                        Alert.alert("Login Failed", "Invalid user group");
+                    }
                 } else {
                     Alert.alert("Login Failed", res.data.message || "Unexpected error");
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
+                // console.error('Error:', error);
                 Alert.alert("Error", "An unexpected error occurred");
             });
     }
