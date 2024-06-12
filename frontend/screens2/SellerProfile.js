@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity } from "react-native";
 import SellerProfileDetails from "../components/SellerProfileDetails";
 import { useFeedsContext } from "../hooks/useFeedsContext";
+import config from "../config"; // Import the configuration file
 
 
 export default function SellerProfile({ navigation, route }) {
@@ -15,7 +16,7 @@ export default function SellerProfile({ navigation, route }) {
 	useEffect(() => {
 		const fetchMyItems = async () => {
 			try {
-				const response = await fetch(`http://10.51.0.210:4000/api/listing/search?user=${encodeURIComponent(user)}`);
+				const response = await fetch(`${config.API_URL}/listing/search?user=${encodeURIComponent(user)}`);
 				const json = await response.json();
 				if (response.ok) {
 					
@@ -58,7 +59,7 @@ export default function SellerProfile({ navigation, route }) {
 							aspectRatio: 16 / 6,
 						}}
 					/>
-					<TouchableOpacity onPress={() => navigation.navigate('loginBusinessOwner')}>
+					<TouchableOpacity onPress={() => navigation.navigate('loginUser')}>
 						<Image
 							source={require('../assets/ShopImage/logoutIcon.png')}
 							style={{

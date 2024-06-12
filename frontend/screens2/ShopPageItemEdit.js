@@ -3,6 +3,7 @@ import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacit
 import { FontAwesome } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker'; // Import DateTimePicker\
 import { useFeedsContext } from "../hooks/useFeedsContext";
+import config from "../config"; // Import the configuration file
 
 
 const formatDate = (date) => {
@@ -22,6 +23,7 @@ export default function ShopPageItem({ navigation, route }) {
     const [itemName, setItemName] = useState(item.item);
     const [refresh, setRefresh] = useState(false); // Add refresh state
     const {feeds, dispatch} = useFeedsContext()
+    
 
     const handleAdd = () => {
         setQty(qty + 1);
@@ -36,7 +38,7 @@ export default function ShopPageItem({ navigation, route }) {
 
     const saveEdit = async () => {
         try {
-            const response = await fetch(`http://10.51.0.210:4000/api/listing/${item._id}`, {
+            const response = await fetch(`${config.API_URL}/listing/${item._id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -71,7 +73,7 @@ export default function ShopPageItem({ navigation, route }) {
 
     const deleteItem = async () => {
         try {
-            const response = await fetch(`http://10.51.0.210:4000/api/listing/${item._id}`, {
+            const response = await fetch(`${config.API_URL}/listing/${item._id}`, {
                 method: 'DELETE',
             });
             const json = await response.json();

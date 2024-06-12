@@ -3,6 +3,7 @@ import { StyleSheet, SafeAreaView, View, ScrollView, Image, Text, TextInput, Tou
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from "expo-image-picker";
 import { useFeedsContext } from "../hooks/useFeedsContext";
+import config from "../config"; // Import the configuration file
 
 
 export default function AddListing({ navigation }) {
@@ -63,7 +64,7 @@ export default function AddListing({ navigation }) {
 
   const handleUpload = async () => {
     try {
-      const response = await fetch('http://10.51.0.210:4000/api/listing/', {
+      const response = await fetch(`${config.API_URL}/listing/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

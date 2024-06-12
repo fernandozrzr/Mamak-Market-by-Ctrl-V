@@ -4,6 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import ShopPageDetails from '../components/ShopPageDetails';
 import { useState, useEffect } from 'react';
 import { useFeedsContext } from "../hooks/useFeedsContext";
+import config from "../config"; // Import the configuration file
 
 export default function MarketPage({ navigation, route }) {
 
@@ -13,7 +14,7 @@ export default function MarketPage({ navigation, route }) {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(`http://10.51.0.210:4000/api/listing/search?user=${encodeURIComponent(user)}`);
+        const response = await fetch(`${config.API_URL}/listing/search?user=${encodeURIComponent(user)}`);
         const data = await response.json();
         if (response.ok) {
           
