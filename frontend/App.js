@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { ListingContextProvider } from './context/ListingContext';
 
 import SplashScreen from './screens/splashscreen';
 import loginBusinessOwner from './screens/loginBusinessOwner';
@@ -219,9 +218,9 @@ function App() {
 export default () => {
   return (
     <NavigationContainer>
-      <ListingContextProvider>
-        <App />
-      </ListingContextProvider>
+
+      <App />
+
     </NavigationContainer>
   )
 }

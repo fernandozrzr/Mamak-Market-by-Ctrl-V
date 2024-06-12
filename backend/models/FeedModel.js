@@ -5,20 +5,26 @@ const Schema = mongoose.Schema;
 const feedSchema = new Schema({
     user: {
         type: String,
-        required: true
+        required: false
     },
     title: {
-        type: String,
+        type:String,
         required: true
     },
+
     content: {
         type: String,
         required: true
     },
+    
     likes: {
         type: Number,
         default: 0
     },
+    img: { 
+        type: String,               //File Path to Images
+        required: false
+     }
 
 }, { timestamps: true });
 
