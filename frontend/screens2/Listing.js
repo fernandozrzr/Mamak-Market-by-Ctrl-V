@@ -9,7 +9,7 @@ import ChatsList from '../screens (modals)/chatsList';
 
 
 import ListingDetails from '../components/ListingDetails';
-import { useFeedsContext } from "../hooks/useFeedsContext";
+import { useListsContext } from "../hooks/useFeedsContext";
 
 export default function Listing({ navigation }) {
 

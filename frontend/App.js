@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import {FeedsContextProvider} from './context/FeedContext'
+import { ListsContextProvider } from './context/ListContext';
 import SplashScreen from './screens/splashscreen';
 import loginBusinessOwner from './screens/loginBusinessOwner';
 import loginUser from './screens/loginUser';
@@ -33,6 +34,7 @@ import { AntDesign } from '@expo/vector-icons';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+
 function UserMarketPlaceStack() {
   return (
     <Stack.Navigator>
@@ -46,8 +48,10 @@ function UserMarketPlaceStack() {
 function UserFeedStack() {
   return (
     <Stack.Navigator>
+       <FeedsContextProvider>
       <Stack.Screen name="UserFeed" options={{ headerShown: false }} component={UserFeed} />
       <Stack.Screen name="StoreFeedPage" options={{ headerShown: false }} component={StoreFeedPage} />
+      </FeedsContextProvider>
     </Stack.Navigator>
   );
 }
@@ -63,8 +67,10 @@ function SellerProfileStack() {
 function SellerFeedStack() {
   return (
     <Stack.Navigator>
+      <FeedsContextProvider>
       <Stack.Screen name="SellerFeed" options={{ headerShown: false }} component={SellerFeed} />
       <Stack.Screen name="postCreation" options={{ headerShown: false }} component={postCreation} />
+      </FeedsContextProvider>
     </Stack.Navigator>
   );
 }
@@ -218,9 +224,11 @@ function App() {
 export default () => {
   return (
     <NavigationContainer>
+      <ListsContextProvider>
       <FeedsContextProvider>
       <App />
       </FeedsContextProvider>
+      </ListsContextProvider>
     </NavigationContainer>
   )
 }

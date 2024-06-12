@@ -15,7 +15,7 @@ export default function ShopPageItem({ navigation, route }) {
     const item = route.params.item;
     const [description, setDescription] = useState(item.description);
     const [expiryDate, setExpiryDate] = useState(new Date(item.expirydate)); // Convert to Date object
-    const [cost, setCost] = useState(item.cost.toFixed(2));
+    const [cost, setCost] = useState(item.cost);
     const [qty, setQty] = useState(item.quantity);
     const [showDatePicker, setShowDatePicker] = useState(false); // State for datepicker visibility
     const [dateText, setDateText] = useState(formatDate(expiryDate)); // Initial date text

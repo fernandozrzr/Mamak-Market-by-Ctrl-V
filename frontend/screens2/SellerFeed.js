@@ -12,6 +12,7 @@ const SellerFeed = ({navigation}) => {
             const json = await response.json()
 
             if(response.ok){
+              console.log(feeds)
                 dispatch({type: 'SET_FEEDS', payload: json})
             }
             
