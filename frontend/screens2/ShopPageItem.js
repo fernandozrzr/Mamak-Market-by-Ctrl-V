@@ -2,33 +2,9 @@ import React from "react";
 
 import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
-import { useState } from "react";
 
 
-export default function ShopPageItem({ navigation, route }) {
-
-    const { item } = route.params;
-    const [qty, setQty] = useState(1);
-
-    const handleAdd = () => {
-        if (qty < item.quantity) {
-            setQty(qty + 1);
-        }
-    }
-    const handleSubtract = () => {
-        if (qty > 1) {
-            setQty(qty - 1);
-        }
-    }
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-
-        return `${day}/${month}/${year}`;
-    };
-
+export default function ShopPageItem() {
 
     return (
         <SafeAreaView
@@ -115,7 +91,7 @@ export default function ShopPageItem({ navigation, route }) {
                                 fontStyle: "bold",
                                 padding: 10,
                             }}
-                        >{item.description}</Text>
+                        >5pcs apple from China. Good for consumption.</Text>
                     </View>
                     <View
                         style={{
@@ -143,7 +119,7 @@ export default function ShopPageItem({ navigation, route }) {
                                 fontSize: 15,
                                 fontWeight: "bold",
                             }}
-                        >{formatDate(item.expirydate)}</Text>
+                        >11/06/2024</Text>
                     </View>
                     <View
                         style={{
@@ -171,7 +147,7 @@ export default function ShopPageItem({ navigation, route }) {
                                 fontSize: 15,
                                 fontWeight: "bold",
                             }}
-                        >${item.cost.toFixed(2)}</Text>
+                        >$2.00</Text>
                     </View>
                     <Text
                         style={{
@@ -180,7 +156,7 @@ export default function ShopPageItem({ navigation, route }) {
                             color: "red",
                             fontWeight: "bold",
                         }}
-                    >NOW: ${(item.cost * 0.7).toFixed(2)}</Text>
+                    >NOW: $2.30</Text>
                     <View style={{ marginTop: 20, flexDirection: 'row' }}>
                         <TouchableOpacity style={{
                             height: 40, width: 40, backgroundColor: 'white', borderRadius: 10, justifyContent: 'center', alignItems:
@@ -189,19 +165,15 @@ export default function ShopPageItem({ navigation, route }) {
                         <View style={{
                             marginLeft: 10, height: 40, width: 120, backgroundColor: 'white', borderRadius: 10, justifyContent: 'center', alignItems:
                                 'center'
-                        }} ><Text style={styles.font}>Qty: {qty}</Text></View>
-                        <TouchableOpacity
-                            onPress={handleAdd}
-                            style={{
-                                marginLeft: 10, height: 40, width: 40, backgroundColor: '#5DDD21', borderRadius: 10, justifyContent: 'center', alignItems:
-                                    'center'
-                            }}><FontAwesome name="plus-square-o" size={24} color="black" /></TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={handleSubtract}
-                            style={{
-                                marginLeft: 10, height: 40, width: 40, backgroundColor: 'red', borderRadius: 10, justifyContent: 'center', alignItems:
-                                    'center'
-                            }}><FontAwesome name="minus-square-o" size={24} color="black" /></TouchableOpacity>
+                        }} ><Text style={styles.font}>Qty: 1</Text></View>
+                        <TouchableOpacity style={{
+                            marginLeft: 10, height: 40, width: 40, backgroundColor: '#5DDD21', borderRadius: 10, justifyContent: 'center', alignItems:
+                                'center'
+                        }}><FontAwesome name="plus-square-o" size={24} color="black" /></TouchableOpacity>
+                        <TouchableOpacity style={{
+                            marginLeft: 10, height: 40, width: 40, backgroundColor: 'red', borderRadius: 10, justifyContent: 'center', alignItems:
+                                'center'
+                        }}><FontAwesome name="minus-square-o" size={24} color="black" /></TouchableOpacity>
                     </View>
                     <View>
                         <TouchableOpacity style={{

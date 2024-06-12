@@ -26,21 +26,6 @@ const getListingById = async (req, res) => {
     res.status(200).json(listing);
 }
 
-const getListingByName = async (req, res) => {
-    const { user } = req.query;
-
-    if (!user) {
-        return res.status(400).json({ message: 'Username is required' });
-    }
-
-    try {
-        const listings = await ListingModel.find({ user }).sort({ createdAt: -1 });
-        res.status(200).json(listings);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-};
-
 // Create a new Listing
 const createListing = async (req, res) => {
     const { user, item, description, expirydate, cost, quantity } = req.body;
@@ -86,6 +71,5 @@ module.exports = {
     getListings,
     getListingById,
     deleteListing,
-    updateListing,
-    getListingByName
+    updateListing
 }

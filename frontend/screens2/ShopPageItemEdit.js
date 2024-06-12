@@ -1,191 +1,199 @@
-import React, { useState } from "react";
-import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, StyleSheet, Platform } from "react-native";
+import React from "react";
+
+import { SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
-import DateTimePicker from '@react-native-community/datetimepicker'; // Import DateTimePicker\
-import { useListingContext } from '../hooks/useListingContext';
-
-const formatDate = (date) => {
-    const formattedDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
-    return formattedDate;
-};
-
-export default function ShopPageItem({ navigation, route }) {
-    const { dispatch } = useListingContext();
-    const item = route.params.item;
-    const [description, setDescription] = useState(item.description);
-    const [expiryDate, setExpiryDate] = useState(new Date(item.expirydate)); // Convert to Date object
-    const [cost, setCost] = useState(item.cost.toFixed(2));
-    const [qty, setQty] = useState(item.quantity);
-    const [showDatePicker, setShowDatePicker] = useState(false); // State for datepicker visibility
-    const [dateText, setDateText] = useState(formatDate(expiryDate)); // Initial date text
-    const [itemName, setItemName] = useState(item.item);
-    const [refresh, setRefresh] = useState(false); // Add refresh state
 
 
-    const handleAdd = () => {
-        setQty(qty + 1);
-    };
-
-    const handleSubtract = () => {
-        if (qty > 1) {
-            setQty(qty - 1);
-        }
-    };
-
-
-    const saveEdit = async () => {
-        try {
-            const response = await fetch(`http://192.168.18.17:4000/api/listing/${item._id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    item: itemName,
-                    description: description,
-                    expirydate: expiryDate.toISOString(), // Convert to ISO string
-                    cost: parseFloat(cost),
-                    quantity: qty,
-                }),
-            });
-            if (response.ok) {
-                setItemName('');
-                setDescription('');
-                setCost('');
-                setQty(1);
-                console.log('Item updated successfully');
-
-                navigation.navigate('SellerProfile', { refresh: refresh });
-
-            } else {
-                console.error('Error updating item:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Error updating item:', error);
-        }
-    };
-
-    const deleteItem = async () => {
-        try {
-            const response = await fetch(`http://192.168.18.17:4000/api/listing/${item._id}`, {
-                method: 'DELETE',
-            });
-            if (response.ok) {
-                console.log('Item deleted successfully');
-
-                dispatch({ type: 'DELETE_LISTING', payload: item._id });
-                navigation.navigate('SellerProfile', { refresh: refresh });
-            } else {
-                console.error('Error deleting item:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Error deleting item:', error);
-        }
-    };
-
-
-
-    const handleDateChange = (event, selectedDate) => {
-        const currentDate = selectedDate || expiryDate;
-        setShowDatePicker(Platform.OS === 'ios');
-        setExpiryDate(currentDate);
-        setDateText(formatDate(currentDate));
-    };
+export default function ShopPageItem() {
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView
+            style={{
+                flex: 1,
+            }}
+        >
             <ScrollView
-                style={{ flex: 1, backgroundColor: "#DEC7B3" }}
-                contentContainerStyle={{ paddingBottom: 20 }}
+                style={{
+                    flex: 1,
+                    backgroundColor: "#DEC7B3",
+                }}
+                contentContainerStyle={{
+
+                    paddingBottom: 20, // Adjust as needed
+                }}
             >
-                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 80 }}>
+                <View
+                    style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginTop: 80,
+                    }}
+                >
                     <View style={styles.container}>
                         <Image source={require('../assets/ShopImage/apple.jpg')} style={styles.image} />
                         <TouchableOpacity style={styles.iconContainer}>
                             <FontAwesome name="edit" size={24} color="black" />
                         </TouchableOpacity>
                     </View>
-                    <View style={{ flexDirection: "row", backgroundColor: "#D9D9D9", borderRadius: 8, paddingVertical: 6, paddingHorizontal: 12, marginHorizontal: 20, marginTop: 10, width: "80%", justifyContent: 'space-between' }}>
-                        <TextInput
-                            selectionColor="black"
-                            style={{ color: "black", fontSize: 15, fontWeight: "bold" }}
-                            value={itemName}
-                            onChangeText={setItemName}
-                        />
-                    </View>
-                    <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 20, marginBottom: 5, marginHorizontal: 47 }}>
-                        <Text style={{ color: "black", fontSize: 24, fontWeight: "bold" }}>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginTop: 20,
+                            marginBottom: 5,
+                            marginHorizontal: 47,
+
+                        }}
+                    >
+                        <Text
+                            style={{
+                                color: "black",
+                                fontSize: 24,
+                                fontStyle: "bold",
+                                fontWeight: "bold",
+                            }}
+                        >
                             {"Description"}
                         </Text>
                     </View>
-                    <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginBottom: 10, marginHorizontal: 23 }}>
-                        <View style={{ width: 159, height: 1, backgroundColor: "black" }} />
-                    </View>
-                    <View style={{ flexDirection: "row", backgroundColor: "#D9D9D9", borderRadius: 10, paddingVertical: 6, paddingHorizontal: 12, marginHorizontal: 20, marginBottom: 10, width: "80%", justifyContent: 'space-between', height: 150, alignItems: 'flex-start' }}>
-                        <TextInput
-                            selectionColor="black"
-                            style={{ color: "black", fontSize: 18, fontWeight: "bold", padding: 10 }}
-                            value={description}
-                            onChangeText={setDescription}
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginBottom: 10,
+                            marginHorizontal: 23,
+                        }}
+                    >
+                        <View
+                            style={{
+                                width: 159,
+                                height: 1,
+                                backgroundColor: "black",
+                            }}
                         />
                     </View>
-                    <View style={{ alignItems: 'flex-start', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20 }}>
-                        <Text style={{ color: "black", fontSize: 15, fontWeight: "bold" }}>Expiry Date</Text>
+                    <View style={{
+                        flexDirection: "row",
+                        backgroundColor: "#D9D9D9",
+                        borderRadius: 10,
+                        paddingVertical: 6,
+                        paddingHorizontal: 12,
+                        marginHorizontal: 20,
+                        marginBottom: 10,
+                        width: "80%",
+                        justifyContent: 'space-between', // Aligns children to the far ends
+                        height: 150,
+
+                    }}>
+                        <Text style={{
+                            color: "black",
+                            fontSize: 18,
+                            fontStyle: "bold",
+                            padding: 10,
+                        }}>5pcs apple from China. Good for consumption.</Text>
+                        <TouchableOpacity style={styles.iconContainer}>
+                            <FontAwesome name="edit" size={24} color="black" />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ alignItems: 'flex-start' }}>
+                        <Text
+                            style={{
+                                color: "black",
+                                fontSize: 15,
+                                fontWeight: "bold",
+                            }}
+                        >Expiry Date</Text>
+                    </View>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            backgroundColor: "#D9D9D9",
+                            borderRadius: 8,
+                            paddingVertical: 6,
+                            paddingHorizontal: 12,
+                            marginHorizontal: 20,
+                            marginBottom: 10,
+                            width: "80%",
+                            justifyContent: 'space-between', // Aligns children to the far ends
+                        }}
+                    >
+                        <Text
+                            style={{
+                                color: "black",
+                                fontSize: 15,
+                                fontWeight: "bold",
+                            }}
+                        >11/06/2024</Text>
+                        <TouchableOpacity>
+                            <FontAwesome name="calendar" size={24} color="black" />
+                        </TouchableOpacity>
 
                     </View>
-                    <View style={{ flexDirection: "row", backgroundColor: "#D9D9D9", borderRadius: 8, paddingVertical: 6, paddingHorizontal: 12, marginHorizontal: 20, marginBottom: 10, width: "80%", justifyContent: 'space-between' }}>
-                        <Text style={{ color: "black", fontSize: 15, fontWeight: "bold" }}>{dateText}</Text>
-                        {showDatePicker && (
-                            <DateTimePicker
-                                value={expiryDate} // Use expiryDate as value
-                                mode="date"
-                                display="spinner"
-                                onChange={handleDateChange}
-                                minimumDate={new Date()}
-                            />
-                        )}
-                        <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-                            <Image source={require('../assets/Date_range.png')} resizeMode="cover" style={{ width: 20, height: 20 }} />
+                    <Text
+                        style={{
+                            color: "black",
+                            fontSize: 15,
+                            fontWeight: "bold",
+                        }}
+                    >Price</Text>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            backgroundColor: "#D9D9D9",
+                            borderRadius: 8,
+                            paddingVertical: 6,
+                            paddingHorizontal: 12,
+                            marginHorizontal: 20,
+                            marginBottom: 10,
+                            width: "80%",
+                            justifyContent: 'space-between', // Aligns children to the far ends
+                        }}
+                    >
+                        <Text
+                            style={{
+                                color: "black",
+                                fontSize: 15,
+                                fontWeight: "bold",
+                            }}
+                        >$2.00</Text>
+                        <TouchableOpacity>
+                            <FontAwesome name="edit" size={24} color="black" />
                         </TouchableOpacity>
-                    </View>
-                    <Text style={{ color: "black", fontSize: 15, fontWeight: "bold" }}>Price ($)</Text>
-                    <View style={{ flexDirection: "row", backgroundColor: "#D9D9D9", borderRadius: 8, paddingVertical: 6, paddingHorizontal: 12, marginHorizontal: 20, marginBottom: 10, width: "80%", justifyContent: 'space-between' }}>
-                        <TextInput
-                            selectionColor="black"
-                            style={{ color: "black", fontSize: 15, fontWeight: "bold" }}
-                            value={cost}
-                            onChangeText={setCost}
-                        />
+
                     </View>
                     <View style={{ marginTop: 20, flexDirection: 'row' }}>
-                        <View style={{ marginLeft: 10, height: 40, width: 200, backgroundColor: 'white', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={styles.font}>Qty: {qty}</Text>
-                        </View>
-                        <TouchableOpacity
-                            onPress={handleAdd}
-                            style={{ marginLeft: 10, height: 40, width: 40, backgroundColor: '#5DDD21', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
-                            <FontAwesome name="plus-square-o" size={24} color="black" />
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={handleSubtract}
-                            style={{ marginLeft: 10, height: 40, width: 40, backgroundColor: 'red', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
-                            <FontAwesome name="minus-square-o" size={24} color="black" />
-                        </TouchableOpacity>
+
+                        <View style={{
+                            marginLeft: 10, height: 40, width: 200, backgroundColor: 'white', borderRadius: 10, justifyContent: 'center', alignItems:
+                                'center'
+                        }} ><Text style={styles.font}>Qty: 1</Text></View>
+                        <TouchableOpacity style={{
+                            marginLeft: 10, height: 40, width: 40, backgroundColor: '#5DDD21', borderRadius: 10, justifyContent: 'center', alignItems:
+                                'center'
+                        }}><FontAwesome name="plus-square-o" size={24} color="black" /></TouchableOpacity>
+                        <TouchableOpacity style={{
+                            marginLeft: 10, height: 40, width: 40, backgroundColor: 'red', borderRadius: 10, justifyContent: 'center', alignItems:
+                                'center'
+                        }}><FontAwesome name="minus-square-o" size={24} color="black" /></TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                        onPress={saveEdit}
-                        style={{ marginTop: 20, height: 40, width: 280, backgroundColor: 'blue', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>Save Edits</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={deleteItem}
-                        style={{ marginTop: 20, height: 40, width: 280, backgroundColor: 'red', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>Delete item</Text>
-                    </TouchableOpacity>
+                    <View>
+                        <TouchableOpacity style={{
+                            marginTop: 20, height: 40, width: 280, backgroundColor: 'blue', borderRadius: 10, justifyContent: 'center', alignItems:
+                                'center'
+                        }} ><Text style={{
+                            color: "white",
+                            fontSize: 20,
+                            fontWeight: "bold",
+                        }}>Save Edits</Text></TouchableOpacity>
+                    </View>
                 </View>
-            </ScrollView>
-        </SafeAreaView>
-    );
+
+
+            </ScrollView >
+        </SafeAreaView >
+    )
 }
 
 const styles = StyleSheet.create({
@@ -209,4 +217,4 @@ const styles = StyleSheet.create({
         top: 10,
         right: 10,
     },
-});
+})

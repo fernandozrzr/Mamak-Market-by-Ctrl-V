@@ -1,31 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import { Text, View, SafeAreaView, Image, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import ShopPageDetails from '../components/ShopPageDetails';
-import { useState, useEffect } from 'react';
 
 
-export default function MarketPage({ navigation, route }) {
 
-  const { user } = route.params;
-  const [items, setItems] = useState([])
-
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await fetch(`http://10.51.0.217:4000/api/listing/search?user=${encodeURIComponent(user)}`);
-        const data = await response.json();
-        if (response.ok) {
-          setItems(data)
-        }
-      } catch (error) {
-        console.error('Error fetching items:', error);
-      }
-    }
-
-    fetchItems();
-  }, []);
-
+export default function MarketPage({ navigation }) {
   return (
     <SafeAreaView
       style={{
@@ -79,33 +58,33 @@ export default function MarketPage({ navigation, route }) {
               marginTop: 10,
               fontStyle: "bold",
             }}
-          >{user}</Text>
+          >Qiong Provisions </Text>
           <TouchableOpacity onPress={() => navigation.navigate('ChatScreen', ['s1', 'Qiong Provisions', require('../assets/ShopImage/QiongProvisionIcon.jpg')])}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              backgroundColor: "#D9D9D9",
+              borderRadius: 8,
+              paddingVertical: 6,
+              paddingHorizontal: 12,
+              marginBottom: 20,
+              marginHorizontal: 20,
+              marginTop: 10,
+              width: "40%",
+              justifyContent: "center",
+            }}>
+            <AntDesign name="message1" size={24} color="black" />
             <View
               style={{
-                flexDirection: "row",
-                alignItems: "center",
-                backgroundColor: "#D9D9D9",
-                borderRadius: 8,
-                paddingVertical: 6,
-                paddingHorizontal: 12,
-                marginBottom: 20,
-                marginHorizontal: 20,
-                marginTop: 10,
-                width: "40%",
-                justifyContent: "center",
-              }}>
-              <AntDesign name="message1" size={24} color="black" />
-              <View
-                style={{
-                  width: 10,
-                }}
-              >
-
-              </View>
-              <Text style={{ fontSize: 20 }}>Message</Text>
+                width: 10,
+              }}
+            >
 
             </View>
+            <Text style={{ fontSize: 20 }}>Message</Text>
+
+          </View>
           </TouchableOpacity>
         </View>
         <View
@@ -184,21 +163,93 @@ export default function MarketPage({ navigation, route }) {
             placeholderTextColor="#727272"
           />
         </View>
-        {items ? (
-          items.map((item) => (
-            < ShopPageDetails key={item._id} item={item} navigation={navigation} />
-          ))
-        ) : (
-          <Text>No items available</Text>
-        )}
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            backgroundColor: "#D9D9D9",
+            borderRadius: 8,
+            paddingVertical: 6,
+            paddingHorizontal: 12,
+            marginHorizontal: 20,
+            marginBottom: 10,
+            width: "90%",
+            justifyContent: 'space-between', // Aligns children to the far ends
+          }}
+          onPress={() => navigation.navigate('ShopPageItem')}
 
+        >
+          <Text
+            style={{
+              color: "black",
+              fontSize: 15,
+              fontStyle: "bold",
+            }}
+          >Apple (5pcs)</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ textDecorationLine: 'line-through', fontSize: 15 }}>$2.00</Text>
+            <Text style={{ marginLeft: 5, fontSize: 15, color: 'green' }}>$1.20</Text>
+          </View>
+        </TouchableOpacity>
+        <View
+          style={{
+            flexDirection: "row",
+            backgroundColor: "#D9D9D9",
+            borderRadius: 8,
+            paddingVertical: 6,
+            paddingHorizontal: 12,
+            marginHorizontal: 20,
+            marginBottom: 10,
+            width: "90%",
+            justifyContent: 'space-between', // Aligns children to the far ends
+          }}
+        >
+          <Text
+            style={{
+              color: "black",
+              fontSize: 15,
+              fontStyle: "bold",
+            }}
+          >Assorted Biscuits</Text>
+          <Text
+            style={{
+              color: "black",
+              fontSize: 15,
+              fontStyle: "bold",
+            }}
+          >$4.50</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            backgroundColor: "#D9D9D9",
+            borderRadius: 8,
+            paddingVertical: 6,
+            paddingHorizontal: 12,
+            marginHorizontal: 20,
+            marginBottom: 10,
+            width: "90%",
+            justifyContent: 'space-between', // Aligns children to the far ends
+          }}
+        >
+          <Text
+            style={{
+              color: "black",
+              fontSize: 15,
+              fontStyle: "bold",
+            }}
+          >White Bread</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ textDecorationLine: 'line-through', fontSize: 15 }}>$2.30</Text>
+            <Text style={{ marginLeft: 5, fontSize: 15, color: 'green' }}>$1.80</Text>
+          </View>
+        </View>
         <View
           style={{
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
             marginTop: 20,
-            marginBottom: 10,
+            marginBottom: 5,
             marginHorizontal: 47,
           }}
         >
@@ -232,7 +283,7 @@ export default function MarketPage({ navigation, route }) {
           flex: 1,
           justifyContent: 'center', // Center horizontally
           alignItems: 'center',
-          marginTop: 20,
+          marginTop: -40,
         }}>
           <View style={{
             flexDirection: 'row',
