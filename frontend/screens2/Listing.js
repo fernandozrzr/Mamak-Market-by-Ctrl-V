@@ -1,12 +1,37 @@
 import React, { useEffect, useState } from 'react';
+
 import { Text, View, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+
 
 import OrdersList from '../screens (modals)/ordersList';
 import ChatsList from '../screens (modals)/chatsList';
 
 
+import ListingDetails from '../components/ListingDetails';
+import { useListsContext } from "../hooks/useFeedsContext";
+
 export default function Listing({ navigation }) {
+
+
+
+    const [feeds, setFeeds] = useState()
+    useEffect(() => {
+        const fetchListings = async () => {
+            try {
+                const response = await fetch('http://192.168.18.17:4000/api/listing/');
+                const json = await response.json();
+                uniqueListings = Array.from(new Map(json.map(item => [item.user, item])).values());
+                // dispatch({type: 'SET_LISTS', payload: json})
+                setFeeds(uniqueListings)
+
+            } catch (error) {
+                console.error('Error fetching listings:', error);
+            }
+        }
+
+        fetchListings();
+    }, []);
 
 
 
@@ -72,8 +97,8 @@ export default function Listing({ navigation }) {
                     />
                     <AntDesign name="filter" size={24} color="black" />
                 </View>
-                <AntDesign name="shoppingcart" size={24} color="black" style={{ marginRight: 5 }} onPress={() => {navigation.navigate(OrdersList)}} />
-                <AntDesign name="message1" size={20} color="black" style={{ marginLeft: 10 }} onPress={() => {navigation.navigate(ChatsList)}} />
+                <AntDesign name="shoppingcart" size={24} color="black" style={{ marginRight: 5 }} onPress={() => { navigation.navigate(OrdersList) }} />
+                <AntDesign name="message1" size={20} color="black" style={{ marginLeft: 10 }} onPress={() => { navigation.navigate(ChatsList) }} />
             </View>
             <View
                 style={{
@@ -126,132 +151,14 @@ export default function Listing({ navigation }) {
                         justifyContent: 'space-between',
                     }}
                 >
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('ShopPage')}
-                        style={{
-                            width: '48%',
-                            backgroundColor: "white",
-                            borderRadius: 10,
-                            marginBottom: 20,
-                            padding: 10,
-                        }}
-                    >
+                    {feeds ? (
+                        feeds.map((feed) => (
+                            < ListingDetails key={feed._id} listing={feed} navigation={navigation} />
+                        ))
+                    ) : (
+                        <Text>No shops available</Text>
+                    )}
 
-                        <Image
-                            source={require('../assets/ShopImage/QiongProvisionIcon.jpg')}
-                            resizeMode='cover'
-                            style={{
-                                width: '140',
-                                height: 140,
-                                borderRadius: 10, // Half of the height
-                                marginBottom: 10,
-                                borderWidth: 1,
-                                borderColor: "#000000",
-                            }}
-                        />
-                        <Text
-                            style={{
-                                color: "#000000",
-                                fontSize: 14,
-                                textAlign: 'center',
-                            }}
-                        >
-                            {"Qiong Provisions"}
-                        </Text>
-                    </TouchableOpacity >
-                    <View
-                        style={{
-                            width: '48%',
-                            backgroundColor: "white",
-                            borderRadius: 10,
-                            marginBottom: 20,
-                            padding: 10,
-                        }}
-                    >
-                        <Image
-                            source={require('../assets/ShopImage/QiongProvisionsImage.jpg')}
-                            resizeMode="stretch"
-                            style={{
-                                width: '100%',
-                                height: 140,
-                                borderRadius: 10,
-                                marginBottom: 10,
-                                borderWidth: 1,
-                                borderColor: "#000000",
-                            }}
-                        />
-                        <Text
-                            style={{
-                                color: "#000000",
-                                fontSize: 14,
-                                textAlign: 'center',
-                            }}
-                        >
-                            {"QiJi Provisions"}
-                        </Text>
-                    </View>
-                    <View
-                        style={{
-                            width: '48%',
-                            backgroundColor: "white",
-                            borderRadius: 10,
-                            marginBottom: 20,
-                            padding: 10,
-                        }}
-                    >
-                        <Image
-                            source={require('../assets/ShopImage/QiongProvisionsImage.jpg')}
-                            resizeMode="stretch"
-                            style={{
-                                width: '100%',
-                                height: 140,
-                                borderRadius: 10,
-                                marginBottom: 10,
-                                borderWidth: 1,
-                                borderColor: "#000000",
-                            }}
-                        />
-                        <Text
-                            style={{
-                                color: "#000000",
-                                fontSize: 14,
-                                textAlign: 'center',
-                            }}
-                        >
-                            {"MamaDian"}
-                        </Text>
-                    </View>
-                    <View
-                        style={{
-                            width: '48%',
-                            backgroundColor: "white",
-                            borderRadius: 10,
-                            marginBottom: 20,
-                            padding: 10,
-                        }}
-                    >
-                        <Image
-                            source={require('../assets/ShopImage/QiongProvisionIcon.jpg')}
-                            resizeMode="stretch"
-                            style={{
-                                width: '100%',
-                                height: 140,
-                                borderRadius: 10,
-                                marginBottom: 10,
-                                borderWidth: 1,
-                                borderColor: "#000000",
-                            }}
-                        />
-                        <Text
-                            style={{
-                                color: "#000000",
-                                fontSize: 14,
-                                textAlign: 'center',
-                            }}
-                        >
-                            {"Choong Provisions"}
-                        </Text>
-                    </View>
                 </View>
 
             </ScrollView>

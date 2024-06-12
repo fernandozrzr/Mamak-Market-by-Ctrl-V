@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
+  "proxy": "http://192.168.18.17:4000",
   "dependencies": {
     "@expo/metro-runtime": "~3.2.1",
     "@gorhom/bottom-sheet": "^4.6.3",
@@ -23,6 +24,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.2",
+    "react-native-datepicker": "^1.7.2",
     "react-native-gesture-handler": "^2.16.2",
     "react-native-image-base64": "^0.1.4",
     "react-native-image-crop-picker": "^0.41.1",

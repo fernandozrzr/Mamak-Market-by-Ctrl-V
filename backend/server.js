@@ -25,7 +25,7 @@ app.use('/api/feed', feedRoutes);
 app.use('/api/listing', listingRoutes);
 app.use('/api/profile', profileRoutes);
 // Connect to database
-mongoose.connect(process.env.MONG_URI).then(() => {
+mongoose.connect(process.env.MONGO_URI).then(() => {
     // listen to request
     app.listen(process.env.PORT, () => {
         console.log(`Server is running on port ${process.env.PORT}`);

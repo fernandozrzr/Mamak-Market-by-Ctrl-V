@@ -29,7 +29,7 @@ const listingSchema = new Schema({
     },
     img: { 
         type: String,               //File Path to Images
-        required: true
+        required: false
      }
 
 }, { timestamps: true })

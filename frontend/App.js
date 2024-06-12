@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import {FeedsContextProvider} from './context/FeedContext'
+import { FeedsContextProvider } from './context/FeedContext'
+import { ListsContextProvider } from './context/ListContext';
 import SplashScreen from './screens/splashscreen';
 import loginBusinessOwner from './screens/loginBusinessOwner';
 import loginUser from './screens/loginUser';
@@ -10,6 +11,7 @@ import UserFeed from './screens2/UserFeed';
 import Listing from './screens2/Listing';
 import UserProfile from './screens2/UserProfile';
 import SellerFeed from './screens2/SellerFeed';
+import ShopPageItemTemplate from './screens2/ShopPageItemTemplate';
 
 import AddListing from './screens2/AddListing';
 import SellerProfile from './screens2/SellerProfile';
@@ -32,21 +34,28 @@ import { AntDesign } from '@expo/vector-icons';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+
 function UserMarketPlaceStack() {
   return (
     <Stack.Navigator>
+
       <Stack.Screen name="Listing" options={{ headerShown: false }} component={Listing} />
       <Stack.Screen name="ShopPage" options={{ headerShown: false }} component={ShopPage} />
       <Stack.Screen name="ShopPageItem" options={{ headerShown: false }} component={ShopPageItem} />
+      <Stack.Screen name="ShopPageItemTemplate" options={{ headerShown: false }} component={ShopPageItemTemplate} />
+
     </Stack.Navigator>
   );
 }
 function UserFeedStack() {
   return (
     <Stack.Navigator>
+
+
       <Stack.Screen name="UserFeed" options={{ headerShown: false }} component={UserFeed} />
       <Stack.Screen name="StoreFeedPage" options={{ headerShown: false }} component={StoreFeedPage} />
-    </Stack.Navigator>
+
+    </Stack.Navigator >
   );
 }
 function SellerProfileStack() {
@@ -55,16 +64,20 @@ function SellerProfileStack() {
       <Stack.Screen name="SellerProfile" options={{ headerShown: false }} component={SellerProfile} />
       <Stack.Screen name="ShopPageItemEdit" options={{ headerShown: false }} component={ShopPageItemEdit} />
       <Stack.Screen name="AddListing" options={{ headerShown: false }} component={AddListing} />
-    </Stack.Navigator>
+    </Stack.Navigator >
   );
 }
-function SellerFeedStack(){
-    return(
-      <Stack.Navigator>
-        <Stack.Screen name="SellerFeed" options={{ headerShown: false }} component={SellerFeed}/>
-        <Stack.Screen name="postCreation" options={{ headerShown: false }} component={postCreation}/>
-      </Stack.Navigator>
-    );
+function SellerFeedStack() {
+  return (
+    <Stack.Navigator>
+
+
+      <Stack.Screen name="SellerFeed" options={{ headerShown: false }} component={SellerFeed} />
+      <Stack.Screen name="postCreation" options={{ headerShown: false }} component={postCreation} />
+
+
+    </Stack.Navigator>
+  );
 }
 
 export function UserScreens() {
@@ -202,7 +215,7 @@ function App() {
       <Stack.Screen name="UserScreens" component={UserScreens} />
       <Stack.Screen name="SellerScreens" component={SellerScreens} />
       <Stack.Screen name="SellerProfile" component={SellerProfile} />
-      
+
       <Stack.Group screenOptions={{ presentation: 'modal', }}>
         <Stack.Screen name="OrdersList" component={OrdersList} />
         <Stack.Screen name="ChatsList" component={ChatsList} />
@@ -216,9 +229,12 @@ function App() {
 export default () => {
   return (
     <NavigationContainer>
-      <FeedsContextProvider>
-      <App />
-      </FeedsContextProvider>
+      <ListsContextProvider>
+        <FeedsContextProvider>
+
+          <App />
+        </FeedsContextProvider>
+      </ListsContextProvider>
     </NavigationContainer>
   )
 }

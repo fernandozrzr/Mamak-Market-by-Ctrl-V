@@ -2,15 +2,23 @@ import React, { useState } from "react";
 import { StyleSheet, SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, Platform } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from "expo-image-picker";
+import { useListsContext } from "../hooks/useListsContext";
+
 
 export default function AddListing({ navigation }) {
+
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [text, setText] = useState('Select Date');
   const [count, setCount] = useState(1);
   const [image, setImage] = useState(null);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const { dispatch } = useListsContext();
 
+  const user = 'Qiong Provisions';
   const uploadImage = async () => {
     try {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -44,8 +52,8 @@ export default function AddListing({ navigation }) {
     setShow(false);
   };
 
-  const countChange= () => {
-	setCount(count+1);
+  const countChange = () => {
+    setCount(count + 1);
   }
 
   const showMode = (currentMode) => {
@@ -53,9 +61,48 @@ export default function AddListing({ navigation }) {
     setMode(currentMode);
   };
 
+  const handleUpload = async () => {
+    try {
+      const response = await fetch('http://192.168.18.17:4000/api/listing/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: user,
+          item: title,
+          description: description,
+          expirydate: date,
+          cost: parseFloat(price),
+          quantity: count,
+        }),
+      });
+
+      const json = await response.json();
+      if (response.ok) {
+        console.log('Listing uploaded successfully:', json);
+        dispatch({ type: 'CREATE_LIST', payload: json });
+        navigation.navigate('SellerProfile');
+        setTitle('');
+        setCount(1);
+        setDescription('');
+        setPrice('');
+        setImage(null);
+        setText('Select Date');
+
+      }
+      else {
+        console.error('Error uploading listing:', json);
+      }
+
+    } catch (error) {
+      console.error('Error uploading listing:', error);
+    }
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#F3F3F3" }}>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom:100 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }}>
         <View style={{ marginTop: 30, marginLeft: 40, marginRight: 15 }}>
           {image ? (
             <Image
@@ -84,7 +131,7 @@ export default function AddListing({ navigation }) {
               marginTop: -125,
               marginLeft: 125,
               color: 'black',
-              
+
               padding: 5,
               borderRadius: 5,
             }}>
@@ -92,9 +139,9 @@ export default function AddListing({ navigation }) {
             </Text>
           </TouchableOpacity>
         </View>
-        <Text style={{ fontWeight: "bold", marginTop:20, marginLeft: 60 }}>{'Listing Title'} </Text>
+        <Text style={{ fontWeight: "bold", marginTop: 20, marginLeft: 60 }}>{'Listing Title'} </Text>
 
-      <View style={{
+        <View style={{
           width: '70%',
           backgroundColor: "#D9D9D9",
           borderRadius: 10,
@@ -103,10 +150,14 @@ export default function AddListing({ navigation }) {
           marginTop: 10,
           marginLeft: 60,
         }}>
-        <TextInput placeholder="Add Title" />
-      </View>
+          <TextInput
+            placeholder="Add Title"
+            value={title}
+            onChangeText={setTitle}
+          />
+        </View>
 
-      <Text style={{ fontWeight: "bold", marginTop:10, marginLeft: 60 }}>{'Description'} </Text>
+        <Text style={{ fontWeight: "bold", marginTop: 10, marginLeft: 60 }}>{'Description'} </Text>
 
         <View style={{
           width: '70%',
@@ -118,7 +169,11 @@ export default function AddListing({ navigation }) {
           marginTop: 10,
           marginLeft: 60,
         }}>
-          <TextInput placeholder="Add description..." />
+          <TextInput
+            placeholder="Add description..."
+            value={description}
+            onChangeText={setDescription}
+          />
         </View>
         <Text style={{ fontWeight: "bold", marginLeft: 60 }}>{"Expiry Date"} </Text>
         <View style={{
@@ -164,7 +219,7 @@ export default function AddListing({ navigation }) {
           </View>
         </View>
 
-        <Text style={{ fontWeight: "bold", marginLeft: 60 }}>{'Price'} </Text>
+        <Text style={{ fontWeight: "bold", marginLeft: 60 }}>{'Price ($)'} </Text>
 
         <View style={{
           width: '70%',
@@ -175,7 +230,11 @@ export default function AddListing({ navigation }) {
           marginTop: 10,
           marginLeft: 60,
         }}>
-          <TextInput placeholder="$0.00" />
+          <TextInput
+            placeholder="0.00"
+            value={price}
+            onChangeText={setPrice}
+          />
         </View>
 
         <View style={{ flexDirection: "row", flexWrap: 'wrap' }}>
@@ -190,10 +249,10 @@ export default function AddListing({ navigation }) {
             marginLeft: 60,
           }}>
             <Text style={{ textAlign: 'center', fontWeight: "bold", fontSize: 15 }}>
-              {'Qty:'+count}
+              {'Qty:' + count}
             </Text>
           </View>
-          <TouchableOpacity onPress={() => setCount(count + 1)}style={{
+          <TouchableOpacity onPress={() => setCount(count + 1)} style={{
             width: 40,
             height: 40,
             alignItems: "center",
@@ -235,7 +294,7 @@ export default function AddListing({ navigation }) {
         </View>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate('SellerProfile')}
+          onPress={handleUpload}
           style={{
             alignItems: "center",
             backgroundColor: "#4112ff",
@@ -252,7 +311,7 @@ export default function AddListing({ navigation }) {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate('SellerProfile')}
+          onPress={() => navigation.goBack()}
           style={{
             alignItems: "center",
             backgroundColor: "#f01e2c",
