@@ -12,6 +12,17 @@ export default function LoginUser({ navigation }) {
     const [password, onChangePassword] = useState("");
     const [usergroup, onChangeUsergroup] = useState("User");
 
+    const customTransition = SharedTransition.custom((values) => {
+        'worklet';
+        return {
+            height: withSpring(values.targetHeight),
+            width: withSpring(values.targetWidth),
+            paddingTop: withSpring('25%'),
+            originX: withSpring(values.targetOriginX),
+            originY: withSpring(values.targetOriginY),
+        };
+    })
+
     function handleSubmit() {
         const userData = {
             username: username,

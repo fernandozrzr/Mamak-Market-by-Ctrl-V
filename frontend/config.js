@@ -1,6 +1,6 @@
 // config.js
 const config = {
-    API_URL: 'http://10.51.0.210:4000/api',
+    API_URL: 'http://10.51.33.70:4000/api',
 };
 
 export default config;
