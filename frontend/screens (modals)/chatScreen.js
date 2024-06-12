@@ -15,7 +15,7 @@ export default function ChatScreen( {route, navigation} ) {
     // useEffect() for handling back button presses
     useEffect(() => {
         const backAction = () => {
-            console.log(textVal)
+            chatsData[sellerID].messages = messages;
             if (textVal != '') {
                 Alert.alert('Hold on!', 'Are you sure you want to go back?', [
                 {
@@ -23,8 +23,9 @@ export default function ChatScreen( {route, navigation} ) {
                     onPress: () => null,
                     style: 'cancel',
                 },
-                {text: 'YES', onPress: () => BackHandler.exitApp()},
+                {text: 'YES'},
                 ]);
+                navigation.goBack({msgData: chatsData});
                 return true;
             }
         };
@@ -35,7 +36,7 @@ export default function ChatScreen( {route, navigation} ) {
         );
     
         return () => backHandler.remove();
-    }, [textVal]);
+    }, [textVal, messages]);
 
     // useEffect() for loading in messages
     useEffect(() => {

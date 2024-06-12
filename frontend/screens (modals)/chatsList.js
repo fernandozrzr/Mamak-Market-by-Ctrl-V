@@ -1,5 +1,6 @@
-import {StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
-import { useState, useRef, useCallback } from 'react'
+import {StyleSheet, Text, TouchableOpacity, View, Image, } from 'react-native'
+import { useEffect, useState, useRef, useCallback } from 'react'
+import { useIsFocused } from '@react-navigation/native'
 import Constants from 'expo-constants'
 import BottomSheet from '@gorhom/bottom-sheet';
 import { FlatList } from 'react-native-gesture-handler'
@@ -24,7 +25,7 @@ export default function ChatsList( {route, navigation} ) {
             lastSentTimestamp: chatsData.s2.messages[chatsData.s2.messages.length -1].timestamp,
         },
     ]);
-    const [messages, setMessages] = useState([]);
+    const isFocused = useIsFocused();
 
     // for rendering each chat element
     function renderChat({item}) {
@@ -47,6 +48,29 @@ export default function ChatsList( {route, navigation} ) {
             </TouchableOpacity>
         )
     }
+    
+    // useEffect() that listens to isFocused to refresh the page
+    useEffect(() => {
+        if (route.params?.msgData) {
+            console.log(msgData)
+            isFocused && setChats(
+                {
+                    userID: 's1',
+                    username: 'Qiong Provisions',
+                    profilePic: require('../assets/ShopImage/QiongProvisionIcon.jpg'),
+                    lastSentMsg: chatsData.s1.messages[chatsData.s1.messages.length -1].msg,
+                    lastSentTimestamp: chatsData.s1.messages[chatsData.s1.messages.length -1].timestamp,
+                },
+                {
+                    userID: 's2',
+                    username: 'QiJi Provisions',
+                    profilePic: require('../assets/ShopImage/QiongProvisionsImage.jpg'),
+                    lastSentMsg: chatsData.s2.messages[chatsData.s2.messages.length -1].msg,
+                    lastSentTimestamp: chatsData.s2.messages[chatsData.s2.messages.length -1].timestamp,
+                },
+            )
+        }
+    }, [isFocused])
 
     // open a chat
     function openChat({item}) {
