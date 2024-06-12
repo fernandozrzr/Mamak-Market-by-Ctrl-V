@@ -10,18 +10,9 @@ export default function LoginUser({ navigation }) {
 
     const [username, onChangeUsername] = useState("");
     const [password, onChangePassword] = useState("");
+<<<<<<< Updated upstream
+=======
     const [usergroup, onChangeUsergroup] = useState("User");
-
-    const customTransition = SharedTransition.custom((values) => {
-        'worklet';
-        return {
-            height: withSpring(values.targetHeight),
-            width: withSpring(values.targetWidth),
-            padding: withSpring('25%'),
-            originX: withSpring(values.targetOriginX),
-            originY: withSpring(values.targetOriginY),
-        };
-    })
 
     function handleSubmit() {
         const userData = {
@@ -36,7 +27,7 @@ export default function LoginUser({ navigation }) {
                 console.log(res.data);
                 if (res.data.status === "ok") {
                     Alert.alert("Login Successful");
-                    // navigation.navigate("Listing");
+                     navigation.navigate("UserScreens");
                 } else {
                     Alert.alert("Login Failed", res.data.message || "Unexpected error");
                 }
@@ -49,6 +40,7 @@ export default function LoginUser({ navigation }) {
 
 
 
+>>>>>>> Stashed changes
     return (
         <SafeAreaView
             style={{
