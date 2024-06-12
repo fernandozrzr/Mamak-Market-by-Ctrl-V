@@ -7,6 +7,37 @@ export default function LoginUser({ navigation }) {
 
     const [username, onChangeUsername] = useState("");
     const [password, onChangePassword] = useState("");
+<<<<<<< Updated upstream
+=======
+    const [usergroup, onChangeUsergroup] = useState("User");
+
+    function handleSubmit() {
+        const userData = {
+            username: username,
+            password,
+            usergroup,
+        };
+    
+        axios
+            .post(`${config.API_URL}/profile/login`, userData)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.status === "ok") {
+                    Alert.alert("Login Successful");
+                     navigation.navigate("UserScreens");
+                } else {
+                    Alert.alert("Login Failed", res.data.message || "Unexpected error");
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Alert.alert("Error", "An unexpected error occurred");
+            });
+    }
+
+
+
+>>>>>>> Stashed changes
     return (
         <SafeAreaView
             style={{
