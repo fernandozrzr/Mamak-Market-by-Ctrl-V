@@ -6,16 +6,18 @@ export const feedsReducer = (state, action) => {
     switch (action.type) {
         case 'SET_FEEDS':
             return {
+                
                 feeds: action.payload
             };
 
-            // case 'SET_LISTS':
-            //     // Remove duplicate listings based on user property
-            //     const uniqueListings = Array.from(new Map(action.payload.map(item => [item.user, item])).values());
-            //     return {
-            //         ...state,
-            //         feeds: uniqueListings
-            //     };
+        case 'SET_LISTS':
+                // Remove duplicate listings based on user property
+                console.log("Hello")
+            return {
+                
+                feeds: action.payload
+            };
+                
         case 'CREATE_FEED':
             return {
                 feeds: [action.payload, ...state.feeds]
@@ -45,42 +47,8 @@ export const feedsReducer = (state, action) => {
             return feed;
         })
     };
-case 'PATCH_LIST':
-    return {
-        feeds: state.feeds.map(feed => {
-            if (feed._id === action.payload._id) {
-                return {
-                    ...feed,        // Spread the existing properties of the feed
-                    ...action.payload, // Override them with the properties from the payload
-                };
-            }
-            return feed;
-        })
-    };
-case 'PATCH_LIST':
-    return {
-        feeds: state.feeds.map(feed => {
-            if (feed._id === action.payload._id) {
-                return {
-                    ...feed,        // Spread the existing properties of the feed
-                    ...action.payload, // Override them with the properties from the payload
-                };
-            }
-            return feed;
-        })
-    };
-    case 'PATCH_LIST':
-    return {
-        feeds: state.feeds.map(feed => {
-            if (feed._id === action.payload._id) {
-                return {
-                    ...feed,        // Spread the existing properties of the feed
-                    ...action.payload, // Override them with the properties from the payload
-                };
-            }
-            return feed;
-        })
-    };
+
+
 
         case 'DELETE_FEED':
             return {

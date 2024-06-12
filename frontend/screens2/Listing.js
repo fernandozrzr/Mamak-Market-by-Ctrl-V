@@ -9,22 +9,22 @@ import ChatsList from '../screens (modals)/chatsList';
 
 
 import ListingDetails from '../components/ListingDetails';
-import { useFeedsContext } from "../hooks/useFeedsContext";
+import { useListsContext } from "../hooks/useFeedsContext";
 
 export default function Listing({ navigation }) {
 
-    
+
 
     const [feeds, setFeeds] = useState()
     useEffect(() => {
         const fetchListings = async () => {
             try {
-                const response = await fetch('http://10.51.0.210:4000/api/listing/');
+                const response = await fetch('http://192.168.18.17:4000/api/listing/');
                 const json = await response.json();
                 uniqueListings = Array.from(new Map(json.map(item => [item.user, item])).values());
                 // dispatch({type: 'SET_LISTS', payload: json})
                 setFeeds(uniqueListings)
-                
+
             } catch (error) {
                 console.error('Error fetching listings:', error);
             }
