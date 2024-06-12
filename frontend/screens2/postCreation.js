@@ -10,7 +10,7 @@ export default function PostCreation({ navigation }) {
   const [tags, setTags] = useState(['', '', '', '']);
   const [error, setError] = useState(null);
   const [title, setTitle] = useState('');
-  const {dispatch} = useFeedsContext();
+  const { dispatch } = useFeedsContext();
 
 
 
@@ -19,12 +19,13 @@ export default function PostCreation({ navigation }) {
     const feed = { description, image: imageUri };
 
     try {
+
       const response = await fetch(`${config.API_URL}/feed/`, { // Make sure this URL is correct
         method: 'POST',
         body: JSON.stringify({
-            title: title,
-            img: imageUri,
-            content: description,
+          title: title,
+          img: imageUri,
+          content: description,
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -43,7 +44,7 @@ export default function PostCreation({ navigation }) {
         setError(null);
         console.log("New Feed Added", json);
         navigation.navigate('SellerFeed');
-        dispatch({type: 'CREATE_FEED', payload: json});
+        dispatch({ type: 'CREATE_FEED', payload: json });
       }
     } catch (error) {
       setError("Failed to upload feed. Please try again.");

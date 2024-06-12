@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { StyleSheet, SafeAreaView, View, ScrollView, Image, Text, TextInput, TouchableOpacity, Platform } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from "expo-image-picker";
+
 import { useFeedsContext } from "../hooks/useFeedsContext";
 import config from "../config"; // Import the configuration file
+import { useListsContext } from "../hooks/useListsContext";
+
 
 
 export default function AddListing({ navigation }) {
-  
+
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -17,7 +20,7 @@ export default function AddListing({ navigation }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const {dispatch} = useFeedsContext();
+  const { dispatch } = useListsContext();
 
   const user = 'Qiong Provisions';
   const uploadImage = async () => {
@@ -82,7 +85,7 @@ export default function AddListing({ navigation }) {
       const json = await response.json();
       if (response.ok) {
         console.log('Listing uploaded successfully:', json);
-        dispatch({type: 'CREATE_FEED', payload: json});
+        dispatch({ type: 'CREATE_LIST', payload: json });
         navigation.navigate('SellerProfile');
         setTitle('');
         setCount(1);
