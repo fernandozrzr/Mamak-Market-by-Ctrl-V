@@ -23,7 +23,8 @@ export default function ChatsList( {route, navigation} ) {
             lastSentMsg: chatsData.s2.messages[chatsData.s2.messages.length -1].msg,
             lastSentTimestamp: chatsData.s2.messages[chatsData.s2.messages.length -1].timestamp,
         },
-    ])
+    ]);
+    const [messages, setMessages] = useState([]);
 
     // for rendering each chat element
     function renderChat({item}) {

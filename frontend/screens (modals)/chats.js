@@ -1,4 +1,4 @@
-const chats = {
+let chats = {
     s1: {
         messages: [
             {userID: 'u1', msg: 'Hi', timestamp: '09:30'},

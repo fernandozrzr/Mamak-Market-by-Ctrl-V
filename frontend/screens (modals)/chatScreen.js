@@ -1,7 +1,5 @@
-import {StyleSheet, Text, TouchableOpacity, View, Image, KeyboardAvoidingView, Platform } from 'react-native'
+import {StyleSheet, Text, TouchableOpacity, View, Image, KeyboardAvoidingView, BackHandler, Alert } from 'react-native'
 import { useEffect, useState, useRef, createRef } from 'react'
-import Constants from 'expo-constants'
-import BottomSheet, { BottomSheetView, BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import { ScrollView, FlatList, TouchableWithoutFeedback, TextInput } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import chatsData from './chats'
@@ -11,8 +9,33 @@ export default function ChatScreen( {route, navigation} ) {
     
     // message properties: userID (to retrieve username and profile_pic), message, timestamp
     const [messages, setMessages] = useState([]);
-    const [text, setText] = useState('');
+    const [textVal, setText] = useState('');
     const [sellerID, username, profile_pic] = route.params;
+
+    // useEffect() for handling back button presses
+    useEffect(() => {
+        const backAction = () => {
+            console.log(textVal)
+            if (textVal != '') {
+                Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+                {
+                    text: 'Cancel',
+                    onPress: () => null,
+                    style: 'cancel',
+                },
+                {text: 'YES', onPress: () => BackHandler.exitApp()},
+                ]);
+                return true;
+            }
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress',
+            backAction,
+        );
+    
+        return () => backHandler.remove();
+    }, [textVal]);
 
     // useEffect() for loading in messages
     useEffect(() => {
@@ -21,7 +44,7 @@ export default function ChatScreen( {route, navigation} ) {
         } else {
             console.error('Invalid sellerID: ', sellerID);
         }
-    }, [sellerID]) 
+    }, [sellerID])
 
     // for rendering each message
     function renderMsg({item}) {
@@ -37,13 +60,13 @@ export default function ChatScreen( {route, navigation} ) {
 
     // for sending a new message
     function sendMsg() {
-        if (text != '') {
+        if (textVal != '') {
             setMessages([...messages, {
                 userID: 'u1',
-                msg: text,
+                msg: textVal,
                 timestamp: '12:59'
             }])
-            this.myTextInput.current.clear();
+            myTextInput.current.clear();
             setText('');
         }
     }
@@ -53,7 +76,7 @@ export default function ChatScreen( {route, navigation} ) {
     flatListRef?.current?.scrollToEnd();
 
     // reference for clearing text input once entered
-    this.myTextInput = createRef();
+    const myTextInput = useRef();
 
     return (
         <SafeAreaView style={styles.container}>
@@ -78,9 +101,9 @@ export default function ChatScreen( {route, navigation} ) {
                         style={{ color: "#727272", fontSize: 12, }}
                         placeholder='Type message here...'
                         placeholderTextColor="#727272"
-                        onChangeText={newText => setText(newText)}
+                        onChangeText={newText => {setText(newText); console.log(textVal)}}
                         onSubmitEditing={sendMsg}
-                        ref={this.myTextInput}
+                        ref={myTextInput}
                     />
                     <AntDesign 
                         name="rightsquare" size={20} color="gray" 
