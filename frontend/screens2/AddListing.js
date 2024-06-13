@@ -22,7 +22,7 @@ export default function AddListing({ navigation }) {
   const [price, setPrice] = useState('');
   const { dispatch } = useListsContext();
 
-  const user = 'Qiong Provisions';
+  const user = 'QiongProvision';
   const uploadImage = async () => {
     try {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();

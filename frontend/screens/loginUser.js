@@ -47,40 +47,58 @@ export default function LoginUser({ navigation }) {
     //             Alert.alert("Error", "An unexpected error occurred");
     //         });
     // }
-    function handleSubmit() {
+    async function handleSubmit() {
         const userData = {
             username: username,
             password: password,
             usergroup: usergroup,
         };
     
-        axios
-            .post(`${config.API_URL}/profile/login`, userData)
-            .then(async (res) => {
-                // console.log(res.data);
-                if (res.data.status === "ok") {
-                    Alert.alert("Login Successful");
-                    try {
-                        await AsyncStorage.setItem('userName', res.data.name); // Store the name in AsyncStorage
-                    } catch (error) {
-                        console.error('AsyncStorage Error: ', error);
-                    }
+        // axios
+        //     .post(`${config.API_URL}/profile/login`, userData)
+        //     .then(async (res) => {
+        //         // console.log(res.data);
+        //         if (res.data.status === "ok") {
+        //             Alert.alert("Login Successful");
+        //             try {
+        //                 await AsyncStorage.setItem('userName', res.data.name); // Store the name in AsyncStorage
+        //             } catch (error) {
+        //                 console.error('AsyncStorage Error: ', error);
+        //             }
 
-                    if (usergroup === "Seller") {
-                        navigation.navigate("SellerScreens");
-                    } else if (usergroup === "User") {
-                        navigation.navigate("UserScreens");
-                    } else {
-                        Alert.alert("Login Failed", "Invalid user group");
-                    }
+        //             if (usergroup === "Seller") {
+        //                 navigation.navigate("SellerScreens");
+        //             } else if (usergroup === "User") {
+        //                 navigation.navigate("UserScreens");
+        //             } else {
+        //                 Alert.alert("Login Failed", "Invalid user group");
+        //             }
+        //         } else {
+        //             Alert.alert("Login Failed", res.data.message || "Unexpected error");
+        //         }
+        //     })
+        //     .catch(error => {
+        //         // console.error('Error:', error);
+        //         Alert.alert("Error",error.message);
+        //     });
+        try {
+            const res = await axios.post(`${config.API_URL}/profile/login`, userData);
+            if (res.data.status === "ok") {
+                await AsyncStorage.setItem('username', username);
+                Alert.alert("Login Successful");
+                if (usergroup === "Seller") {
+                    navigation.navigate("SellerScreens");
+                } else if (usergroup === "User") {
+                    navigation.navigate("UserScreens"); // No need to pass username here if using AsyncStorage
                 } else {
-                    Alert.alert("Login Failed", res.data.message || "Unexpected error");
+                    Alert.alert("Login Failed", "Invalid user group");
                 }
-            })
-            .catch(error => {
-                // console.error('Error:', error);
-                Alert.alert("Error",error.message);
-            });
+            } else {
+                Alert.alert("Login Failed", res.data.message || "Unexpected error");
+            }
+        } catch (error) {
+            Alert.alert("Error", "An unexpected error occurred");
+        }
     }
 
     return (

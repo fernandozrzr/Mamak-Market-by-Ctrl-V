@@ -4,18 +4,31 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function UserpageUser({ navigation }) {
-	const [userName, setUserName] = useState(null);
+	const [username, setUsername] = useState("");
+	// useEffect(() => {
+    //     const fetchUserName = async () => {
+    //         try {
+    //             const storedName = await AsyncStorage.getItem('userName');
+    //             setUserName(storedName);
+    //         } catch (error) {
+    //             console.error('AsyncStorage Error: ', error);
+    //         }
+    //     };
+
+    //     fetchUserName();
+    // }, []);
 	useEffect(() => {
-        const fetchUserName = async () => {
+        const getUsername = async () => {
             try {
-                const storedName = await AsyncStorage.getItem('userName');
-                setUserName(storedName);
+                const storedUsername = await AsyncStorage.getItem('username');
+                if (storedUsername) {
+                    setUsername(storedUsername);
+                }
             } catch (error) {
-                console.error('AsyncStorage Error: ', error);
+                console.error("Error retrieving username:", error);
             }
         };
-
-        fetchUserName();
+        getUsername();
     }, []);
 
 	return (
@@ -96,7 +109,7 @@ export default function UserpageUser({ navigation }) {
 							marginRight: 5,
 						}}
 					>
-						{userName}
+						{username}
 					</Text>
 					<Image
 						source={require('../assets/ShopImage/tickIcon.png')}
