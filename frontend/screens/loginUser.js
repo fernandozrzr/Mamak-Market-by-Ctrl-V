@@ -48,40 +48,34 @@ export default function LoginUser({ navigation }) {
     //         });
     // }
     function handleSubmit() {
-        const userData = {
-            username: username,
-            password: password,
-            usergroup: usergroup,
-        };
-    
-        axios
-            .post(`${config.API_URL}/profile/login`, userData)
-            .then(async (res) => {
-                // console.log(res.data);
-                if (res.data.status === "ok") {
-                    Alert.alert("Login Successful");
-                    try {
-                        await AsyncStorage.setItem('userName', res.data.name); // Store the name in AsyncStorage
-                    } catch (error) {
-                        console.error('AsyncStorage Error: ', error);
-                    }
+    const userData = {
+        username: username,
+        password: password,
+        usergroup: usergroup,
+    };
 
-                    if (usergroup === "Seller") {
-                        navigation.navigate("SellerScreens");
-                    } else if (usergroup === "User") {
-                        navigation.navigate("UserScreens");
-                    } else {
-                        Alert.alert("Login Failed", "Invalid user group");
-                    }
+    axios
+        .post(`${config.API_URL}/profile/login`, userData)
+        .then(res => {
+            if (res.data.status === "ok") {
+                console.log(res.data.name);
+                Alert.alert("Login Successful");
+                localStorage.setItem('userName', res.data.name); // Store the name in local storage
+                if (usergroup === "Seller") {
+                    navigation.navigate("SellerScreens", { name: res.data.name });
+                } else if (usergroup === "User") {
+                    navigation.navigate("UserScreens");
                 } else {
-                    Alert.alert("Login Failed", res.data.message || "Unexpected error");
+                    Alert.alert("Login Failed", "Invalid user group");
                 }
-            })
-            .catch(error => {
-                // console.error('Error:', error);
-                Alert.alert("Error",error.message);
-            });
-    }
+            } else {
+                Alert.alert("Login Failed", res.data.message || "Unexpected error");
+            }
+        })
+        .catch(error => {
+            Alert.alert("Error", "An unexpected error occurred");
+        });
+}
 
     return (
         <SafeAreaView

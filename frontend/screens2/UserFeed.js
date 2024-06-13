@@ -8,7 +8,7 @@ export default function UserFeed({ navigation }) {
 
     useEffect(() => {
     const fetchFeeds = async () => {
-      const response = await fetch('http://192.168.10.71:4000/api/feed/')
+      const response = await fetch(`${config.API_URL}/feed/`);
       const json = await response.json()
 
       if (response.ok) {
