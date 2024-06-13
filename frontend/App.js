@@ -29,6 +29,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons';
+import Onboarding from './screens (modals)/onboarding';
 
 
 const Stack = createStackNavigator();
@@ -208,6 +209,7 @@ function App() {
   }
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }} >
+      {/* <Stack.Screen name="onboarding" component={Onboarding} /> */}
       <Stack.Screen name="loginUser" component={loginUser} />
       <Stack.Screen name="loginBusinessOwner" component={loginBusinessOwner} />
       <Stack.Screen name="signupBusinessOwner" component={signupBusinessOwner} />

@@ -137,20 +137,21 @@ export default function UserpageUser({ navigation }) {
 							borderRadius: 15,
 							paddingVertical: 3,
 							paddingHorizontal: 16,
+							justifyContent: 'center',
 						}}
 					>
 						<Image
 							source={require('../assets/ShopImage/editIcon.png')}
 							style={{
-								width: 19,
-								height: 19,
+								width: 25,
+								height: 25,
 							}}
 							resizeMode="cover"
 						/>
 						<Text
 							style={{
 								color: "#000000",
-								fontSize: 20,
+								fontSize: 18,
 								flex: 1,
 								marginLeft: 12,
 							}}
@@ -257,7 +258,8 @@ export default function UserpageUser({ navigation }) {
 						style={{
 							width: '48%',
 							backgroundColor: "#D9D9D9",
-							borderRadius: 10,
+							borderRadius: 5,
+							borderBottomLeftRadius: 0,
 							marginBottom: 20,
 							padding: 10,
 						}}
@@ -269,19 +271,40 @@ export default function UserpageUser({ navigation }) {
 							style={{
 								width: '100%',
 								height: 140,
-								borderRadius: 10,
-								marginBottom: 10,
+								borderRadius: 5,
 							}}
 						/>
-						<Text
-							style={{
-								color: "#000000",
-								fontSize: 14,
-								textAlign: 'center',
-							}}
-						>
-							{"Apple (5pcs)"}
-						</Text>
+						<View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between'}}>
+							<View style={{ paddingLeft: 5 }}>
+								<Text
+									style={{
+										color: "#000000",
+										fontSize: 14,
+										fontWeight: 'bold',
+										paddingTop: 5,
+									}}
+								>
+									{"Apple (5pcs)"}
+								</Text>
+								<Text 
+									style={{
+										fontSize: 10,
+									}}>
+									{"Qiong Provisions"}
+								</Text>
+							</View>
+							<Text
+								style={{
+									color: "#000000",
+									fontSize: 14,
+									fontWeight: 'bold',
+									paddingTop: 5,
+									color: 'green',
+								}}
+							>
+								{"$2.30"}
+							</Text>
+						</View>
 					</TouchableOpacity>
 				</View>
 			</ScrollView>

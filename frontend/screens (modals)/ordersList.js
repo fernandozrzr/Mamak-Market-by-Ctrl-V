@@ -31,14 +31,14 @@ export default function OrdersList( {navigation} ) {
             <View style={styles.orderItem}>
 
                 <View style={styles.sellerBox}>
-                    <TouchableOpacity onPress={() => navigation.navigate()}>
+                    <TouchableOpacity onPress={() => navigation.navigate('ShopPage')}>
                         <Image source={require('../assets/ShopImage/QiongProvisionsImage.jpg')} style={styles.sellerPic} />
                     </TouchableOpacity>
                     <Text style={styles.sellerName}> {item.shop} </Text>
                 </View>
 
                 <View style={styles.itemBox}>
-                    <TouchableOpacity onPress={() => navigation.navigate()}>
+                    <TouchableOpacity onPress={() => navigation.navigate('ShopPageItemTemplate')}>
                         <Image source={item.image} style={styles.itemPic} />
                     </TouchableOpacity>
                     <View style={styles.itemDetails}>
