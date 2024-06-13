@@ -87,7 +87,7 @@ export default function MarketPage({ navigation, route }) {
               fontStyle: "bold",
             }}
           >{user}</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('ChatScreen', ['s1', 'Qiong Provisions', require('../assets/ShopImage/QiongProvisionIcon.jpg')])}>
+          <TouchableOpacity onPress={() => navigation.navigate('ChatScreen', ['s1', 'QiongProvisions', require('../assets/ShopImage/QiongProvisionIcon.jpg')])}>
             <View
               style={{
                 flexDirection: "row",

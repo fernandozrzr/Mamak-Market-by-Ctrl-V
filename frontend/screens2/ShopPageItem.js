@@ -28,6 +28,8 @@ export default function ShopPageItem({ navigation, route }) {
 
         return `${day}/${month}/${year}`;
     };
+  
+    
 
 
     return (

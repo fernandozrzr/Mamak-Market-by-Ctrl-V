@@ -47,35 +47,59 @@ export default function LoginUser({ navigation }) {
     //             Alert.alert("Error", "An unexpected error occurred");
     //         });
     // }
-    function handleSubmit() {
-    const userData = {
-        username: username,
-        password: password,
-        usergroup: usergroup,
-    };
+    async function handleSubmit() {
+        const userData = {
+            username: username,
+            password: password,
+            usergroup: usergroup,
+        };
+    
+        // axios
+        //     .post(`${config.API_URL}/profile/login`, userData)
+        //     .then(async (res) => {
+        //         // console.log(res.data);
+        //         if (res.data.status === "ok") {
+        //             Alert.alert("Login Successful");
+        //             try {
+        //                 await AsyncStorage.setItem('userName', res.data.name); // Store the name in AsyncStorage
+        //             } catch (error) {
+        //                 console.error('AsyncStorage Error: ', error);
+        //             }
 
-    axios
-        .post(`${config.API_URL}/profile/login`, userData)
-        .then(res => {
+        //             if (usergroup === "Seller") {
+        //                 navigation.navigate("SellerScreens");
+        //             } else if (usergroup === "User") {
+        //                 navigation.navigate("UserScreens");
+        //             } else {
+        //                 Alert.alert("Login Failed", "Invalid user group");
+        //             }
+        //         } else {
+        //             Alert.alert("Login Failed", res.data.message || "Unexpected error");
+        //         }
+        //     })
+        //     .catch(error => {
+        //         // console.error('Error:', error);
+        //         Alert.alert("Error",error.message);
+        //     });
+        try {
+            const res = await axios.post(`${config.API_URL}/profile/login`, userData);
             if (res.data.status === "ok") {
-                console.log(res.data.name);
+                await AsyncStorage.setItem('username', username);
                 Alert.alert("Login Successful");
-                localStorage.setItem('userName', res.data.name); // Store the name in local storage
                 if (usergroup === "Seller") {
-                    navigation.navigate("SellerScreens", { name: res.data.name });
+                    navigation.navigate("SellerScreens");
                 } else if (usergroup === "User") {
-                    navigation.navigate("UserScreens");
+                    navigation.navigate("UserScreens"); // No need to pass username here if using AsyncStorage
                 } else {
                     Alert.alert("Login Failed", "Invalid user group");
                 }
             } else {
                 Alert.alert("Login Failed", res.data.message || "Unexpected error");
             }
-        })
-        .catch(error => {
+        } catch (error) {
             Alert.alert("Error", "An unexpected error occurred");
-        });
-}
+        }
+    }
 
     return (
         <SafeAreaView
