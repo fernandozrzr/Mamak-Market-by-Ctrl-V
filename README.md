@@ -1,5 +1,5 @@
 # Mamak-Market-by-Ctrl-V
-## Mamak Market is a social marketplace centered around perennial Mama Shops, which are small retail outlets commonly found in various neighborhoods. This platform aims to tackle food wastage and shift consumer mindsets on food expiration, providing a reasonable pricing model that benefits both shop owners and customers.
+##### Mamak Market is a social marketplace centered around perennial Mama Shops, which are small retail outlets commonly found in various neighborhoods. This platform aims to tackle food wastage and shift consumer mindsets on food expiration, providing a reasonable pricing model that benefits both shop owners and customers.
 
 
 ### Main Features
